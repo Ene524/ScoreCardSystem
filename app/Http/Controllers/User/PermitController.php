@@ -29,7 +29,7 @@ class PermitController extends Controller
         $permit->type = $request->type;
         $permit->description = $request->description;
         $permit->permit_status_id = 0;
-        $permit->save();
+        $permit->save(); //Test
 
         $lastPermit = Permit::latest()->with(['employee'])->first();
         return response()->json([$lastPermit]);
