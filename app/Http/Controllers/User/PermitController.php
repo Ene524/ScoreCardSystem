@@ -26,7 +26,7 @@ class PermitController extends Controller
         $permit->employee_id = $request->employee_id;
         $permit->start = $request->start;
         $permit->end = $request->end;
-        $permit->type = $request->type;
+        $permit->permit_type_id = $request->permit_type_id;
         $permit->description = $request->description;
         $permit->permit_status_id = 0;
         $permit->save(); //Test

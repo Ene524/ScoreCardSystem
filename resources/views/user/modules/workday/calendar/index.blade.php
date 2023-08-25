@@ -69,7 +69,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">İzin Türü</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="type" id="type">
+                                        <select class="form-control" name="type" id="permit_type_id">
                                             <label for="description"></label>
                                             <option value={{null}}>İzin Türü Seç</option>
                                             @foreach($permitTypes as $item)

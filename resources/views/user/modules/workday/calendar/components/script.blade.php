@@ -94,7 +94,7 @@
         var employee_id = $("#employee_id").val();
         var start = $("#start").val();
         var end = $("#end").val();
-        var type = $('#type').val();
+        var permit_type_id = $('#permit_type_id').val();
         var description = $("#description").val();
 
         $.ajax({
@@ -104,7 +104,7 @@
                 employee_id: employee_id,
                 start: start,
                 end: end,
-                type: type,
+                permit_type_id: permit_type_id,
                 description: description,
                 _token: '{{csrf_token()}}'
             },
