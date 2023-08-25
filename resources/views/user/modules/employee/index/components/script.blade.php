@@ -4,7 +4,6 @@
     $(document).ready(function () {
         $('.deleteEmployee').click(function () {
             let employeeID = $(this).attr('data-id');
-            
             let employeeName = $(this).data('name');
 
             swal({
