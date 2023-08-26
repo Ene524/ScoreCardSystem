@@ -13,9 +13,9 @@ class WorkdayController extends Controller
 {
     public function index()
     {
-        if (Workday::count() == 0) {
-            $this->insert();
-        }
+//        if (Workday::count() == 0) {
+//            $this->insert();
+//        }
         $workdays = Workday::with(['employee'])->get();
         return view("user.modules.workday.index.index",compact("workdays"));
     }
@@ -35,17 +35,6 @@ class WorkdayController extends Controller
                 'color' => '#f05050',
             ];
         }
-        //        $events = [];
-//        foreach ($workdays as $workday) {
-//            $events[] = [
-//                'title' => $workday->employee->full_name,
-//                'start' => $workday->date,
-//                'color' => '#f05050',
-//            ];
-//        }
-
-        //dd($events);
-
         return view("user.modules.workday.calendar.index",compact("events","employees","permitTypes"));
     }
 
@@ -72,11 +61,10 @@ class WorkdayController extends Controller
     {
         $workday = new Workday();
         $workday->employee_id = request()->employee_id;
-        $workday->date = request()->date;
-        $workday->start = request()->start;
-        $workday->end = request()->end;
+        $workday->start_date = request()->start_date;
+        $workday->end_date = request()->end_date;
         $workday->save();
-        return redirect()->route("user.workday.index",with("success","Çalışma günü başarıyla oluşturuldu"));
+        return redirect()->route('user.workday.index')->with('success', 'Personel başarıyla oluşturuldu');
     }
 }
 

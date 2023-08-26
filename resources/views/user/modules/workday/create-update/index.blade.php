@@ -1,11 +1,11 @@
 @extends('user.layouts.master')
 @section('title', 'Çalışma Günü Gir')
+
 @section('content')
+
 
     <div class="row">
         <div class="col-md-12">
-
-
             @if ($errors->all())
                 <div class="alert alert-danger" role="alert">
                     <h4 class="alert-heading">Dikkat!</h4>
@@ -25,7 +25,7 @@
                     <h3 class="box-title">Personel Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($employee)? route('user.employee.edit',['id'=>$employee->id]) :route('user.employee.create')}}"
+                      action="{{isset($workday)? route('user.workday.edit',['id'=>$workday->id]) :route('user.workday.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
@@ -48,7 +48,7 @@
 
                             <div class="col-sm-10">
                                 <input id="Test" class="form-control" type="datetime-local" name="start_date"
-                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i:s'):date('Y-m-d H:i:s')}}">
+                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,7 +56,7 @@
 
                             <div class="col-sm-10">
                                 <input class="form-control" type="datetime-local" name="end_date"
-                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i:s'):date('Y-m-d H:i:s')}}">
+                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}">
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@
                                 <select class="form-control" name="status">
                                     <option value={{null}}>Durum Seç</option>
                                         <option value="0" >Pasif</option>
-                                        <option value="1" >Aktif</option>
+                                        <option value="1" selected >Aktif</option>
                                 </select>
                             </div>
                         </div>

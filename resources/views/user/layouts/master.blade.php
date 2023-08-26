@@ -40,7 +40,7 @@
     @include('user.layouts.sidebar')
 
     <div class="content-wrapper">
-{{--        @include('user.layouts.breadcrumb')--}}
+    {{-- @include('user.layouts.breadcrumb')--}}
 
         <section class="content">
             @yield('content')
