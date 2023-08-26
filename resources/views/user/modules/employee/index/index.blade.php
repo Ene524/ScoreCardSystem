@@ -6,23 +6,21 @@
 
     <div class="row">
         <div class="col-md-12">
-            @if ($errors->all())
-                <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Dikkat!</h4>
-                    <p>İşleminiz gerçekleştirilemedi</p>
-                    <hr>
-                    @foreach ($errors->all() as $error)
-                        <ul>
-                            <li><i class="fa fa-angle-double-right txt-white m-r-10"></i>{{ $error }}</li>
-                        </ul>
-                    @endforeach
+
+
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
                 </div>
             @endif
+
+
 
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Personel Ekle</h3>
+                    <h3 class="box-title pull-left">Personel Listesi</h3>
+                    <a href="{{route('user.employee.create')}}" class="btn btn-primary btn-sm btn-square pull-right">Personel Oluştur</a>
                 </div>
                 <table class="table table-responsive">
                     <thead>

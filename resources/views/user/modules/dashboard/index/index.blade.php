@@ -23,7 +23,7 @@
 
 @endsection
 
-@section('customCss')
+@section('customStyle')
     @include('user.modules.dashboard.index.components.style')
 @endsection
 

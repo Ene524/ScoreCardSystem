@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('workdays', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
-            $table->date('date');
-            $table->time('start');
-            $table->time('end');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

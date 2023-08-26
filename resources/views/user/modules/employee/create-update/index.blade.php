@@ -4,6 +4,8 @@
 
     <div class="row">
         <div class="col-md-12">
+
+
             @if ($errors->all())
                 <div class="alert alert-danger" role="alert">
                     <h4 class="alert-heading">Dikkat!</h4>
@@ -30,7 +32,7 @@
                         <div class="form-group">
                             <label for="inputFullName3" class="col-sm-2 control-label">Ad Soyad</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="full_name"
+                                <input class="form-control" type="text" name="full_name" placeholder="Ad Soyad"
                                        value="{{isset($employee) ? $employee->full_name:""}}">
                             </div>
                         </div>
@@ -38,7 +40,7 @@
                             <label class="col-sm-2 control-label">Email</label>
 
                             <div class="col-sm-10">
-                                <input class="form-control" type="email" name="email"
+                                <input class="form-control" type="email" name="email" placeholder="Email"
                                        value="{{isset($employee) ? $employee->email:""}}">
                             </div>
                         </div>
@@ -94,8 +96,9 @@
                         </div>
 
                         <div class="box-footer">
-                                <button type="button" class="btn btn-default pull-right" style="margin-left: 5px">Vazgeç</button>
-                                <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                            <button type="button" class="btn btn-default pull-right" style="margin-left: 5px">Vazgeç
+                            </button>
+                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
 
                         </div>
 

@@ -1,4 +1,4 @@
-<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
 
 <script>
     $(document).ready(function () {

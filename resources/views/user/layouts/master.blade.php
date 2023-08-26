@@ -21,6 +21,7 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="{{asset('assets/dist/css/Source_Sans_Pro.css')}}">
+    @yield('customStyle')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -60,5 +61,6 @@
 <script src="{{asset('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('assets/dist/js/demo.js')}}"></script>
+@yield('customScript')
 </body>
 </html>
