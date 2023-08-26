@@ -36,6 +36,7 @@
 
         dateClick: function (info)
         {
+            clearForm();
             $("#start").val(moment(info.date).format('YYYY-MM-DD HH:mm:ss'));
             $("#end").val(moment(info.date).format('YYYY-MM-DD HH:mm:ss'));
             $(".customizer-contain").addClass("open");
@@ -134,6 +135,13 @@
     function closeForm() {
         $(".customizer-contain").removeClass("open");
         $('.customizer-contain').css('right', '-500px');
+    }
+    function clearForm(){
+        $("#employee_id").val('');
+        $("#start").val('');
+        $("#end").val('');
+        $("#permit_type_id").val('');
+        $("#description").val('');
     }
 </script>
 

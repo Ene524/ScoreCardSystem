@@ -31,7 +31,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            "email.exists" => "Bilgilerinizi kontrol ediniz.",
+            "email.required" => "Email alanı boş bırakılamaz.",
+            "email.email" => "Geçerli bir email adresi giriniz.",
         ];
     }
 }
