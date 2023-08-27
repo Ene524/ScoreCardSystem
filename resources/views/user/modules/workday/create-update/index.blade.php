@@ -22,7 +22,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Personel Ekle</h3>
+                    <h3 class="box-title">Çalışma Günü Ekle</h3>
                 </div>
                 <form class="form-horizontal"
                       action="{{isset($workday)? route('user.workday.edit',['id'=>$workday->id]) :route('user.workday.create')}}"
@@ -48,7 +48,7 @@
 
                             <div class="col-sm-10">
                                 <input id="Test" class="form-control" type="datetime-local" name="start_date"
-                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}">
+                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d 09:00')}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,7 +56,7 @@
 
                             <div class="col-sm-10">
                                 <input class="form-control" type="datetime-local" name="end_date"
-                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}">
+                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d 18:001')}}">
                             </div>
                         </div>
 
@@ -65,8 +65,8 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="status">
                                     <option value={{null}}>Durum Seç</option>
-                                        <option value="0" >Pasif</option>
-                                        <option value="1" selected >Aktif</option>
+                                        <option value="0" {{isset($workday) & $workday->status==null ? "selected" : "" }} >Pasif</option>
+                                        <option value="1" {{isset($workday) & $workday->status!=null ? "selected" : "" }}>Aktif</option>
                                 </select>
                             </div>
                         </div>
@@ -92,9 +92,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.employee.index.components.style')
+    @include('user.modules.workday.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.employee.index.components.script')
+    @include('user.modules.workday.create-update.components.script')
 @endsection

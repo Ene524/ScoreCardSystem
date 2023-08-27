@@ -1,5 +1,6 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
 
+
 <script>
     $(document).ready(function () {
         $('.deleteEmployee').click(function () {

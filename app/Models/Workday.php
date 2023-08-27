@@ -16,7 +16,8 @@ class Workday extends Model
     ];
 
     protected $casts = [
-        'date' => 'datetime'
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
     ];
 
     public function employee()

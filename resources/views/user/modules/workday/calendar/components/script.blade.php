@@ -1,11 +1,15 @@
-<script src="{{asset('assets/js/moment.min.js')}}"></script>
-<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/js/calendar/fullcalendar.bundle.js')}}"></script>
-<script src="{{asset('assets/js/calendar/locales-all-min.js')}}"></script>
+<script src="{{asset('assets/bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/bower_components/fullcalendar/fullcalendar.bundle.js')}}"></script>
+<script src="{{asset('assets/bower_components/fullcalendar/locales-all-min.js')}}"></script>
+<script src="{{asset('assets/bower_components/select2/dist/js/select2.min.js')}}"></script>
 
 
-<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
-
+<script>
+$(document).ready(function () {
+    $('.select2').select2();
+});
+</script>
 
 <script>
     var todayDate = moment().startOf("day");
@@ -30,32 +34,35 @@
         initialView: "dayGridMonth",
         initialDate: TODAY,
 
-        editable: false,
+        editable: true,
+
+        selectable: true,
         dayMaxEvents: true,
         navLinks: true,
 
-        dateClick: function (info)
-        {
+        select: function (arg) {
             clearForm();
-            $("#start").val(moment(info.date).format('YYYY-MM-DD HH:mm:ss'));
-            $("#end").val(moment(info.date).format('YYYY-MM-DD HH:mm:ss'));
-            $(".customizer-contain").addClass("open");
-            $(".customizer-links").addClass("open");
-            $('.customizer-contain').css('right', '0px');
+            $("#start_date").val(moment(arg.start).format('YYYY-MM-DD 09:00'));
+            $("#end_date").val(moment(arg.end).add(-1, 'day').format('YYYY-MM-DD 18:00'));
+            $(".modal").modal("show");
         },
 
-        eventClick: function (info)
-        {
-            $('.fc-popover-close').click();
-        },
+        // dateClick: function (info) {
+        //     clearForm();
+        //     $("#start_date").val(moment(info.date).format('YYYY-MM-DD 09:00'));
+        //     $("#end_date").val(moment(info.date).format('YYYY-MM-DD 18:00'));
+        //     $(".modal").modal("show");
+        //
+        // },
+
 
         events: function (info, successCallback) {
             $.ajax({
                 url: '{{ route('api.user.permit.index') }}',
                 type: 'get',
                 data: {
-                    startDate: info.startStr.valueOf(),
-                    endDate: info.endStr.valueOf(),
+                    start_date: info.startStr.valueOf(),
+                    end_date: info.endStr.valueOf(),
                 },
                 success: function (response) {
                     var events = [];
@@ -64,11 +71,11 @@
                             _id: permit.id,
                             id: permit.id,
                             title: permit.employee.full_name,
-                            start: reformatDateForCalendar(permit.start),
-                            end: reformatDateForCalendar(permit.end),
+                            start: reformatDateForCalendar(permit.start_date),
+                            end: reformatDateForCalendar(permit.end_date),
                             type: 'permit',
                             classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
-                            backgroundColor: 'white',
+                            backgroundColor: '#007bff',
                             permit_id: permit.id
                         });
                     });
@@ -89,12 +96,13 @@
             String(formattedDate.getHours()).padStart(2, '0') + ':' +
             String(formattedDate.getMinutes()).padStart(2, '0') + ':00';
     }
+
     calendar.render();
 
     $("#savePermit").click(function () {
         var employee_id = $("#employee_id").val();
-        var start = $("#start").val();
-        var end = $("#end").val();
+        var start_date = $("#start_date").val();
+        var end_date = $("#end_date").val();
         var permit_type_id = $('#permit_type_id').val();
         var description = $("#description").val();
 
@@ -103,8 +111,8 @@
             type: 'POST',
             data: {
                 employee_id: employee_id,
-                start: start,
-                end: end,
+                start_date: start_date,
+                end_date: end_date,
                 permit_type_id: permit_type_id,
                 description: description,
                 _token: '{{csrf_token()}}'
@@ -121,22 +129,18 @@
                 calendar.refetchEvents();
             },
             error: function (response) {
-                console.log(response);
+              alert(response.responseJSON.message);
             }
         });
     });
 
 
-
-    $(document).ready(function () {
-        $('.customizer-contain').css('right', '-500px');
-    })
-
     function closeForm() {
-        $(".customizer-contain").removeClass("open");
-        $('.customizer-contain').css('right', '-500px');
+        $(".modal").modal("hide");
     }
-    function clearForm(){
+
+
+    function clearForm() {
         $("#employee_id").val('');
         $("#start").val('');
         $("#end").val('');

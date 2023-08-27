@@ -1,25 +1,28 @@
+<script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
 <script>
     $(document).ready(function () {
-        $('.deleteEmployee').click(function () {
-            let employeeID = $(this).attr('data-id');
+        $('.deleteWorkday').click(function () {
+            let workdayID = $(this).attr('data-id');
             let employeeName = $(this).data('name');
+            let workdayStartDate = $(this).data('startdate');
+            let workdayEndDate = $(this).data('enddate');
 
             swal({
-                title: employeeName +" personelini silmek istediğine emin misin?",
+                title: employeeName +" personelinin " + workdayStartDate+" - "+ workdayEndDate +" tarihli çalışma kaydını silmek istediğine emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.employee.delete')}}',
+                        url: '{{route('user.permit.delete')}}',
                         type: 'DELETE',
                         data: {
-                            employeeID: employeeID,
+                            workdayID: workdayID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
-                            swal("Status changed successfully", {
+                            swal("Çalışma günü başarıyla silindi", {
                                 icon: "success",
                                 timer: 3000
                             });
@@ -40,8 +43,6 @@
         })
     })
 </script>
-
-<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
 
 
 

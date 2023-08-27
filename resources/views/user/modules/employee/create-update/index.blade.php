@@ -31,6 +31,7 @@
                       method="POST">
                     @csrf
                     <div class="box-body">
+
                         <div class="form-group">
                             <label for="inputFullName3" class="col-sm-2 control-label">Ad Soyad</label>
                             <div class="col-sm-10">
@@ -50,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Departman</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="department_id">
+                                <select class="form-control select2" name="department_id" style="width: 100%">
                                     <option value={{null}}>Departman Seç</option>
                                     @foreach($departments as $item)
                                         <option
@@ -65,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Pozisyon</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="position_id">
+                                <select class="form-control select2" name="position_id">
                                     <option value={{null}}>Pozisyon Seç</option>
                                     @foreach($positions as $item)
                                         <option
@@ -79,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Maaş</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="salary_id">
+                                <select class="form-control select2" name="salary_id">
                                     <option value={{null}}>Maaş Seç</option>
                                     @foreach($salaries as $item)
                                         <option
@@ -116,9 +117,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.employee.index.components.style')
+    @include('user.modules.employee.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.employee.index.components.script')
+    @include('user.modules.employee.create-update.components.script')
 @endsection

@@ -14,7 +14,7 @@ class PermitController extends Controller
             [
                 'permits' => Permit::with([
                     'employee'
-                ])->whereBetween('start', [$request->startDate, $request->endDate])->get()
+                ])->whereBetween('start_date', [$request->start_date, $request->end_date])->get()
             ]
         );
     }

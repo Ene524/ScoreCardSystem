@@ -21,18 +21,20 @@ class PermitController extends Controller
 
     public function store(PermitRequest $request)
     {
-        //dd($request->all());
         $permit = new Permit();
         $permit->employee_id = $request->employee_id;
-        $permit->start = $request->start;
-        $permit->end = $request->end;
+        $permit->start_date = $request->start_date;
+        $permit->end_date = $request->end_date;
         $permit->permit_type_id = $request->permit_type_id;
         $permit->description = $request->description;
         $permit->permit_status_id = 0;
-        $permit->save(); //Test
+        $permit->save();
 
-        $lastPermit = Permit::latest()->with(['employee'])->first();
-        return response()->json([$lastPermit]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'İzin başarıyla kaydedildi.'
+        ]);
     }
 
 

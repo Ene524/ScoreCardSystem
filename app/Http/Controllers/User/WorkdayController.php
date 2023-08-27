@@ -13,9 +13,6 @@ class WorkdayController extends Controller
 {
     public function index()
     {
-//        if (Workday::count() == 0) {
-//            $this->insert();
-//        }
         $workdays = Workday::with(['employee'])->get();
         return view("user.modules.workday.index.index",compact("workdays"));
     }
@@ -38,19 +35,6 @@ class WorkdayController extends Controller
         return view("user.modules.workday.calendar.index",compact("events","employees","permitTypes"));
     }
 
-
-    public function insert()
-    {
-        for ($i = 0; $i < 30; $i++) {
-            $workday = new Workday();
-            $workday->employee_id = 1;
-            $workday->date = Carbon::now()->startOfMonth()->addDays($i);
-            $workday->start = "09:00";
-            $workday->end = "18:00";
-            $workday->save();
-        }
-    }
-
     public function create()
     {
         $employees = Employee::all();
@@ -63,8 +47,27 @@ class WorkdayController extends Controller
         $workday->employee_id = request()->employee_id;
         $workday->start_date = request()->start_date;
         $workday->end_date = request()->end_date;
+        $workday->status = request()->status;
         $workday->save();
         return redirect()->route('user.workday.index')->with('success', 'Personel başarıyla oluşturuldu');
+    }
+
+    public function edit($id)
+    {
+        $workday = Workday::findOrFail($id);
+        $employees = Employee::all();
+        return view("user.modules.workday.create-update.index", compact("workday", "employees"));
+    }
+
+    public function update($id)
+    {
+        $workday = Workday::findOrFail($id);
+        $workday->employee_id = request()->employee_id;
+        $workday->start_date = request()->start_date;
+        $workday->end_date = request()->end_date;
+        $workday->status = request()->status;
+        $workday->save();
+        return redirect()->route('user.workday.index')->with('success', 'Personel başarıyla güncellendi');
     }
 }
 

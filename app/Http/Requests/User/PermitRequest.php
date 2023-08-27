@@ -25,7 +25,6 @@ class PermitRequest extends FormRequest
             'employee_id' => 'required|exists:employees,id',
             'start_date' => 'date',
             'end_date' => 'date',
-            'description' => 'required|string',
             'permit_type_id' => 'required|int',
         ];
     }

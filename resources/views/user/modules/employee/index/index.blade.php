@@ -6,8 +6,6 @@
 
     <div class="row">
         <div class="col-md-12">
-
-
             @if(session()->has('success'))
                 <div class="alert alert-success">
                     {{ session()->get('success') }}
@@ -20,7 +18,7 @@
                     <h3 class="box-title pull-left">Personel Listesi</h3>
                     <a href="{{route('user.employee.create')}}" class="btn btn-primary btn-sm btn-square pull-right">Personel Oluştur</a>
                 </div>
-                <table class="table table-responsive">
+                <table class="table table-responsive table-striped">
                     <thead>
                     <tr class="border-bottom-primary">
                         <th scope="col">#</th>

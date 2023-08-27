@@ -17,7 +17,9 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li><a href="{{route('user.dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Anasayfa</span></a></li>
+            <li>
+                <a href="{{route('user.dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Anasayfa</span></a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Personel Yönetimi</span>
@@ -27,7 +29,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('user.employee.create')}}"><i class="fa fa-circle-o"></i>Personel Ekle</a></li>
-                    <li><a href="{{route('user.employee.index')}}"><i class="fa fa-circle-o"></i>Personel Listesi</a></li>
+                    <li><a href="{{route('user.employee.index')}}"><i class="fa fa-circle-o"></i>Personel Listesi</a>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">
@@ -38,9 +41,26 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.workday.create')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Ekle</a></li>
-                    <li><a href="{{route('user.workday.index')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Listesi</a></li>
+                    <li><a href="{{route('user.workday.create')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.workday.index')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Listesi</a>
+                    </li>
                     <li><a href="{{route('user.workday.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>İzin Yönetimi</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
 
