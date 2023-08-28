@@ -4,19 +4,25 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PermitRequest;
+use App\Models\Employee;
 use App\Models\Permit;
+use App\Models\PermitType;
 use Illuminate\Http\Request;
 
 class PermitController extends Controller
 {
     public function index()
     {
-        return view('user.permit.index');
+        $permits=Permit::all();
+        $employees=Employee::all();
+        $permit_types=PermitType::all();
+        return view('user.modules.permit.index.index',compact('permits','employees','permit_types'));
     }
 
     public function create()
     {
-        return view('user.permit.create');
+        $employees=Employee::all();
+        return view('user.modules.permit.create-update.index',compact('employees'));
     }
 
     public function store(PermitRequest $request)

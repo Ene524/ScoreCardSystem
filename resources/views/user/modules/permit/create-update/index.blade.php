@@ -1,6 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Çalışma Günü Gir')
-
+@section('title', 'İzin Gir')
 @section('content')
 
 
@@ -32,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Personel</label>
                             <div class="col-sm-10">
-                                <select class="form-control select2" name="employee_id">
+                                <select class="form-control select2" name="employee_id" id="employee_id" style="width: 100%">
                                     <option value={{null}}>Personel Seç</option>
                                     @foreach($employees as $item)
                                         <option
@@ -42,45 +41,63 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Başlangıç Tarihi</label>
 
                             <div class="col-sm-10">
-                                <input id="Test" class="form-control" type="datetime-local" name="start_date"
-                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d 09:00')}}">
+                                <input  class="form-control" type="datetime-local" name="start_date" id="start_date"
+                                        value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Bitiş Tarihi</label>
 
                             <div class="col-sm-10">
-                                <input class="form-control" type="datetime-local" name="end_date"
-                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d 18:00')}}">
+                                <input class="form-control" type="datetime-local" name="end_date" id="end_date"
+                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}"/>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İzin Türü</label>
+                            <div class="col-sm-10">
+                                <select class="form-control select2" name="permit_type_id" id="permit_type_id" style="width: 100%">
+                                    <option value={{null}}>İzin Türü Seç</option>
+                                    @foreach($permitTypes as $item)
+                                        <option
+                                            value="{{ $item->id}}" {{ isset($workday) && $workday->permit_type_id == $item->id ? "selected" : "" }}>{{$item->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Durum</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="status">
                                     <option value={{null}}>Durum Seç</option>
-                                        <option value="0" {{isset($workday) & isset($workday->status)==null ? "selected" : "" }} >Pasif</option>
-                                        <option value="1" {{isset($workday) & isset($workday->status)!=null ? "selected" : "" }}>Aktif</option>
+                                    <option value="0" >Pasif</option>
+                                    <option value="1" selected >Aktif</option>
                                 </select>
                             </div>
                         </div>
-
-                        <div class="box-footer">
-                            <button type="button" class="btn btn-default pull-right" style="margin-left: 5px">Vazgeç
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Açıklama</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="description" id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button"
+                                    data-bs-original-title=""
+                                    title="" onclick="closeForm()">Vazgeç
                             </button>
-                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                            <button class="btn btn-primary" type="button"
+                                    data-bs-original-title=""
+                                    title="" id="savePermit">Gönder
+                            </button>
 
                         </div>
-
                     </div>
-
-
                 </form>
             </div>
         </div>
@@ -92,9 +109,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.workday.create-update.components.style')
+    @include('user.modules.permit.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.workday.create-update.components.script')
+    @include('user.modules.permit.create-update.components.script')
 @endsection
