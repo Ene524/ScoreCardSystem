@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('permits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->tinyInteger('permit_type_id');
             $table->string('description')->nullable();
             $table->tinyInteger('permit_status_id')->default(0);
