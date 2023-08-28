@@ -15,13 +15,14 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.permit.delete')}}',
+                        url: '{{route('user.workday.delete')}}',
                         type: 'DELETE',
                         data: {
                             workdayID: workdayID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
+                            console.log(response);
                             swal("Çalışma günü başarıyla silindi", {
                                 icon: "success",
                                 timer: 3000

@@ -7,23 +7,22 @@ use App\Http\Requests\User\PermitRequest;
 use App\Models\Employee;
 use App\Models\Permit;
 use App\Models\PermitType;
-use Illuminate\Http\Request;
 
 class PermitController extends Controller
 {
     public function index()
     {
-        $permits=Permit::all();
-        $employees=Employee::all();
-        $permitTypes=PermitType::all();
-        return view('user.modules.permit.index.index',compact('permits','employees','permitTypes'));
+        $permits = Permit::all();
+        $employees = Employee::all();
+        $permitTypes = PermitType::all();
+        return view('user.modules.permit.index.index', compact('permits', 'employees', 'permitTypes'));
     }
 
     public function create()
     {
-        $employees=Employee::all();
-        $permitTypes=PermitType::all();
-        return view('user.modules.permit.create-update.index',compact('employees','permitTypes'));
+        $employees = Employee::all();
+        $permitTypes = PermitType::all();
+        return view('user.modules.permit.create-update.index', compact('employees', 'permitTypes'));
     }
 
     public function store(PermitRequest $request)
@@ -34,14 +33,38 @@ class PermitController extends Controller
         $permit->end_date = $request->end_date;
         $permit->permit_type_id = $request->permit_type_id;
         $permit->description = $request->description;
-        $permit->permit_status_id = 0;
+        $permit->permit_status_id = $request->status;
         $permit->save();
+        return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla oluşturuldu');
 
+    }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'İzin başarıyla kaydedildi.'
-        ]);
+    public function edit($id)
+    {
+        $permit=Permit::findOrfail($id);
+        $employees = Employee::all();
+        $permitTypes = PermitType::all();
+        return view('user.modules.permit.create-update.index', compact('permit', 'employees', 'permitTypes'));
+    }
+
+    public function update(PermitRequest $request, $id)
+    {
+        $permit = Permit::findOrfail($id);
+        $permit->employee_id = $request->employee_id;
+        $permit->start_date = $request->start_date;
+        $permit->end_date = $request->end_date;
+        $permit->permit_type_id = $request->permit_type_id;
+        $permit->description = $request->description;
+        $permit->permit_status_id = $request->status;
+        $permit->save();
+        return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla güncellendi');
+    }
+
+    public function delete($id)
+    {
+        $permit = Permit::findOrfail($id);
+        $permit->delete();
+        return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla silindi');
     }
 
 

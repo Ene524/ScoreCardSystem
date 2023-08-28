@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'İzin Gir')
+@section('title', 'İzin Ekle')
 @section('content')
 
 
@@ -21,10 +21,10 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Çalışma Günü Ekle</h3>
+                    <h3 class="box-title">İzin Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($permit)? route('user.permit.edit',['id'=>$permit->id]) :route('user.workday.create')}}"
+                      action="{{isset($permit)? route('user.permit.edit',['id'=>$permit->id]) :route('user.permit.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
@@ -35,7 +35,7 @@
                                     <option value={{null}}>Personel Seç</option>
                                     @foreach($employees as $item)
                                         <option
-                                            value="{{ $item->id}}" {{ isset($workday) && $workday->employee_id == $item->id ? "selected" : "" }}>{{$item->full_name}}
+                                            value="{{ $item->id}}" {{ isset($permit) && $permit->employee_id == $item->id ? "selected" : "" }}>{{$item->full_name}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Açıklama</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="description" id="description"></textarea>
+                                <textarea class="form-control" name="description" id="description">{{ $permit->description ?? "" }} </textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -91,7 +91,7 @@
                                     data-bs-original-title=""
                                     title="" onclick="closeForm()">Vazgeç
                             </button>
-                            <button class="btn btn-primary" type="button"
+                            <button class="btn btn-primary" type="submit"
                                     data-bs-original-title=""
                                     title="" id="savePermit">Gönder
                             </button>
