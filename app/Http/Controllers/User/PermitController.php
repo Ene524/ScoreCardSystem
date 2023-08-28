@@ -15,14 +15,15 @@ class PermitController extends Controller
     {
         $permits=Permit::all();
         $employees=Employee::all();
-        $permit_types=PermitType::all();
-        return view('user.modules.permit.index.index',compact('permits','employees','permit_types'));
+        $permitTypes=PermitType::all();
+        return view('user.modules.permit.index.index',compact('permits','employees','permitTypes'));
     }
 
     public function create()
     {
         $employees=Employee::all();
-        return view('user.modules.permit.create-update.index',compact('employees'));
+        $permitTypes=PermitType::all();
+        return view('user.modules.permit.create-update.index',compact('employees','permitTypes'));
     }
 
     public function store(PermitRequest $request)

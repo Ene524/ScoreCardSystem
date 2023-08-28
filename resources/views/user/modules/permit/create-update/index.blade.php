@@ -24,7 +24,7 @@
                     <h3 class="box-title">Çalışma Günü Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($workday)? route('user.workday.edit',['id'=>$workday->id]) :route('user.workday.create')}}"
+                      action="{{isset($permit)? route('user.permit.edit',['id'=>$permit->id]) :route('user.workday.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
@@ -46,7 +46,7 @@
 
                             <div class="col-sm-10">
                                 <input  class="form-control" type="datetime-local" name="start_date" id="start_date"
-                                        value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}" />
+                                        value="{{isset($permit) ? $permit->start_date->format('Y-m-d H:i'):date('Y-m-d 09:00')}}" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +54,7 @@
 
                             <div class="col-sm-10">
                                 <input class="form-control" type="datetime-local" name="end_date" id="end_date"
-                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}"/>
+                                       value="{{isset($permit) ? $permit->end_date->format('Y-m-d H:i'):date('Y-m-d 18:00')}}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,7 +64,7 @@
                                     <option value={{null}}>İzin Türü Seç</option>
                                     @foreach($permitTypes as $item)
                                         <option
-                                            value="{{ $item->id}}" {{ isset($workday) && $workday->permit_type_id == $item->id ? "selected" : "" }}>{{$item->name}}
+                                            value="{{ $item->id}}" {{ isset($permit) && $permit->permit_type_id == $item->id ? "selected" : "" }}>{{$item->name}}
                                         </option>
                                     @endforeach
                                 </select>
