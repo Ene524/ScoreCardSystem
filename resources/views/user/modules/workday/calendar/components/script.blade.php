@@ -104,6 +104,7 @@ $(document).ready(function () {
         var start_date = $("#start_date").val();
         var end_date = $("#end_date").val();
         var permit_type_id = $('#permit_type_id').val();
+        var permit_status_id = $('#permit_status_id').val();
         var description = $("#description").val();
 
         $.ajax({
@@ -114,6 +115,7 @@ $(document).ready(function () {
                 start_date: start_date,
                 end_date: end_date,
                 permit_type_id: permit_type_id,
+                permit_status_id: permit_status_id,
                 description: description,
                 _token: '{{csrf_token()}}'
             },

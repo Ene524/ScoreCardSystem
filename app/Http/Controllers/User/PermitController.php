@@ -33,7 +33,7 @@ class PermitController extends Controller
         $permit->end_date = $request->end_date;
         $permit->permit_type_id = $request->permit_type_id;
         $permit->description = $request->description;
-        $permit->permit_status_id = $request->status;
+        $permit->permit_status_id = $request->permit_status_id;
         $permit->save();
         return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla oluşturuldu');
 

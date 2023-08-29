@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Durum</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="status">
+                                <select class="form-control" name="permit_status_id" id="permit_status_id">
                                     <option value={{null}}>Durum Seç</option>
                                     <option value="0" >Pasif</option>
                                     <option value="1" selected >Aktif</option>
