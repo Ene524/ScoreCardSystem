@@ -16,8 +16,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title pull-left">İzin Listesi</h3>
-                    <a href="{{route('user.permit.create')}}" class="btn btn-primary btn-sm btn-square pull-right">Çalışma
-                        Günü Oluştur</a>
+                    <a href="{{route('user.permit.create')}}" class="btn btn-primary btn-sm btn-square pull-right">İzin Oluştur</a>
                 </div>
                 <table class="table table-responsive">
                     <thead>
@@ -44,8 +43,8 @@
                             <td>{{$permit->start_date->format('d.m.Y H:i')}}</td>
                             <td>{{$permit->end_date->format('d.m.Y H:i')}}</td>
                             <td>{{$permit->permitType->name}}</td>
-                            <td>{{round((strtotime($permit->end_date) - strtotime($permit->start_date)) / 3600)}}Saat
-                            </td>
+                            <td>{{ $hoursDifferences[$permit->id]}}Saat</td>
+{{--                            <td>{{round((strtotime($permit->end_date) - strtotime($permit->start_date)) / 3600)}}Saat</td>--}}
                             <td>{{$permit->description}}</td>
 
                             <td>{{$permit->status==null? "Pasif ": "Aktif"}}</td>

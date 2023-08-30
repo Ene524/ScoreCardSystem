@@ -8,15 +8,24 @@ use App\Models\Employee;
 use App\Models\Permit;
 use App\Models\PermitType;
 use App\Models\Workday;
+use App\Services\WorkdayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class WorkdayController extends Controller
 {
+    public function __construct(WorkdayService $workdayService)
+    {
+        $this->workdayService = $workdayService;
+    }
+
     public function index()
     {
+        //Test servisi ile çalışma günleri ekleme
+        //$tempEmployees = Employee::where('id', '=', 11)->get()->toArray();
+        //$this->workdayService->addWorkdaysForUsers('2023-09-01', '2023-09-30', $tempEmployees);
         $workdays = Workday::with(['employee'])->get();
-        return view("user.modules.workday.index.index",compact("workdays"));
+        return view("user.modules.workday.index.index", compact("workdays"));
     }
 
     public function index2()
@@ -34,13 +43,13 @@ class WorkdayController extends Controller
                 'color' => '#f05050',
             ];
         }
-        return view("user.modules.workday.calendar.index",compact("events","employees","permitTypes"));
+        return view("user.modules.workday.calendar.index", compact("events", "employees", "permitTypes"));
     }
 
     public function create()
     {
         $employees = Employee::all();
-        return view("user.modules.workday.create-update.index", compact(  "employees"));
+        return view("user.modules.workday.create-update.index", compact("employees"));
     }
 
     public function store(WorkdayRequest $request)
@@ -77,6 +86,17 @@ class WorkdayController extends Controller
         $workday = Workday::findOrFail($request->workdayID);
         $workday->delete();
         return response()->json(['status' => 'success']);
+    }
+
+    public function addWorkdays(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $employees = Employee::all(); // Tüm kullanıcılar
+        $this->workdayService->addWorkdaysForUsers($startDate, $endDate, $employees);
+
+        return response()->json(['message' => 'Workdays added successfully'], 201);
     }
 }
 
