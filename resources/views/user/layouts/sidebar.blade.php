@@ -60,7 +60,7 @@
                     </li>
                     <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                    <li><a href="{{route('user.permit.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
 

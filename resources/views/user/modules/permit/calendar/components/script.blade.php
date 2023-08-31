@@ -100,11 +100,13 @@ $(document).ready(function () {
     calendar.render();
 
     $("#savePermit").click(function () {
-        var employee_id = $("#employee_id").val();
-        var start_date = $("#start_date").val();
-        var end_date = $("#end_date").val();
-        var permit_type_id = $('#permit_type_id').val();
-        var description = $("#description").val();
+        let employee_id = $("#employee_id").val();
+        let start_date = $("#start_date").val();
+        let end_date = $("#end_date").val();
+        let permit_type_id = $('#permit_type_id').val();
+        let description = $("#description").val();
+        let permit_status_id = $("#permit_status_id").val();
+
 
         $.ajax({
             url: '{{route('user.permit.create')}}',
@@ -115,6 +117,7 @@ $(document).ready(function () {
                 end_date: end_date,
                 permit_type_id: permit_type_id,
                 description: description,
+                permit_status_id: permit_status_id,
                 _token: '{{csrf_token()}}'
             },
             success: function (response) {

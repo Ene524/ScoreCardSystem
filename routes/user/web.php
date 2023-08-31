@@ -39,6 +39,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
     });
     Route::prefix('permit')->group(function () {
         Route::get('index', [PermitController::class, 'index'])->name('user.permit.index');
+        Route::get('indexCalendar', [PermitController::class, 'index2'])->name('user.permit.indexCalendar');
         Route::get('create', [PermitController::class, 'create'])->name('user.permit.create');
         Route::post('create', [PermitController::class, 'store']);
         Route::get('edit/{id}', [PermitController::class, 'edit'])->name('user.permit.edit');

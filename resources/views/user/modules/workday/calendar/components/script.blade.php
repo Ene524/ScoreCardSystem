@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         events: function (info, successCallback) {
             $.ajax({
-                url: '{{ route('api.user.permit.index') }}',
+                url: '{{ route('api.user.workday.index') }}',
                 type: 'get',
                 data: {
                     start_date: info.startStr.valueOf(),
@@ -66,17 +66,16 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     var events = [];
-                    $.each(response.permits, function (i, permit) {
+                    $.each(response.workdays, function (i, workday) {
                         events.push({
-                            _id: permit.id,
-                            id: permit.id,
-                            title: permit.employee.full_name,
-                            start: reformatDateForCalendar(permit.start_date),
-                            end: reformatDateForCalendar(permit.end_date),
-                            type: 'permit',
+                            _id: workday.id,
+                            id: workday.id,
+                            title: workday.employee.full_name,
+                            start: reformatDateForCalendar(workday.start_date),
+                            end: reformatDateForCalendar(workday.end_date),
+                            type: '',
                             classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
                             backgroundColor: '#007bff',
-                            permit_id: permit.id
                         });
                     });
                     successCallback(events);
@@ -99,30 +98,26 @@ $(document).ready(function () {
 
     calendar.render();
 
-    $("#savePermit").click(function () {
+    $("#saveWorkday").click(function () {
         var employee_id = $("#employee_id").val();
         var start_date = $("#start_date").val();
         var end_date = $("#end_date").val();
-        var permit_type_id = $('#permit_type_id').val();
-        var permit_status_id = $('#permit_status_id').val();
-        var description = $("#description").val();
+        var status = $('#permit_status_id').val();
 
         $.ajax({
-            url: '{{route('user.permit.create')}}',
+            url: '{{route('user.workday.create')}}',
             type: 'POST',
             data: {
                 employee_id: employee_id,
                 start_date: start_date,
                 end_date: end_date,
-                permit_type_id: permit_type_id,
-                permit_status_id: permit_status_id,
-                description: description,
+                status: status,
                 _token: '{{csrf_token()}}'
             },
             success: function (response) {
                 swal({
-                    title: "İzinler",
-                    text: "İzinler başarıyla yüklendi.",
+                    title: "Çalışma Günleri",
+                    text: "Çalışma günleri başarıyla eklendi",
                     icon: "success",
                     buttons: false,
                     timer: 1500,
@@ -144,10 +139,9 @@ $(document).ready(function () {
 
     function clearForm() {
         $("#employee_id").val('');
-        $("#start").val('');
-        $("#end").val('');
-        $("#permit_type_id").val('');
-        $("#description").val('');
+        $("#start_date").val('');
+        $("#end_date").val('');
+        $("#status").val('');
     }
 </script>
 

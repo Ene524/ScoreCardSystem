@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             SalarySeeder::class,
             EmployeeSeeder::class,
             PermitTypeSeeder::class,
+            PermitStatusSeeder::class,
         ]);
     }
 }

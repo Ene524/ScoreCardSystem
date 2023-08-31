@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal"
-                      action="{{isset($workday)? route('user.workday.edit',['id'=>$workday->id]) :route('user.workday.create')}}"
+                      action="{{isset($permit)? route('user.permit.edit',['id'=>$permit->id]) :route('user.permit.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
@@ -19,7 +19,7 @@
                                     <option value={{null}}>Personel Seç</option>
                                     @foreach($employees as $item)
                                         <option
-                                            value="{{ $item->id}}" {{ isset($workday) && $workday->employee_id == $item->id ? "selected" : "" }}>{{$item->full_name}}
+                                            value="{{ $item->id}}" {{ isset($permit) && $permit->employee_id == $item->id ? "selected" : "" }}>{{$item->full_name}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -30,7 +30,7 @@
 
                             <div class="col-sm-10">
                                 <input  class="form-control" type="datetime-local" name="start_date" id="start_date"
-                                       value="{{isset($workday) ? $workday->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}" />
+                                        value="{{isset($permit) ? $permit->start_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -38,7 +38,7 @@
 
                             <div class="col-sm-10">
                                 <input class="form-control" type="datetime-local" name="end_date" id="end_date"
-                                       value="{{isset($workday) ? $workday->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}"/>
+                                       value="{{isset($permit) ? $permit->end_date->format('Y-m-d H:i'):date('Y-m-d H:i')}}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -48,26 +48,29 @@
                                     <option value={{null}}>İzin Türü Seç</option>
                                     @foreach($permitTypes as $item)
                                         <option
-                                            value="{{ $item->id}}" {{ isset($workday) && $workday->permit_type_id == $item->id ? "selected" : "" }}>{{$item->name}}
+                                            value="{{ $item->id}}" {{ isset($permit) && $permit->permit_type_id == $item->id ? "selected" : "" }}>{{$item->name}}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Durum</label>
+                            <label class="col-sm-2 control-label">İzin Durumu</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="status">
+                                <select class="form-control" name="permit_status_id">
                                     <option value={{null}}>Durum Seç</option>
-                                    <option value="0" >Pasif</option>
-                                    <option value="1" selected >Aktif</option>
+                                    @foreach($permitStatuses as $item)
+                                        <option
+                                            value="{{ $item->id}}" {{ isset($permit) && $permit->permit_status_id == $item->id ? "selected" : "" }}>{{$item->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Açıklama</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" name="description" id="description"></textarea>
+                                <textarea class="form-control" name="description" id="description">{{isset($permit) ? $permit->description:""}}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">

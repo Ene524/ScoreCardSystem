@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PermitRequest;
 use App\Models\Employee;
 use App\Models\Permit;
+use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Carbon\Carbon;
 
@@ -43,6 +44,25 @@ class PermitController extends Controller
         return view('user.modules.permit.index.index', compact('permits', 'employees', 'permitTypes', 'hoursDifferences'));
     }
 
+    public function index2()
+    {
+        $employees = Employee::all();
+        $permitTypes = PermitType::all();
+        $permitStatuses = PermitStatus::all();
+        $permits = Permit::with(['employee'])->get();
+
+        $events = [];
+        foreach ($permits as $permit) {
+            $events[] = [
+                'title' => $permit->employee->full_name,
+                'start' => $permit->start,
+                'end' => $permit->end,
+                'color' => '#f05050',
+            ];
+        }
+        return view("user.modules.permit.calendar.index", compact("events", "employees", "permitTypes","permitStatuses"));
+    }
+
     public function create()
     {
         $employees = Employee::all();
@@ -54,6 +74,7 @@ class PermitController extends Controller
 
     public function store(PermitRequest $request)
     {
+        //dd($request->all());
         $permit = new Permit();
         $permit->employee_id = $request->employee_id;
         $permit->start_date = $request->start_date;

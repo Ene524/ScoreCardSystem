@@ -21,8 +21,7 @@ class WorkdayController extends Controller
 
     public function index()
     {
-        //Test servisi ile çalışma günleri ekleme
-        //$tempEmployees = Employee::where('id', '=', 11)->get()->toArray();
+        $tempEmployees = Employee::where('id', '=', 11)->get()->toArray();
         //$this->workdayService->addWorkdaysForUsers('2023-09-01', '2023-09-30', $tempEmployees);
         $workdays = Workday::with(['employee'])->get();
         return view("user.modules.workday.index.index", compact("workdays"));

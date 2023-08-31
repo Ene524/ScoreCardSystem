@@ -1,11 +1,11 @@
 @extends('user.layouts.master')
-@section('title','Çalışma Günleri')
+@section('title','Çalışma Günleri Takvimi')
 @section('content')
 
     <div class="col-12">
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Takvim</h3>
+                <h3 class="box-title">Çalışma Takvimi</h3>
             </div>
             <div class="box-body">
                 <div id="calendar">
@@ -15,7 +15,7 @@
     </div>
 
 
-@include('user.modules.workday.calendar.modals.modal_permit_create-update')1
+@include('user.modules.workday.calendar.modals.modal_workday_create-update')
 
 @endsection
 
