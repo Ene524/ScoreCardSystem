@@ -11,6 +11,7 @@ use App\Models\Workday;
 use App\Services\WorkdayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class WorkdayController extends Controller
 {
@@ -21,7 +22,7 @@ class WorkdayController extends Controller
 
     public function index()
     {
-        $tempEmployees = Employee::where('id', '=', 11)->get()->toArray();
+        //$tempEmployees = Employee::where('id', '=', 1)->get()->toArray();
         //$this->workdayService->addWorkdaysForUsers('2023-09-01', '2023-09-30', $tempEmployees);
         $workdays = Workday::with(['employee'])->get();
         return view("user.modules.workday.index.index", compact("workdays"));
@@ -96,6 +97,39 @@ class WorkdayController extends Controller
         $this->workdayService->addWorkdaysForUsers($startDate, $endDate, $employees);
 
         return response()->json(['message' => 'Workdays added successfully'], 201);
+    }
+
+    public function report(Request $request)
+    {
+        $employees = Employee::all();
+        $userId = 1;
+        $startDate = '2023-01-01 00:00:00';
+        $endDate = '2023-12-31 23:59:59';
+
+
+        $workdays = DB::table('workdays')
+            ->select('start_date', 'end_date')
+            ->where('employee_id', $userId)
+            ->whereBetween('start_date', [$startDate, $endDate])
+            ->where('status', 1)
+            ->get();
+
+
+        $totalWorkingHours = 0;
+
+        foreach ($workdays as $workday) {
+            $startTime = strtotime($workday->start_date);
+            $endTime = strtotime($workday->end_date);
+            $workingHours = ($endTime - $startTime) / 3600; // Saat cinsinden çalışma süresi
+            $totalWorkingHours += $workingHours;
+        }
+
+
+
+
+
+
+        //return view("user.modules.workday.report.index", compact("reports", "employees"));
     }
 }
 

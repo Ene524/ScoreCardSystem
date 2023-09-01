@@ -31,7 +31,6 @@ class PermitController extends Controller
                 if ($currentDate->dayOfWeek !== Carbon::SUNDAY) {
                     $hoursDifference += $currentDate->diffInHours($currentDate->copy()->endOfDay());
                 }
-
                 $currentDate->addDay();
             }
 

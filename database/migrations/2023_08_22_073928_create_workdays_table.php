@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(1)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

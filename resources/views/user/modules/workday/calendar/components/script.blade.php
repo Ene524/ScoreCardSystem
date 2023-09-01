@@ -40,20 +40,21 @@ $(document).ready(function () {
         dayMaxEvents: true,
         navLinks: true,
 
-        select: function (arg) {
-            clearForm();
-            $("#start_date").val(moment(arg.start).format('YYYY-MM-DD 09:00'));
-            $("#end_date").val(moment(arg.end).add(-1, 'day').format('YYYY-MM-DD 18:00'));
-            $(".modal").modal("show");
-        },
-
-        // dateClick: function (info) {
+        // select: function (arg) {
         //     clearForm();
-        //     $("#start_date").val(moment(info.date).format('YYYY-MM-DD 09:00'));
-        //     $("#end_date").val(moment(info.date).format('YYYY-MM-DD 18:00'));
+        //     $("#start_date").val(moment(arg.start).format('YYYY-MM-DD 09:00'));
+        //     $("#end_date").val(moment(arg.end).add(-1, 'day').format('YYYY-MM-DD 18:00'));
         //     $(".modal").modal("show");
-        //
         // },
+
+        dateClick: function (info) {
+
+            clearForm();
+            $("#start_date").val(moment(info.date).format('YYYY-MM-DD 09:00'));
+            $("#end_date").val(moment(info.date).format('YYYY-MM-DD 18:00'));
+            $(".modal").modal("show");
+
+        },
 
 
         events: function (info, successCallback) {

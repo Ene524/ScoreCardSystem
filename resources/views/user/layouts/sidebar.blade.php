@@ -46,6 +46,7 @@
                     <li><a href="{{route('user.workday.index')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Listesi</a>
                     </li>
                     <li><a href="{{route('user.workday.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                    <li><a href="{{route('user.workday.report')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Rapor</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -63,6 +64,9 @@
                     <li><a href="{{route('user.permit.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
+
+
+
 
 
         </ul>

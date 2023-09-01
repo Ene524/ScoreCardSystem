@@ -6,9 +6,9 @@
 
 
 <script>
-$(document).ready(function () {
-    $('.select2').select2();
-});
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
 </script>
 
 <script>
@@ -19,6 +19,7 @@ $(document).ready(function () {
     var TOMORROW = todayDate.clone().add(1, "day").format("YYYY-MM-DD");
     var calendarEl = document.getElementById("calendar");
 
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'tr',
         themeSystem: 'bootstrap5',
@@ -28,6 +29,7 @@ $(document).ready(function () {
             right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
         },
 
+        eventColor: '#337ab7',
         nowIndicator: true,
         now: TODAY + "T{{ date('H:i:s') }}",
 
@@ -66,6 +68,7 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     var events = [];
+
                     $.each(response.permits, function (i, permit) {
                         events.push({
                             _id: permit.id,
@@ -75,7 +78,8 @@ $(document).ready(function () {
                             end: reformatDateForCalendar(permit.end_date),
                             type: 'permit',
                             classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
-                            backgroundColor: '#007bff',
+                            //borderColor: 'bg-primary',
+
                             permit_id: permit.id
                         });
                     });
@@ -98,7 +102,6 @@ $(document).ready(function () {
     }
 
     calendar.render();
-
     $("#savePermit").click(function () {
         let employee_id = $("#employee_id").val();
         let start_date = $("#start_date").val();
@@ -132,16 +135,14 @@ $(document).ready(function () {
                 calendar.refetchEvents();
             },
             error: function (response) {
-              alert(response.responseJSON.message);
+                alert(response.responseJSON.message);
             }
         });
     });
 
-
     function closeForm() {
         $(".modal").modal("hide");
     }
-
 
     function clearForm() {
         $("#employee_id").val('');

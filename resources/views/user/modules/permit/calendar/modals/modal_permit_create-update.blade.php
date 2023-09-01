@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">İzin Durumu</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="permit_status_id">
+                                <select class="form-control" name="permit_status_id" id="permit_status_id">
                                     <option value={{null}}>Durum Seç</option>
                                     @foreach($permitStatuses as $item)
                                         <option
