@@ -15,8 +15,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Personel</label>
                             <div class="col-sm-10">
-                                <select class="form-control select2" name="employee_id" id="employee_id"
-                                        style="width: 100%">
+                                <select class="form-control select2" name="employee_id" id="employee_id" style="width: 100%">
                                     <option value={{null}}>Personel Seç</option>
                                     @foreach($employees as $item)
                                         <option
@@ -49,20 +48,15 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="status" id="status">
                                     <option value={{null}}>Durum Seç</option>
-                                    <option
-                                        value="0" {{isset($workday) & isset($workday->status)==null ? "selected" : "" }} >
-                                        Pasif
-                                    </option>
-                                    <option
-                                        value="1" {{isset($workday) & isset($workday->status)!=null ? "selected" : "" }}>
-                                        Aktif
-                                    </option>
+                                    <option value="0" {{isset($workday) & isset($workday->status)==null ? "selected" : "" }} >Pasif</option>
+                                    <option value="1" {{isset($workday) & isset($workday->status)!=null ? "selected" : "" }}>Aktif</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="box-footer">
-                            <button type="button" class="btn btn-default pull-right" style="margin-left: 5px" onclick="closeForm()">Vazgeç</button>
+                            <button type="button" class="btn btn-default pull-right" style="margin-left: 5px" onclick="closeForm()">Vazgeç
+                            </button>
                             <button type="button" class="btn btn-info pull-right" id="saveWorkday">Kaydet</button>
 
                         </div>

@@ -19,6 +19,7 @@
     var TOMORROW = todayDate.clone().add(1, "day").format("YYYY-MM-DD");
     var calendarEl = document.getElementById("calendar");
 
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'tr',
         themeSystem: 'bootstrap5',
@@ -28,6 +29,7 @@
             right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
         },
 
+        eventColor: '#337ab7',
         nowIndicator: true,
         now: TODAY + "T{{ date('H:i:s') }}",
         initialView: "dayGridMonth",
@@ -63,6 +65,7 @@
                 },
                 success: function (response) {
                     var events = [];
+
                     $.each(response.permits, function (i, permit) {
                         events.push({
                             _id: permit.id,
@@ -72,7 +75,8 @@
                             end: reformatDateForCalendar(permit.end_date),
                             type: 'permit',
                             classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
-                            backgroundColor: '#007bff',
+                            //borderColor: 'bg-primary',
+
                             permit_id: permit.id
                         });
                     });
@@ -95,7 +99,6 @@
     }
 
     calendar.render();
-
     $("#savePermit").click(function () {
         let employee_id = $("#employee_id").val();
         let start_date = $("#start_date").val();
@@ -134,11 +137,9 @@
         });
     });
 
-
     function closeForm() {
         $(".modal").modal("hide");
     }
-
 
     function clearForm() {
         $("#employee_id").val('');

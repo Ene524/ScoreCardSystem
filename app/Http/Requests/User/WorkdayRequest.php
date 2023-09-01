@@ -25,7 +25,6 @@ class WorkdayRequest extends FormRequest
             'employee_id' => 'required|exists:employees,id',
             'start_date'  => 'date',
             'end_date'    => 'date|after:start_date',
-            'status' => 'required',
         ];
     }
 }

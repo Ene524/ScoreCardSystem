@@ -34,9 +34,9 @@ $(document).ready(function () {
         initialView: "dayGridMonth",
         initialDate: TODAY,
 
-        editable: false,
+        editable: true,
 
-        selectable: false,
+        selectable: true,
         dayMaxEvents: true,
         navLinks: true,
 
@@ -48,6 +48,7 @@ $(document).ready(function () {
         // },
 
         dateClick: function (info) {
+
             clearForm();
             $("#start_date").val(moment(info.date).format('YYYY-MM-DD 09:00'));
             $("#end_date").val(moment(info.date).format('YYYY-MM-DD 18:00'));
