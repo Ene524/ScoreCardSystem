@@ -74,7 +74,6 @@ class PermitController extends Controller
 
     public function store(PermitRequest $request)
     {
-        //dd($request->all());
         $permit = new Permit();
         $permit->employee_id = $request->employee_id;
         $permit->start_date = $request->start_date;

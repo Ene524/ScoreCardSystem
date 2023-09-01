@@ -6,9 +6,9 @@
 
 
 <script>
-$(document).ready(function () {
-    $('.select2').select2();
-});
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
 </script>
 
 <script>
@@ -30,12 +30,10 @@ $(document).ready(function () {
 
         nowIndicator: true,
         now: TODAY + "T{{ date('H:i:s') }}",
-
         initialView: "dayGridMonth",
         initialDate: TODAY,
 
         editable: true,
-
         selectable: true,
         dayMaxEvents: true,
         navLinks: true,
@@ -48,13 +46,12 @@ $(document).ready(function () {
         },
 
         // dateClick: function (info) {
+        //     console.log(info);
         //     clearForm();
-        //     $("#start_date").val(moment(info.date).format('YYYY-MM-DD 09:00'));
-        //     $("#end_date").val(moment(info.date).format('YYYY-MM-DD 18:00'));
+        //     $("#start_date").val(moment(info.start).format('YYYY-MM-DD 09:00'));
+        //     $("#end_date").val(moment(info.end).add(-1, 'day').format('YYYY-MM-DD 18:00'));
         //     $(".modal").modal("show");
-        //
         // },
-
 
         events: function (info, successCallback) {
             $.ajax({
@@ -132,7 +129,7 @@ $(document).ready(function () {
                 calendar.refetchEvents();
             },
             error: function (response) {
-              alert(response.responseJSON.message);
+                alert(response.responseJSON.message);
             }
         });
     });
