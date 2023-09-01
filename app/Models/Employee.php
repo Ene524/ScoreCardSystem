@@ -41,5 +41,15 @@ class Employee extends Model
         return $this->belongsTo(Salary::class);
     }
 
+    public function workdays()
+    {
+        return $this->hasMany(Workday::class);
+    }
+
+    public function permits()
+    {
+        return $this->hasMany(Permit::class);
+    }
+
 
 }

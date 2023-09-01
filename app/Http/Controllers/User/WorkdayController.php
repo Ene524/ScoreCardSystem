@@ -101,35 +101,39 @@ class WorkdayController extends Controller
 
     public function report(Request $request)
     {
-        $employees = Employee::all();
-        $userId = 1;
-        $startDate = '2023-01-01 00:00:00';
-        $endDate = '2023-12-31 23:59:59';
+//        $employees = Employee::all();
+//        $userId = 1;
+//        $startDate = '2023-01-01 00:00:00';
+//        $endDate = '2023-12-31 23:59:59';
+//
+//
+//        $workdays = DB::table('workdays')
+//            ->select('start_date', 'end_date')
+//            ->where('employee_id', $userId)
+//            ->whereBetween('start_date', [$startDate, $endDate])
+//            ->where('status', 1)
+//            ->get();
+//
+//
+//        $totalWorkingHours = 0;
+//
+//        foreach ($workdays as $workday) {
+//            $startTime = strtotime($workday->start_date);
+//            $endTime = strtotime($workday->end_date);
+//            $workingHours = ($endTime - $startTime) / 3600; // Saat cinsinden çalışma süresi
+//            $totalWorkingHours += $workingHours;
+//        }
 
 
-        $workdays = DB::table('workdays')
-            ->select('start_date', 'end_date')
-            ->where('employee_id', $userId)
-            ->whereBetween('start_date', [$startDate, $endDate])
-            ->where('status', 1)
+        $reports = Employee::select('full_name')
+            ->addSelect(DB::raw('(FLOOR(TIMESTAMPDIFF(hour, end_date, start_date) / 24) * 15)-TIMESTAMPDIFF(hour, end_date, start_date)  AS permitHours'))
+            ->leftJoin('permits', 'employees.id', '=', 'permits.employee_id')
+            ->groupBy('full_name')
             ->get();
 
 
-        $totalWorkingHours = 0;
 
-        foreach ($workdays as $workday) {
-            $startTime = strtotime($workday->start_date);
-            $endTime = strtotime($workday->end_date);
-            $workingHours = ($endTime - $startTime) / 3600; // Saat cinsinden çalışma süresi
-            $totalWorkingHours += $workingHours;
-        }
-
-
-
-
-
-
-        //return view("user.modules.workday.report.index", compact("reports", "employees"));
+        return view("user.modules.workday.report.index", compact( "reports"));
     }
 }
 

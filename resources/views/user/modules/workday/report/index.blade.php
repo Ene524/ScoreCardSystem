@@ -11,7 +11,7 @@
                 <div class="box-body">
                     <div class="form-group">
 
-                        <table>
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Personel</th>
@@ -22,8 +22,7 @@
                             <tbody>
                            @foreach($reports as $item)
                                 <tr>
-                                    <td>{{$item->user_id}}</td>
-                                    <td>{{$item->total_working_hours}}</td>
+
                                 </tr>
                            @endforeach
                             </tbody>
