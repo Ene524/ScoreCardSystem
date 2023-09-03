@@ -32,7 +32,8 @@ Route::prefix('user')->middleware("auth")->group(function () {
     Route::prefix('workday')->group(function () {
         Route::get('index', [WorkdayController::class, 'index'])->name('user.workday.index');
         Route::get('indexCalendar', [WorkdayController::class, 'index2'])->name('user.workday.indexCalendar');
-        Route::get('report', [WorkdayController::class, 'report'])->name('user.workday.report');
+        Route::get('report', [WorkdayController::class, 'report'])->name('user.workday.report.get');
+        Route::post('report', [WorkdayController::class, 'showReport'])->name('user.workday.report.show');
         Route::get('create', [WorkdayController::class, 'create'])->name('user.workday.create');
         Route::post('create', [WorkdayController::class, 'store']);
         Route::get('edit/{id}', [WorkdayController::class, 'edit'])->name('user.workday.edit');

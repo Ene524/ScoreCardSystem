@@ -9,6 +9,7 @@ use App\Models\Permit;
 use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PermitController extends Controller
 {
@@ -69,8 +70,6 @@ class PermitController extends Controller
         return view('user.modules.permit.create-update.index', compact('employees', 'permitTypes'));
     }
 
-
-
     public function store(PermitRequest $request)
     {
         $permit = new Permit();
@@ -106,11 +105,11 @@ class PermitController extends Controller
         return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla güncellendi');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $permit = Permit::findOrfail($id);
+        $permit = Permit::findOrFail($request->permitID);
         $permit->delete();
-        return redirect()->route('user.permit.index')->with('success', 'İzin başarıyla silindi');
+        return response()->json(['status' => 'success']);
     }
 
 

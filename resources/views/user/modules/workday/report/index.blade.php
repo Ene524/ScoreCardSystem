@@ -3,33 +3,68 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Çalışma Raporu</h3>
                 </div>
                 <div class="box-body">
-                    <div class="form-group">
 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Personel</th>
-                                    <th>Çalışma Saati</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                           @foreach($reports as $item)
-                                <tr>
+                    <form>
+                        @csrf
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label for="start_date">Başlangıç Tarihi</label>
+                                <input type="datetime-local" name="start_date" id="start_date" class="form-control">
+                            </div>
+                        </div>
 
-                                </tr>
-                           @endforeach
-                            </tbody>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label for="end_date">Bitiş Tarihi</label>
+                                <input type="datetime-local" name="end_date" id="end_date"  class="form-control">
+                            </div>
+                        </div>
 
-                        </table>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="employee_id">Personel</label>
+                                <select class="form-control select2" name="employee_id[]" id="employee_ids" multiple="multiple">
+                                    <option value="{{ null }}">Personel Seç</option>
+                                    @foreach($employees as $item)
+                                        <option value="{{ $item->id }}" {{ in_array($item->id, old('employee_id', [])) ? "selected" : "" }}>
+                                            {{ $item->full_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label for="employee_id"> </label>
+                                <button type="button" class="btn btn-primary form-control" onclick="getWorkHours()">Filtrele</button>
+                            </div>
+                        </div>
+
+
+                            <div class="col-md-12" style="margin-top: 30px">
+                                <table class="table table-bordered" id="TotalWorkHours">
+                                    <thead>
+                                    <tr>
+                                        <th>Personel</th>
+                                        <th>Çalışma Saati</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                    </form>
                 </div>
 
             </div>

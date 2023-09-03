@@ -2,14 +2,14 @@
 
 <script>
     $(document).ready(function () {
-        $('.deleteWorkday').click(function () {
-            let workdayID = $(this).attr('data-id');
+        $('.deletePermit').click(function () {
+            let permitID = $(this).attr('data-id');
             let employeeName = $(this).data('name');
-            let workdayStartDate = $(this).data('startdate');
-            let workdayEndDate = $(this).data('enddate');
+            let permitStartDate = $(this).data('startdate');
+            let permitEndDate = $(this).data('enddate');
 
             swal({
-                title: employeeName +" personelinin " + workdayStartDate+" - "+ workdayEndDate +" tarihli çalışma kaydını silmek istediğine emin misin?",
+                title: employeeName +" personelinin " + permitStartDate+" - "+ permitEndDate +" tarihli izin kaydını silmek istediğine emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
@@ -19,11 +19,11 @@
                         url: '{{route('user.permit.delete')}}',
                         type: 'DELETE',
                         data: {
-                            workdayID: workdayID,
+                            permitID: permitID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
-                            swal("Çalışma günü başarıyla silindi", {
+                            swal("İzin başarıyla silindi", {
                                 icon: "success",
                                 timer: 3000
                             });

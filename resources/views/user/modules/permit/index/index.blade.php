@@ -50,10 +50,10 @@
                             <td>{{$permit->status==null? "Pasif ": "Aktif"}}</td>
                             <td>
                                 <a href="{{route('user.permit.edit',['id'=> $permit->id])}}"
-                                   class="btn btn-primary btn-xs editpermit"
+                                   class="btn btn-primary btn-xs editPermit"
                                    data-id="{{$permit->id}}" data-toggle="tooltip" data-placement="top"
                                    title="Düzenle"><i class="fa fa-edit"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-xs deletepermit"
+                                <a href="javascript:void(0)" class="btn btn-danger btn-xs deletePermit"
                                    data-id="{{$permit->id}}" data-startdate="{{$permit->start_date}}"
                                    data-enddate="{{$permit->end_date}}" data-name="{{$permit->employee->full_name}}"
                                    data-toggle="tooltip" data-placement="top"
