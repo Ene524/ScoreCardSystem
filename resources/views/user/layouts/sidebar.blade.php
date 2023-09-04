@@ -65,11 +65,107 @@
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Toplu İşlemler</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
 
 
+    <section class="sidebar" style="position:absolute;bottom: 0;width: 100%;">
 
-
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Departmanlar</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Pozisyonlar</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>İzin Türleri</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>İzin Durumları</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Maaş Tanımlamaları</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    </li>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
+
+
+

@@ -37,6 +37,7 @@ class WorkdayController extends Controller
             $reports->whereIn('employees.id', $request->employee_ids);
         }
 
+
         return response()->json([
             'totalWorkHours' => $reports->get()
         ]);
