@@ -28,14 +28,12 @@ class WorkdayController extends Controller
 
         $reports = DB::table('employees')
             ->select('full_name')
-            ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) as totalWorkTime', [$startDate, $endDate]);
+            ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) as totalWorkTime', [$startDate, $endDate])
+            ->selectRaw(' IFNULL((SELECT SUM((FLOOR(TIMESTAMPDIFF(hour, end_date, start_date) / 24) * 15)-TIMESTAMPDIFF(hour, end_date, start_date)) FROM permits WHERE permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0 ) as totalPermitTime', [$startDate, $endDate]);
 
-        if ($request->has('employee_id') && count($request->employee_id) > 0) {
-            $employee_ids = $request->employee_id;
-            $reports->whereIn('id', $employee_ids);
+        if ($request->employee_ids && count($request->employee_ids) > 0) {
+            $reports->whereIn('employees.id', $request->employee_ids);
         }
-
-        $reports = $reports->get();
 
         return response()->json([
             'totalWorkHours' => $reports->get()

@@ -8,6 +8,6 @@ Route::prefix('api/user')->group(function () {
     });
     Route::prefix('workday')->group(function () {
         Route::get('index', [\App\Http\Controllers\User\Api\WorkdayController::class, 'index'])->name('api.user.workday.index');
-        Route::get('index', [\App\Http\Controllers\User\Api\WorkdayController::class, 'index'])->name('api.user.workday.report');
+        Route::get('totalWorkHours', [\App\Http\Controllers\User\Api\WorkdayController::class, 'totalWorkHours'])->name('api.user.workday.report');
     });
 });

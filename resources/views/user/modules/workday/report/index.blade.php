@@ -54,7 +54,8 @@
                                     <thead>
                                     <tr>
                                         <th>Personel</th>
-                                        <th>Çalışma Saati</th>
+                                        <th>Toplam Çalışma Saati</th>
+                                        <th>Toplam İzin Saati</th>
                                     </tr>
                                     </thead>
 
