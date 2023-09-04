@@ -58,9 +58,7 @@
                                         <th>Toplam İzin Saati</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
-
                                     </tbody>
                                 </table>
                             </div>
