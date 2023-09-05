@@ -95,11 +95,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.department.create')}}"><i class="fa fa-circle-o"></i>Departman Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.department.index')}}"><i class="fa fa-circle-o"></i>Departman Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -110,11 +109,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.position.create')}}"><i class="fa fa-circle-o"></i>Pozisyon Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.position.index')}}"><i class="fa fa-circle-o"></i>Pozisyon Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -125,11 +123,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.permitType.create')}}"><i class="fa fa-circle-o"></i>İzin Türü Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.permitType.index')}}"><i class="fa fa-circle-o"></i>İzin Türleri Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -140,11 +137,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.permitStatus.create')}}"><i class="fa fa-circle-o"></i>İzin Durumu Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.permitStatus.index')}}"><i class="fa fa-circle-o"></i>İzin Durum Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -155,11 +151,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.salary.create')}}"><i class="fa fa-circle-o"></i>Maaş Tanımı Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.salary.index')}}"><i class="fa fa-circle-o"></i>Maaş Tanım Listesi</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
         </ul>

@@ -19,7 +19,6 @@
             type: 'GET',
             data: data,
             success: function (response) {
-                console.log(response);
                 var html = '';
                 $.each(response.totalWorkHours, function (key, item) {
                     html += '<tr>';
@@ -29,7 +28,6 @@
                     html += '</tr>';
                 });
                 $('#TotalWorkHours tbody').html(html);
-                console.log(html);
             },
             error: function (response) {
                 console.log(response);
