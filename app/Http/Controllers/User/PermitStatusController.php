@@ -7,7 +7,5 @@ use Illuminate\Http\Request;
 
 class PermitStatusController extends Controller
 {
-    //Test
-
-    
+    //Test2
 }
