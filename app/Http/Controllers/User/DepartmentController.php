@@ -15,18 +15,18 @@ class DepartmentController extends Controller
         return view("user.modules.department.index.index", compact("departments"));
     }
 
-    public function create()
-    {
+    public function create()    {
         return view("user.modules.department.create-update.index");
     }
+
     public function store(DepartmentRequest $request)
     {
         $department = new Department();
         $department->name = $request->name;
         $department->description = $request->description;
+        $department->status = $request->status != null ? 1 : 0;
         $department->save();
         return redirect()->route('user.department.index')->with('success', 'Departman başarıyla oluşturuldu');
-
     }
 
     public function edit($id)
@@ -40,6 +40,7 @@ class DepartmentController extends Controller
         $department = Department::findOrfail($id);
         $department->name = $request->name;
         $department->description = $request->description;
+        $department->status = $request->status != null ? 1 : 0;
         $department->save();
         return redirect()->route('user.department.index')->with('success', 'Departman başarıyla güncellendi');
     }

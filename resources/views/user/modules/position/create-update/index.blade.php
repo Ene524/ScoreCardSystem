@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Departman Oluştur')
+@section('title', 'Pozisyon Oluştur')
 @section('content')
 
     <div class="row">
@@ -22,18 +22,18 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Departman Ekle</h3>
+                    <h3 class="box-title">Pozisyon Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($department)? route('user.department.edit',['id'=>$department->id]) :route('user.department.create')}}"
+                      action="{{isset($position)? route('user.position.edit',['id'=>$position->id]) :route('user.position.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
                             <label for="inputFullName3" class="col-sm-2 control-label">Adı</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" placeholder="Departman Adı"
-                                       value="{{isset($department) ? $department->name:""}}">
+                                <input class="form-control" type="text" name="name" placeholder="Pozisyon Adı"
+                                       value="{{isset($position) ? $position->name:""}}">
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" name="description" placeholder="Açıklama"
-                                       value="{{isset($department) ? $department->description:""}}">
+                                       value="{{isset($position) ? $position->description:""}}">
                             </div>
                         </div>
 
@@ -52,16 +52,11 @@
                             <div class="col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="status" {{ isset($department) && $department->status  ? "checked" : "" }}>
+                                        <input type="checkbox" name="status" {{ isset($position) && $position->status  ? "checked" : "" }}>
                                     </label>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                     </div>
 
 
@@ -84,9 +79,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.employee.create-update.components.style')
+    @include('user.modules.position.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.employee.create-update.components.script')
+    @include('user.modules.position.create-update.components.script')
 @endsection

@@ -1,7 +1,5 @@
 @extends('user.layouts.master')
 @section('title', 'Dashboard')
-@section('header-title', 'Anasayfa')
-@section('subHeader-title', 'Özet bilgileriniz bu ekranda görünür')
 @section('content')
 
     <div class="row">

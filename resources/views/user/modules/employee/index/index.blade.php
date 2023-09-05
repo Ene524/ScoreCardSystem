@@ -1,8 +1,6 @@
 @extends('user.layouts.master')
 @section('title', 'Personel Listesi')
 @section('content')
-    @section('header-title', 'Personel Listesi')
-    @section('subHeader-title', 'Personel listesini buradan görürsünüz')
 
     <div class="row">
         <div class="col-md-12">
