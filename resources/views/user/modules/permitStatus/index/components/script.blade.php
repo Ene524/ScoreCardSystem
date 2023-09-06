@@ -3,22 +3,22 @@
 
 <script>
     $(document).ready(function () {
-        $('.deleteEmployee').click(function () {
-            let employeeID = $(this).attr('data-id');
-            let employeeName = $(this).data('name');
+        $('.deletePermitStatus').click(function () {
+            let permitStatusID = $(this).attr('data-id');
+            let permitStatusName = $(this).data('name');
 
             swal({
-                title: employeeName + " personelini silmek istediğinize emin misin?",
+                title: permitStatusName + " izin durumunu silmek istediğinize emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.employee.delete')}}',
+                        url: '{{route('user.permitStatus.delete')}}',
                         type: 'DELETE',
                         data: {
-                            employeeID: employeeID,
+                            permitStatusID: permitStatusID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {

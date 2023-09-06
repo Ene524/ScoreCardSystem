@@ -3,26 +3,26 @@
 
 <script>
     $(document).ready(function () {
-        $('.deleteDepartment').click(function () {
-            let departmentID = $(this).attr('data-id');
-            let departmentName = $(this).data('name');
+        $('.deletePosition').click(function () {
+            let positionID = $(this).attr('data-id');
+            let positionName = $(this).data('name');
 
             swal({
-                title: departmentName + " departmanını silmek istediğinize emin misin?",
+                title: positionName + " pozisyonunu silmek istediğinize emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.department.delete')}}',
+                        url: '{{route('user.position.delete')}}',
                         type: 'DELETE',
                         data: {
-                            departmentID: departmentID,
+                            positionID: positionID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
-                            swal("Status changed successfully", {
+                            swal("İşlem tamamlandı", {
                                 icon: "success",
                                 timer: 3000
                             });
@@ -31,7 +31,8 @@
                             });
                         }.bind(this),
                         error: function (response) {
-                            swal("Something went wrong".response, {
+                            console.log(response);
+                            swal("Bir sorun oluştu".response, {
                                 icon: "error",
                                 timer: 3000
                             });

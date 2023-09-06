@@ -22,7 +22,7 @@
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
-                            swal("Status changed successfully", {
+                            swal("İşlem tamamlandı", {
                                 icon: "success",
                                 timer: 3000
                             });
@@ -31,7 +31,8 @@
                             });
                         }.bind(this),
                         error: function (response) {
-                            swal("Something went wrong".response, {
+                            console.log(response);
+                            swal("Bir sorun oluştu".response, {
                                 icon: "error",
                                 timer: 3000
                             });

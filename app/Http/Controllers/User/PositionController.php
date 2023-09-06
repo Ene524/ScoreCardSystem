@@ -27,7 +27,7 @@ class PositionController extends Controller
         $position->description = $request->description;
         $position->status = $request->status != null ? 1 : 0;
         $position->save();
-        return redirect()->route('user.position.index')->with('success', 'Departman başarıyla oluşturuldu');
+        return redirect()->route('user.position.index')->with('success', 'Pozisyon başarıyla oluşturuldu');
 
     }
 
@@ -44,7 +44,7 @@ class PositionController extends Controller
         $position->description = $request->description;
         $position->status = $request->status != null ? 1 : 0;
         $position->save();
-        return redirect()->route('user.position.index')->with('success', 'Departman başarıyla güncellendi');
+        return redirect()->route('user.position.index')->with('success', 'Pozisyon başarıyla güncellendi');
     }
 
     public function delete(Request $request)

@@ -71,10 +71,6 @@
                         <button type="submit" class="btn btn-info pull-right">Kaydet</button>
 
                     </div>
-
-            </div>
-
-
             </form>
         </div>
     </div>

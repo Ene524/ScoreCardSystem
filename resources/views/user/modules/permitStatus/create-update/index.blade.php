@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Pozisyon Oluştur')
+@section('title', 'İzin Türü Oluştur')
 @section('content')
 
     <div class="row">
@@ -22,18 +22,18 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Pozisyon Ekle</h3>
+                    <h3 class="box-title">İzin Durumu Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($position)? route('user.position.edit',['id'=>$position->id]) :route('user.position.create')}}"
+                      action="{{isset($permitStatus)? route('user.permitStatus.edit',['id'=>$permitStatus->id]) :route('user.permitStatus.create')}}"
                       method="POST">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="inputFullName3" class="col-sm-2 control-label">Adı</label>
+                            <label for="inputFullName3" class="col-sm-2 control-label">İzin Durum Tanımı</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" placeholder="Pozisyon Adı"
-                                       value="{{isset($position) ? $position->name:""}}">
+                                <input class="form-control" type="text" name="name" placeholder="İzin Durum Tanımı"
+                                       value="{{isset($permitStatus) ? $permitStatus->name:""}}">
                             </div>
                         </div>
 
@@ -41,18 +41,18 @@
                             <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" name="description" placeholder="Açıklama"
-                                       value="{{isset($position) ? $position->description:""}}">
+                                       value="{{isset($permitStatus) ? $permitStatus->description:""}}">
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
+                            <label for="inputFullName3" class="col-sm-2 control-label">Durumu</label>
 
                             <div class="col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="status" {{ isset($position) && $position->status  ? "checked" : "" }}>
+                                        <input type="checkbox" name="status" {{ isset($permitStatus) && $permitStatus->status  ? "checked" : "" }}>
                                     </label>
                                 </div>
                             </div>
@@ -66,6 +66,8 @@
                         <button type="submit" class="btn btn-info pull-right">Kaydet</button>
 
                     </div>
+
+
             </form>
         </div>
     </div>
@@ -75,9 +77,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.position.create-update.components.style')
+    @include('user.modules.permitStatus.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.position.create-update.components.script')
+    @include('user.modules.permitStatus.create-update.components.script')
 @endsection

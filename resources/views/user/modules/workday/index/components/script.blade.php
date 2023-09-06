@@ -32,7 +32,8 @@
                             });
                         }.bind(this),
                         error: function (response) {
-                            swal("Something went wrong".response, {
+                            console.log(response);
+                            swal("Bir sorun oluştu".response, {
                                 icon: "error",
                                 timer: 3000
                             });
