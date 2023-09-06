@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\SalaryRequest;
 use App\Models\Salary;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,10 @@ class SalaryController extends Controller
         $salary = new Salary();
         $salary->name = $request->name;
         $salary->description = $request->description;
+        $salary->amount = $request->amount;
         $salary->status = $request->status != null ? 1 : 0;
         $salary->save();
-        return redirect()->route('user.salary.index')->with('success', 'Departman başarıyla oluşturuldu');
+        return redirect()->route('user.salary.index')->with('success', 'Maaş başarıyla oluşturuldu');
     }
 
     public function edit($id)
@@ -39,15 +41,16 @@ class SalaryController extends Controller
         $salary = Salary::findOrfail($id);
         $salary->name = $request->name;
         $salary->description = $request->description;
+        $salary->amount = $request->amount;
         $salary->status = $request->status != null ? 1 : 0;
         $salary->save();
-        return redirect()->route('user.salary.index')->with('success', 'Departman başarıyla güncellendi');
+        return redirect()->route('user.salary.index')->with('success', 'Maaş başarıyla güncellendi');
     }
 
     public function delete(Request $request)
     {
         $request->validate([
-            'salaryID' => 'required|exists:salarys,id',
+            'salaryID' => 'required|exists:salaries,id',
         ]);
         $salary = Salary::find($request->salaryID);
         $salary->delete();

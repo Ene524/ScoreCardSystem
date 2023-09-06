@@ -12,5 +12,6 @@ class DashboardController extends Controller
     {
         $employeeCount = Employee::count();
         return view('user.modules.dashboard.index.index', compact('employeeCount'));
+        //Test
     }
 }
