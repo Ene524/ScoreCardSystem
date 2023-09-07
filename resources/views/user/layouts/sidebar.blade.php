@@ -35,7 +35,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Çalışma Yönetimi</span>
+                    <i class="fa fa-clock-o"></i> <span>Çalışma Yönetimi</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -51,7 +51,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>İzin Yönetimi</span>
+                    <i class="fa fa-paper-plane"></i> <span>İzin Yönetimi</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -67,17 +67,17 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Toplu İşlemler</span>
+                    <i class="fa fa-gears"></i> <span>Toplu İşlemler</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>İzin Günü Ekle</a>
+                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>Toplu Personel Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>İzin Günü Listesi</a>
+                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>Toplu Çalışma Günü Ekle</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Takvim</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a></li>
                 </ul>
             </li>
         </ul>
@@ -89,7 +89,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Departmanlar</span>
+                    <i class="fa fa-cube"></i> <span>Departmanlar</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -103,7 +103,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Pozisyonlar</span>
+                    <i class="fa fa-cube"></i> <span>Pozisyonlar</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -117,7 +117,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>İzin Türleri</span>
+                    <i class="fa fa-cube"></i> <span>İzin Türleri</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -131,7 +131,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>İzin Durumları</span>
+                    <i class="fa fa-cube"></i> <span>İzin Durumları</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -145,7 +145,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>Maaş Tanımlamaları</span>
+                    <i class="fa fa-cube"></i> <span>Maaş Tanımlamaları</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

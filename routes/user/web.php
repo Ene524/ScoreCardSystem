@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\User\BatchTransactions;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\DepartmentController;
 use App\Http\Controllers\User\EmployeeController;
@@ -99,6 +100,15 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [SalaryController::class, 'edit'])->name('user.salary.edit');
         Route::post('edit/{id}', [SalaryController::class, 'update'])->name('user.salary.update');
         Route::delete('delete', [SalaryController::class, 'delete'])->name("user.salary.delete");
+    });
+
+    Route::prefix('batchTransactions')->group(function () {
+        Route::get('index', [BatchTransactions::class, 'index'])->name('user.batchTransactions.index');
+        Route::get('create', [BatchTransactions::class, 'create'])->name('user.batchTransactions.create');
+        Route::post('create', [BatchTransactions::class, 'store']);
+        Route::get('edit/{id}', [BatchTransactions::class, 'edit'])->name('user.batchTransactions.edit');
+        Route::post('edit/{id}', [BatchTransactions::class, 'update'])->name('user.batchTransactions.update');
+        Route::delete('delete', [BatchTransactions::class, 'delete'])->name("user.batchTransactions.delete");
     });
 
     Route::get('/logout', [LoginController::class, "logout"])->name("logout");

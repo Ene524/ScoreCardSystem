@@ -3,22 +3,22 @@
 
 <script>
     $(document).ready(function () {
-        $('.deletePosition').click(function () {
-            let positionID = $(this).attr('data-id');
-            let positionName = $(this).data('name');
+        $('.deleteSalary').click(function () {
+            let salaryID = $(this).attr('data-id');
+            let salaryName = $(this).data('name');
 
             swal({
-                title: positionName + " pozisyonunu silmek istediğinize emin misin?",
+                title: salaryName + " maaş tanımı silmek istediğinize emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.position.delete')}}',
+                        url: '{{route('user.salary.delete')}}',
                         type: 'DELETE',
                         data: {
-                            positionID: positionID,
+                            salaryID: salaryID,
                             _token: '{{csrf_token()}}'
                         },
                         success: function (response) {
