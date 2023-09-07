@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 class BatchTransactions extends Controller
 {
-public function index()
+    public function index()
     {
-//        return view('user.');
-        //vs
+        return view('user.modules.');
     }
 }

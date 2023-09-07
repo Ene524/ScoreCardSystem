@@ -1,8 +1,6 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
 
+    <section class="sidebar">
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -159,7 +157,6 @@
             </li>
         </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>
 
 
