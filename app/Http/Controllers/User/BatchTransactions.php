@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class BatchTransactions extends Controller
 {
-    public function index()
+    public function addEmployeeindex()
     {
-        //return view('user.modules.');
-        //Test
+        return view('user.modules.batchTransactions.addEmployee.index');
+    }
+
+    public function addEmployeeUpload(Request $request){
+
+        dd($request->all());
+
     }
 }

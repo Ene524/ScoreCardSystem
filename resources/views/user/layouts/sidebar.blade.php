@@ -44,7 +44,8 @@
                     <li><a href="{{route('user.workday.index')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Listesi</a>
                     </li>
                     <li><a href="{{route('user.workday.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
-                    <li><a href="{{route('user.workday.report.get')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Rapor</a></li>
+                    <li><a href="{{route('user.workday.report.get')}}"><i class="fa fa-circle-o"></i>Çalışma Günü Rapor</a>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">
@@ -71,11 +72,15 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permit.create')}}"><i class="fa fa-circle-o"></i>Toplu Personel Ekle</a>
+                    <li>
+                        <a href="{{route('user.batchTransactions.addEmployee')}}"><i class="fa fa-circle-o"></i>Toplu Personel Ekle</a>
                     </li>
-                    <li><a href="{{route('user.permit.index')}}"><i class="fa fa-circle-o"></i>Toplu Çalışma Günü Ekle</a>
+                    <li>
+                        <a href="{{route('user.batchTransactions.addEmployee')}}"><i class="fa fa-circle-o"></i>Toplu Çalışma Günü Ekle</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -135,7 +140,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.permitStatus.create')}}"><i class="fa fa-circle-o"></i>İzin Durumu Ekle</a>
+                    <li><a href="{{route('user.permitStatus.create')}}"><i class="fa fa-circle-o"></i>İzin Durumu
+                            Ekle</a>
                     </li>
                     <li><a href="{{route('user.permitStatus.index')}}"><i class="fa fa-circle-o"></i>İzin Durum Listesi</a>
                     </li>

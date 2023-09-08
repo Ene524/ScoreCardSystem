@@ -103,12 +103,8 @@ Route::prefix('user')->middleware("auth")->group(function () {
     });
 
     Route::prefix('batchTransactions')->group(function () {
-        Route::get('index', [BatchTransactions::class, 'index'])->name('user.batchTransactions.index');
-        Route::get('create', [BatchTransactions::class, 'create'])->name('user.batchTransactions.create');
-        Route::post('create', [BatchTransactions::class, 'store']);
-        Route::get('edit/{id}', [BatchTransactions::class, 'edit'])->name('user.batchTransactions.edit');
-        Route::post('edit/{id}', [BatchTransactions::class, 'update'])->name('user.batchTransactions.update');
-        Route::delete('delete', [BatchTransactions::class, 'delete'])->name("user.batchTransactions.delete");
+        Route::get('addEmployee', [BatchTransactions::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
+        Route::post('addEmployee', [BatchTransactions::class, 'addEmployeeUpload']);
     });
 
     Route::get('/logout', [LoginController::class, "logout"])->name("logout");
