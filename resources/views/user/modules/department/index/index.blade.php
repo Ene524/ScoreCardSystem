@@ -15,7 +15,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title pull-left">Departman Listesi</h3>
-                    <a href="{{route('user.department.create')}}" class="btn btn-primary btn-sm btn-square pull-right">Personel Oluştur</a>
+                    <a href="{{route('user.department.create')}}" class="btn btn-primary btn-sm btn-square pull-right">Departman Oluştur</a>
                 </div>
                 <table class="table table-responsive table-striped">
                     <thead>

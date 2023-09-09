@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\User\BatchTransactions;
+use App\Http\Controllers\User\BatchTransactionsController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\DepartmentController;
 use App\Http\Controllers\User\EmployeeController;
@@ -103,8 +103,11 @@ Route::prefix('user')->middleware("auth")->group(function () {
     });
 
     Route::prefix('batchTransactions')->group(function () {
-        Route::get('addEmployee', [BatchTransactions::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
-        Route::post('addEmployee', [BatchTransactions::class, 'addEmployeeUpload']);
+        Route::get('addEmployee', [BatchTransactionsController::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
+        Route::post('addEmployee', [BatchTransactionsController::class, 'addEmployeeUpload']);
+
+        Route::get('addWorkday', [BatchTransactionsController::class, 'addWorkdayindex'])->name('user.batchTransactions.addWorkday');
+        Route::post('addWorkday', [BatchTransactionsController::class, 'addWorkdayUpload']);
     });
 
     Route::get('/logout', [LoginController::class, "logout"])->name("logout");
@@ -112,8 +115,3 @@ Route::prefix('user')->middleware("auth")->group(function () {
 
 Route::get('/', [LoginController::class, "showLogin"])->name("login");
 Route::post('/', [LoginController::class, "login"]);
-
-
-
-
-

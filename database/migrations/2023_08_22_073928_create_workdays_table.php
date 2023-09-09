@@ -19,6 +19,8 @@ return new class extends Migration
             $table->boolean('status')->default(1)->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 

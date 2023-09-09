@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email')->unique();
+            $table->string('password');
             $table->unsignedBigInteger('department_id');
             $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('salary_id');
@@ -22,7 +23,12 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('position_id')->references('id')->on('positions');
+            $table->foreign('salary_id')->references('id')->on('salaries');
         });
+
     }
 
     /**

@@ -76,7 +76,7 @@
                         <a href="{{route('user.batchTransactions.addEmployee')}}"><i class="fa fa-circle-o"></i>Toplu Personel Ekle</a>
                     </li>
                     <li>
-                        <a href="{{route('user.batchTransactions.addEmployee')}}"><i class="fa fa-circle-o"></i>Toplu Çalışma Günü Ekle</a>
+                        <a href="{{route('user.batchTransactions.addWorkday')}}"><i class="fa fa-circle-o"></i>Toplu Çalışma Günü Ekle</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a>
