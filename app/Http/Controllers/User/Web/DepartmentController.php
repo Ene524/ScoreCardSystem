@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class DepartmentController extends Controller
 {

@@ -31,7 +31,6 @@
                             <div class="col-md-4">
                                 <label for="employee_id">Personel</label>
                                 <select class="form-control select2" name="employee_id[]" id="employee_ids" multiple="multiple">
-                                    <option value="{{ null }}">Personel Seç</option>
                                     @foreach($employees as $item)
                                         <option value="{{ $item->id }}" {{ in_array($item->id, old('employee_id', [])) ? "selected" : "" }}>
                                             {{ $item->full_name }}
@@ -42,12 +41,18 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <label for="employee_id"> </label>
                                 <button type="button" class="btn btn-primary form-control" onclick="getWorkHours()">Filtrele</button>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <label for="employee_id"> </label>
+                                <button type="button" class="btn btn-success form-control" id="selectAll">Tümünü Seç</button>
+                            </div>
+                        </div>
 
                             <div class="col-md-12" style="margin-top: 30px">
                                 <table class="table table-bordered" id="TotalWorkHours">

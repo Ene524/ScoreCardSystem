@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Toplu Çalışan Ekleme')
+@section('title', 'Toplu Çalışma Günü Ekleme')
 @section('content')
 
     <div class="row">
@@ -22,15 +22,13 @@
                 </div>
             @endif
 
-
-
             <div class="box box-info" style="padding: 15px">
                 <div class="box-header with-border">
                     <h3 class="box-title">Toplu Çalışma Günü Ekle</h3>
                 </div>
 
-                <form action="{{ route('user.batchTransactions.addEmployee') }}" class="form-horizontal" method="post"
-                    enctype="multipart/form-data">
+                <form action="{{ route('user.batchTransactions.addWorkday') }}" class="form-horizontal" method="post"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
 
@@ -40,29 +38,56 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-4">
-                            <select class="form-control">
-                                <option value="0">Seçiniz</option>
-                                <option value="0">Seçiniz</option>
-                                <option value="0">Seçiniz</option>
+
+                        <div class="col-sm-10">
+                            <label>Personel Seçimi</label>
+                            <select class="form-control select2" name="employee_id[]" id="employee_ids"
+                                    multiple="multiple">
+                                @foreach($employees as $item)
+                                    <option
+                                        value="{{ $item->id }}" {{ in_array($item->id, old('employee_id', [])) ? "selected" : "" }}>
+                                        {{ $item->full_name }}
+                                    </option>
+                                @endforeach
                             </select>
+                        </div>
+                        <div class="col-sm-2" style="line-height:26px">
+                            <label> </label>
+                            <button type="button" class="btn btn-primary btn-block" id="selectAll">Tümünü Seç</button>
                         </div>
 
 
+                    </div>
 
-                        <div class="col-sm-4">
-                            <select class="form-control">
-                                <option value="0">Seçiniz</option>
-                                <option value="0">Seçiniz</option>
-                                <option value="0">Seçiniz</option>
-                            </select>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label class="control-label">Başlangıç Tarihi</label>
+                            <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="start_date"
+                                   value="{{ isset($workday) ? $workday->start_date->format('Y-m-d H:i') : date('Y-m-d 09:00') }}">
+
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label class="control-label">Bitiş Tarihi</label>
+
+
+                            <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="end_date"
+                                   value="{{ isset($workday) ? $workday->end_date->format('Y-m-d H:i') : date('Y-m-d 18:00') }}">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                           <button type="submit" class="btn btn-success">Çalışma Günü Oluştur</button>
                     </div>
 
 
                 </form>
             </div>
-
 
         </div>
     </div>
@@ -70,9 +95,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.batchTransactions.addEmployee.components.style')
+    @include('user.modules.batchTransactions.addWorkday.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.batchTransactions.addEmployee.components.style')
+    @include('user.modules.batchTransactions.addWorkday.components.script')
 @endsection

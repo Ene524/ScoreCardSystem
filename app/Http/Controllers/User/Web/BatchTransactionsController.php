@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Web;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\EmployeeUploadRequest;
 use App\Http\Requests\User\WorkdayBatchRequest;
+use App\Imports\EmployeeImport;
 use App\Models\Employee;
 use DateInterval;
 use DateTime;
-use Illuminate\Http\Request;
-use App\Imports\EmployeeImport;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\User\EmployeeUploadRequest;
 use Illuminate\Support\Facades\Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -44,12 +43,16 @@ class BatchTransactionsController extends Controller
             $current_date = clone $start_date;
 
             while ($current_date <= $end_date) {
-                if ($current_date->format('N') != 7) {
+                // Eğer bu tarih ve personel için daha önce bir kayıt yoksa ekleyin
+                if (!$employee->workdays()->where('start_date', $current_date->format('Y-m-d H:i'))->exists()) {
                     $employee->workdays()->create([
                         'start_date' => $current_date->format('Y-m-d H:i'),
                         'end_date' => $current_date->format('Y-m-d H:i'),
                         'status' => 1,
                     ]);
+                }
+                else{
+                    return Redirect::back()->with('error', 'Bu tarih ve personel için zaten bir kayıt mevcut');
                 }
 
                 $current_date->add(new DateInterval('P1D')); // Bir gün ekleyin

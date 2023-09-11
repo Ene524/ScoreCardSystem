@@ -48,7 +48,7 @@
                             <label class="col-sm-2 control-label">Başlangıç Tarihi</label>
 
                             <div class="col-sm-10">
-                                <input id="Test" class="form-control" type="datetime-local" name="start_date"
+                                <input class="form-control" type="datetime-local" name="start_date"
                                     value="{{ isset($workday) ? $workday->start_date->format('Y-m-d H:i') : date('Y-m-d 09:00') }}">
                             </div>
                         </div>

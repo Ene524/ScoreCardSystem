@@ -63,7 +63,6 @@
                     <li><a href="{{route('user.permit.indexCalendar')}}"><i class="fa fa-circle-o"></i>Takvim</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i> <span>Toplu İşlemler</span>
@@ -80,6 +79,19 @@
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i> <span>Raporlar</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('user.workday.report.get')}}"><i class="fa fa-circle-o"></i>Çalışma ve İzin Raporu</a>
                     </li>
                 </ul>
             </li>

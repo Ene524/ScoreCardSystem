@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\WorkdayRequest;
@@ -8,18 +8,10 @@ use App\Models\Employee;
 use App\Models\Permit;
 use App\Models\PermitType;
 use App\Models\Workday;
-use App\Services\WorkdayService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class WorkdayController extends Controller
 {
-    public function __construct(WorkdayService $workdayService)
-    {
-        $this->workdayService = $workdayService;
-    }
-
     public function index()
     {
         //$tempEmployees = Employee::where('id', '=', 1)->get()->toArray();

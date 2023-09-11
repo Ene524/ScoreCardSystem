@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v2.4.18
- * 
+ *
  *   Author:  Colorlib
  *   Support: <https://github.com/ColorlibHQ/AdminLTE/issues>
  *   Repository: git://github.com/ColorlibHQ/AdminLTE.git
@@ -4865,7 +4865,7 @@ fieldset[disabled] .btn-yahoo.focus {
   background-color: #3c8dbc;
   border-color: #367fa9;
   padding: 1px 10px;
-  color: #fff;
+  color: #fff ;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
   margin-right: 5px;

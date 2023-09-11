@@ -4,6 +4,11 @@
     $(document).ready(function () {
         $('.select2').select2();
 
+        $('#selectAll').click(function () {
+            $('#employee_ids > option').prop("selected", "selected");
+            $('#employee_ids').trigger("change");
+        });
+
     })
 
     function getWorkHours() {
