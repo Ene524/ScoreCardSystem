@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\User\Web;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\User\EmployeeUploadRequest;
-use App\Http\Requests\User\WorkdayBatchRequest;
-use App\Imports\EmployeeImport;
-use App\Models\Employee;
-use DateInterval;
 use DateTime;
-use Illuminate\Support\Facades\Redirect;
+use DateInterval;
+use App\Models\Employee;
+use App\Imports\EmployeeImport;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\User\WorkdayBatchRequest;
+use App\Http\Requests\User\EmployeeUploadRequest;
+
 
 class BatchTransactionsController extends Controller
 {
@@ -50,8 +51,7 @@ class BatchTransactionsController extends Controller
                         'end_date' => $current_date->format('Y-m-d H:i'),
                         'status' => 1,
                     ]);
-                }
-                else{
+                } else {
                     return Redirect::back()->with('error', 'Bu tarih ve personel için zaten bir kayıt mevcut');
                 }
 
@@ -59,7 +59,5 @@ class BatchTransactionsController extends Controller
             }
         }
         return Redirect::back()->with('success', 'Çalışma günleri başarıyla oluşturuldu');
-
-
     }
 }

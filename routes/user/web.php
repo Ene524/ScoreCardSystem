@@ -10,6 +10,7 @@ use App\Http\Controllers\User\Web\PermitStatusController;
 use App\Http\Controllers\User\Web\PermitTypeController;
 use App\Http\Controllers\User\Web\PositionController;
 use App\Http\Controllers\User\Web\SalaryController;
+use App\Http\Controllers\User\Web\UserController;
 use App\Http\Controllers\User\Web\WorkdayController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->middleware("auth")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard.index');
+
     Route::prefix('employee')->group(function () {
         Route::get('index', [EmployeeController::class, 'index'])->name('user.employee.index');
         Route::get('create', [EmployeeController::class, 'create'])->name('user.employee.create');
@@ -105,10 +107,20 @@ Route::prefix('user')->middleware("auth")->group(function () {
     Route::prefix('batchTransactions')->group(function () {
         Route::get('addEmployee', [BatchTransactionsController::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
         Route::post('addEmployee', [BatchTransactionsController::class, 'addEmployeeUpload']);
-
         Route::get('addWorkday', [BatchTransactionsController::class, 'addWorkdayindex'])->name('user.batchTransactions.addWorkday');
         Route::post('addWorkday', [BatchTransactionsController::class, 'addWorkday']);
     });
+
+    Route::prefix('user')->group(function () {
+        Route::get('index', [UserController::class, 'index'])->name('user.user.index');
+        Route::get('create', [UserController::class, 'create'])->name('user.user.create');
+        Route::post('create', [UserController::class, 'store']);
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.user.edit');
+        Route::post('edit/{id}', [UserController::class, 'update'])->name('user.user.update');
+        Route::delete('delete', [UserController::class, 'delete'])->name("user.user.delete");
+    });
+
+
 
     Route::get('/logout', [LoginController::class, "logout"])->name("logout");
 });
