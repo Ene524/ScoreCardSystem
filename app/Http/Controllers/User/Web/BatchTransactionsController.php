@@ -7,7 +7,6 @@ use DateInterval;
 use App\Models\Employee;
 use App\Imports\EmployeeImport;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\User\WorkdayBatchRequest;
 use App\Http\Requests\User\EmployeeUploadRequest;

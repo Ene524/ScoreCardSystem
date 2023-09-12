@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -25,10 +26,11 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->password = Hash::make($request->password);
+        $user->email_verified_at = now();
         $user->status = $request->status != null ? 1 : 0;
         $user->save();
-        return redirect()->route('user.user.index')->with('success', 'Pozisyon başarıyla oluşturuldu');
+        return redirect()->route('user.user.index')->with('success', 'Kullanıcı başarıyla oluşturuldu');
     }
 
     public function edit($id)
@@ -41,10 +43,12 @@ class UserController extends Controller
     {
         $user = User::findOrfail($id);
         $user->name = $request->name;
-        $user->description = $request->description;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->email_verified_at = now();
         $user->status = $request->status != null ? 1 : 0;
         $user->save();
-        return redirect()->route('user.user.index')->with('success', 'Pozisyon başarıyla güncellendi');
+        return redirect()->route('user.user.index')->with('success', 'Kullanıcı başarıyla güncellendi');
     }
 
     public function delete(Request $request)

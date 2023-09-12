@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Maaş Oluştur')
+@section('title', 'Kullanıcı Oluştur')
 @section('content')
 
     <div class="row">
@@ -22,45 +22,46 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Maaş Ekle</h3>
+                    <h3 class="box-title">Kullanıcı Ekle</h3>
                 </div>
                 <form class="form-horizontal"
-                      action="{{isset($salary)? route('user.salary.edit',['id'=>$salary->id]) :route('user.salary.create')}}"
-                      method="POST">
+                    action="{{ isset($user) ? route('user.user.edit', ['id' => $user->id]) : route('user.user.create') }}"
+                    method="POST">
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
                             <label for="inputFullName3" class="col-sm-2 control-label">Adı</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" placeholder="Pozisyon Adı"
-                                       value="{{isset($salary) ? $salary->name:""}}">
+                                <input class="form-control" type="text" name="name" placeholder="Adı"
+                                    value="{{ isset($user) ? $user->name : '' }}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
+                            <label for="inputFullName3" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="description" placeholder="Açıklama"
-                                       value="{{isset($salary) ? $salary->description:""}}">
+                                <input class="form-control" type="text" name="email" placeholder="Email"
+                                    value="{{ isset($user) ? $user->email : '' }}">
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="inputFullName3" class="col-sm-2 control-label">Tutarı</label>
+                            <label for="inputFullName3" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="number" name="amount" placeholder="Tutarı"
-                                       value="{{isset($salary) ? $salary->amount:0}}">
+                                <input class="form-control" type="password" name="password" placeholder="Password"
+                                    value="{{ isset($user) ? $user->password : '' }}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
+                            <label for="inputFullName3" class="col-sm-2 control-label">Durum</label>
 
                             <div class="col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="status" {{ isset($salary) && $salary->status  ? "checked" : "" }}>
+                                        <input type="checkbox" name="status"
+                                            {{ isset($user) && $user->status ? 'checked' : '' }}>
                                     </label>
                                 </div>
                             </div>
@@ -84,9 +85,9 @@
 @endsection
 
 @section('customStyle')
-    @include('user.modules.salary.create-update.components.style')
+    @include('user.modules.user.create-update.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.salary.create-update.components.script')
+    @include('user.modules.user.create-update.components.script')
 @endsection
