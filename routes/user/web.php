@@ -59,7 +59,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [PermitController::class, 'delete'])->name("user.permit.delete");
     });
 
-    Route::prefix('department')->group(function () {
+    Route::prefix('department')->middleware('role:Admin')->group(function () {
         Route::get('index', [DepartmentController::class, 'index'])->name('user.department.index');
         Route::get('create', [DepartmentController::class, 'create'])->name('user.department.create');
         Route::post('create', [DepartmentController::class, 'store']);
@@ -68,7 +68,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [DepartmentController::class, 'delete'])->name("user.department.delete");
     });
 
-    Route::prefix('position')->group(function () {
+    Route::prefix('position')->middleware('role:Admin')->group(function () {
         Route::get('index', [PositionController::class, 'index'])->name('user.position.index');
         Route::get('create', [PositionController::class, 'create'])->name('user.position.create');
         Route::post('create', [PositionController::class, 'store']);
@@ -77,7 +77,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [PositionController::class, 'delete'])->name("user.position.delete");
     });
 
-    Route::prefix('permitType')->group(function () {
+    Route::prefix('permitType')->middleware('role:Admin')->group(function () {
         Route::get('index', [PermitTypeController::class, 'index'])->name('user.permitType.index');
         Route::get('create', [PermitTypeController::class, 'create'])->name('user.permitType.create');
         Route::post('create', [PermitTypeController::class, 'store']);
@@ -86,7 +86,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [PermitTypeController::class, 'delete'])->name("user.permitType.delete");
     });
 
-    Route::prefix('permitStatus')->group(function () {
+    Route::prefix('permitStatus')->middleware('role:Admin')->group(function () {
         Route::get('index', [PermitStatusController::class, 'index'])->name('user.permitStatus.index');
         Route::get('create', [PermitStatusController::class, 'create'])->name('user.permitStatus.create');
         Route::post('create', [PermitStatusController::class, 'store']);
@@ -104,14 +104,14 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [SalaryController::class, 'delete'])->name("user.salary.delete");
     });
 
-    Route::prefix('batchTransactions')->group(function () {
+    Route::prefix('batchTransactions')->middleware('role:Admin')->group(function () {
         Route::get('addEmployee', [BatchTransactionsController::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
         Route::post('addEmployee', [BatchTransactionsController::class, 'addEmployeeUpload']);
         Route::get('addWorkday', [BatchTransactionsController::class, 'addWorkdayindex'])->name('user.batchTransactions.addWorkday');
         Route::post('addWorkday', [BatchTransactionsController::class, 'addWorkday']);
     });
 
-    Route::prefix('user')->group(function () {
+    Route::prefix('user')->middleware('role:Admin')->group(function () {
         Route::get('index', [UserController::class, 'index'])->name('user.user.index');
         Route::get('create', [UserController::class, 'create'])->name('user.user.create');
         Route::post('create', [UserController::class, 'store']);

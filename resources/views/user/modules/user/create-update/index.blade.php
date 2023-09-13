@@ -54,6 +54,25 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="inputFullName3" class="col-sm-2 control-label">Rol</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="role" id="role">
+                                    <option value="Standart-User"
+                                        {{ isset($user) && $user->hasRole('Standart-User') ? 'selected' : '' }}>
+                                        Standart-User</option>
+                                    @foreach ($roles as $role)
+                                        @if ($role->name != 'Standart-User')
+                                            <option value="{{ $role->id }}"
+                                                {{ isset($user) && $user->hasRole($role->name) ? 'selected' : '' }}>
+                                                {{ $role->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="inputFullName3" class="col-sm-2 control-label">Durum</label>
 

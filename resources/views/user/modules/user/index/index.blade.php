@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Maaş Listesi')
+@section('title', 'Kullanıcı Listesi')
 @section('content')
 
     <div class="row">
@@ -14,7 +14,9 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title pull-left">Kullanıcı Listesi</h3>
-                    <a href="{{ route('user.user.create') }}" class="btn btn-primary btn-sm btn-square pull-right">Kullanıcı
+                    <a href="{{ route('user.user.create') }}"
+                        class="btn btn-primary btn-sm btn-square
+                    pull-right">Kullanıcı
                         Oluştur</a>
                 </div>
                 <table class="table table-responsive table-striped">
@@ -24,6 +26,7 @@
                             <th scope="col">Adı</th>
                             <th scope="col">Email</th>
                             <th scope="col">Parola</th>
+                            <th scope="col">Rol</th>
                             <th scope="col">Durumu</th>
                             <th scope="col">İşlemler</th>
                         </tr>
@@ -35,6 +38,15 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->password }}</td>
+                                <td>
+                                    @if ($user->roles->count() > 0)
+                                        @foreach ($user->roles as $role)
+                                            {{ $role->name }}
+                                        @endforeach
+                                    @else
+                                        Standart-User
+                                    @endif
+                                </td>
                                 @if ($user->status == 1)
                                     <td><span class="badge bg-green" name="status">Aktif</span></td>
                                 @else
