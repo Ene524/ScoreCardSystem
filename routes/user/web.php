@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\User\Web\BatchTransactionsController;
+
+use App\Http\Controllers\Auth\User\LoginController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Web\UserController;
+use App\Http\Controllers\User\Web\PermitController;
+use App\Http\Controllers\User\Web\SalaryController;
+use App\Http\Controllers\User\Web\WorkdayController;
+use App\Http\Controllers\User\Web\EmployeeController;
+use App\Http\Controllers\User\Web\PositionController;
 use App\Http\Controllers\User\Web\DashboardController;
 use App\Http\Controllers\User\Web\DepartmentController;
-use App\Http\Controllers\User\Web\EmployeeController;
-use App\Http\Controllers\User\Web\PermitController;
-use App\Http\Controllers\User\Web\PermitStatusController;
 use App\Http\Controllers\User\Web\PermitTypeController;
-use App\Http\Controllers\User\Web\PositionController;
-use App\Http\Controllers\User\Web\SalaryController;
-use App\Http\Controllers\User\Web\UserController;
-use App\Http\Controllers\User\Web\WorkdayController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Web\PermitStatusController;
+use App\Http\Controllers\User\Web\BatchTransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,8 +123,8 @@ Route::prefix('user')->middleware("auth")->group(function () {
 
 
 
-    Route::get('/logout', [LoginController::class, "logout"])->name("logout");
+    Route::get('/user/authentication/logout', [LoginController::class, "logout"])->name("user.logout");
 });
 
-Route::get('/', [LoginController::class, "showLogin"])->name("login");
-Route::post('/', [LoginController::class, "login"]);
+Route::get('/user/login', [LoginController::class, "showLogin"])->name("user.login");
+Route::post('/user/login', [LoginController::class, "login"]);
