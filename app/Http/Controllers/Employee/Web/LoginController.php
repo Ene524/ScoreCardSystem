@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Employee\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +14,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->route("user.dashboard.index");
         } else {
-            return view("auth.modules.login.index");
+            return view("employee.modules.authentication.login.index");
         }
     }
 
@@ -32,7 +31,7 @@ class LoginController extends Controller
             Auth::login($user, $remember);
             return redirect()->route("user.dashboard.index");
         } else {
-            return redirect()->route("login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");
+            return redirect()->route("user.login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");
         }
     }
 
@@ -42,7 +41,7 @@ class LoginController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route("login");
+            return redirect()->route("user.login");
         }
     }
 }

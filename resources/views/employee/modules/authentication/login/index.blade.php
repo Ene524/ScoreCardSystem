@@ -1,7 +1,5 @@
-@extends('auth.layouts.master')
+@extends('employee.layouts.auth')
 @section('title','Giriş Yap')
-@section('customStyle')
-@endsection
 
 
 @section('content')
@@ -13,7 +11,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
 
-            <form action="{{route('login')}}" method="POST">
+            <form action="{{route('user.login')}}" method="POST">
                 @csrf
                 @if($errors->any())
                     <div class="callout callout-danger">
@@ -41,7 +39,12 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
+                    </div>
+
+
+                    <div class="col-xs-12" style="margin-top: 25px">
+                        <a href="{{route('home')}}" class="btn btn-default btn-block btn-flat">Ana ekrana dön</a>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -49,6 +52,10 @@
         </div>
         <!-- /.login-box-body -->
     </div>
+@endsection
+
+
+@section('customStyle')
 @endsection
 
 @section('customScript')
