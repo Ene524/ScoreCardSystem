@@ -9,6 +9,12 @@ class HomeController extends Controller
     public function index()
     {
         return view("home.modules.home.index");
-        //2468
     }
+
+
+
+
+
+
+
 }

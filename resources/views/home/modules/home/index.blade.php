@@ -1,7 +1,6 @@
 @extends('home.layouts.master')
 @section('title','Giriş Yap')
-@section('customStyle')
-@endsection
+
 
 
 @section('content')
@@ -38,8 +37,17 @@
                 </div>
             </div>
         </div>
-    </div>
+
+
+
 @endsection
 
+@section('customStyle')
+    @include('home.modules.home.components.style')
+@endsection
+
+
 @section('customScript')
+    @include('home.modules.home.components.script')
+
 @endsection
