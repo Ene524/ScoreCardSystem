@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{asset('assets/dist/css/AdminLTE.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/iCheck/square/blue.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/Source_Sans_Pro.css')}}">
+    @yield('customStyle')
+
 </head>
 <body class="hold-transition login-page">
 
@@ -21,6 +23,6 @@
 <script src="{{asset('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/plugins/iCheck/icheck.min.js')}}"></script>
-
+@yield('customScript')
 </body>
 </html>
