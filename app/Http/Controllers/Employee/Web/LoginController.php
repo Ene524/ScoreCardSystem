@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function showLogin()
     {
         if (Auth::check()) {
-            return redirect()->route("user.dashboard.index");
+            return redirect()->route("employee.dashboard.index");
         } else {
             return view("employee.modules.authentication.login.index");
         }

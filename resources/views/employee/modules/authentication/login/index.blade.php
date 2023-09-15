@@ -6,12 +6,13 @@
     <div class="login-box">
         <div class="login-logo">
             <b>Personel</b>Puantaj
+
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
+            <p class="login-box-msg">Personel oturumunuzu başlatmak için giriş yapın</p>
 
-            <form action="{{route('user.login')}}" method="POST">
+            <form action="{{route('employee.login')}}" method="POST">
                 @csrf
                 @if($errors->any())
                     <div class="callout callout-danger">
@@ -29,24 +30,27 @@
                     <input type="password" class="form-control" placeholder="Password" name="password" value="{{old('password')}}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input type="checkbox" name="remember" {{old('remember') ? "checked" : ""}}> Beni hatırla
-                            </label>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" {{old('remember') ? "checked" : ""}}> Beni hatırla
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
-                    </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
+                        </div>
 
 
-                    <div class="col-xs-12" style="margin-top: 25px">
-                        <a href="{{route('home')}}" class="btn btn-default btn-block btn-flat">Ana ekrana dön</a>
+                        <div class="col-xs-12" style="margin-top: 25px">
+                            <a href="{{route('home')}}" class="btn btn-default btn-block btn-flat">Ana ekrana dön</a>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
+
                 </div>
             </form>
         </div>
