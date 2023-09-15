@@ -1,12 +1,7 @@
-<<<<<<<< HEAD:resources/views/user/modules/authentication/login/index.blade.php
 @extends('user.layouts.auth')
 @section('title','Giriş Yap')
-========
-@extends('auth.user.layouts.master')
-@section('title', 'Giriş Yap')
-@section('customStyle')
-@endsection
->>>>>>>> origin/master:resources/views/home/modules/login/index.blade.php
+
+
 
 
 @section('content')
@@ -18,11 +13,8 @@
         <div class="login-box-body">
             <p class="login-box-msg">Oturumunuzu başlatmak için giriş yapın</p>
 
-<<<<<<<< HEAD:resources/views/user/modules/authentication/login/index.blade.php
+
             <form action="{{route('user.login')}}" method="POST">
-========
-            <form action="{{ route('user.login') }}" method="POST">
->>>>>>>> origin/master:resources/views/home/modules/login/index.blade.php
                 @csrf
                 @if ($errors->any())
                     <div class="callout callout-danger">
