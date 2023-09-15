@@ -1,9 +1,5 @@
 <?php
 
-
-use App\Http\Controllers\Auth\User\LoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Web\UserController;
 use App\Http\Controllers\User\Web\PermitController;
 use App\Http\Controllers\User\Web\SalaryController;
 use App\Http\Controllers\User\Web\WorkdayController;
@@ -122,9 +118,6 @@ Route::prefix('user')->middleware("auth")->group(function () {
     });
 
 
-
-    Route::get('/user/authentication/logout', [LoginController::class, "logout"])->name("user.logout");
-});
 
 Route::get('/user/login', [LoginController::class, "showLogin"])->name("user.login");
 Route::post('/user/login', [LoginController::class, "login"]);
