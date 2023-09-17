@@ -39,10 +39,17 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Email</label>
-
                             <div class="col-sm-10">
                                 <input class="form-control" type="email" name="email" placeholder="Email"
                                        value="{{isset($employee) ? $employee->email:""}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Parola</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" name="password" placeholder="Parola"
+                                       value="{{isset($employee) ? $employee->password:""}}">
                             </div>
                         </div>
 

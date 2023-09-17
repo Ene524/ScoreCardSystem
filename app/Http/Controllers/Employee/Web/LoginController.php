@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Employee\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Employee\EmployeeLoginRequest;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class LoginController extends Controller
         }
     }
 
-    public function login(LoginRequest $request)
+    public function login(EmployeeLoginRequest $request)
     {
         $email = $request->email;
         $password = $request->password;
@@ -26,12 +27,12 @@ class LoginController extends Controller
 
         !is_null($remember) ? $remember = true : $remember = false;
 
-        $user = User::where("email", $email)->first();
-        if ($user && \Hash::check($password, $user->password)) {
-            Auth::login($user, $remember);
-            return redirect()->route("user.dashboard.index");
+        $employee = Employee::where("email", $email)->first();
+        if ($employee && \Hash::check($password, $employee->password)) {
+            Auth::login($employee, $remember);
+            return redirect()->route("employee.dashboard.index");
         } else {
-            return redirect()->route("user.login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");
+            return redirect()->route("employee.login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");
         }
     }
 
@@ -41,7 +42,9 @@ class LoginController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route("user.login");
+            return redirect()->route("employee.login");
         }
+
+
     }
 }

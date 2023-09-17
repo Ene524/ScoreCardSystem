@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('salary_id');
             $table->date('employment_date');
+            $table->rememberToken();
             $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

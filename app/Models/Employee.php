@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Employee extends Model
+class Employee extends Model implements Authenticatable
 {
     use HasFactory,SoftDeletes, HasRoles;
 
@@ -51,6 +52,37 @@ class Employee extends Model
     {
         return $this->hasMany(Permit::class);
     }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id'; // Kullanıcıyı tanımlayan sütunun adı (varsayılan olarak 'id').
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey(); // Kullanıcının benzersiz kimlik bilgisi (varsayılan olarak 'id').
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password; // Kullanıcının şifresi sütunu.
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token'; // Remember me token sütununun adı.
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token; // Remember me token değeri.
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value; // Remember me token değeri ayarlama.
+    }
+
 
 
 }

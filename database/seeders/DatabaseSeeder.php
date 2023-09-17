@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -80,6 +81,14 @@ class DatabaseSeeder extends Seeder
 
         );
         Salary::insert($dataSalaries);
+        #endregion
+        #region Roles
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Standart-User']);
+        #endregion
+        #region ModelHasRoles
+        $user = User::where('email', 'admin@admin.com')->first();
+        $user->assignRole('Admin');
         #endregion
 
 

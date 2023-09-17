@@ -30,6 +30,7 @@ class EmployeeController extends Controller
         $employee = new Employee();
         $employee->full_name = $request->full_name;
         $employee->email = $request->email;
+        $employee->password = \Hash::make($request->password);
         $employee->department_id = $request->department_id;
         $employee->position_id = $request->position_id;
         $employee->salary_id = $request->salary_id;
@@ -53,6 +54,7 @@ class EmployeeController extends Controller
         $employee = Employee::findOrfail($id);
         $employee->full_name = $request->full_name;
         $employee->email = $request->email;
+        $employee->password = \Hash::make($request->password);
         $employee->department_id = $request->department_id;
         $employee->position_id = $request->position_id;
         $employee->salary_id = $request->salary_id;
