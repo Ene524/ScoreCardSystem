@@ -21,15 +21,9 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $email = $request->email;
-        $password = $request->password;
-        $remember = $request->remember;
-
-        !is_null($remember) ? $remember = true : $remember = false;
-
-        $user = User::where("email", $email)->first();
-        if ($user && \Hash::check($password, $user->password)) {
-            Auth::login($user, $remember);
+        $user = User::where("email", $request->email)->first();
+        if ($user && \Hash::check($request->password, $user->password)) {
+            Auth::login($user, $request->remember);
             return redirect()->route("user.dashboard.index");
         } else {
             return redirect()->route("user.login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");

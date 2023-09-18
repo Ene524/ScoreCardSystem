@@ -43,20 +43,22 @@ class BatchTransactionsController extends Controller
             $current_date = clone $start_date;
 
             while ($current_date <= $end_date) {
-                // Eğer bu tarih ve personel için daha önce bir kayıt yoksa ekleyin
-                if (!$employee->workdays()->where('start_date', $current_date->format('Y-m-d H:i'))->exists()) {
+                // Eğer bu günün haftanın pazarı (7) değilse işlemi devam ettirin
+                if ($current_date->format('N') != 7) {
+                    $start_date_formatted = $current_date->format('Y-m-d').$start_date->format('H:i');
+                    $end_date_formatted = $current_date->format('Y-m-d').$end_date->format('H:i');
+
                     $employee->workdays()->create([
-                        'start_date' => $current_date->format('Y-m-d H:i'),
-                        'end_date' => $current_date->format('Y-m-d H:i'),
+                        'start_date' => $start_date_formatted,
+                        'end_date' => $end_date_formatted,
                         'status' => 1,
                     ]);
-                } else {
-                    return Redirect::back()->with('error', 'Bu tarih ve personel için zaten bir kayıt mevcut');
                 }
-
-                $current_date->add(new DateInterval('P1D')); // Bir gün ekleyin
+                $current_date->add(new DateInterval('P1D'));
             }
         }
+
         return Redirect::back()->with('success', 'Çalışma günleri başarıyla oluşturuldu');
+
     }
 }

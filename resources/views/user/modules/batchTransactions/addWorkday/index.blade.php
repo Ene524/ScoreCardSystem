@@ -65,7 +65,7 @@
                         <div class="col-sm-12">
                             <label class="control-label">Başlangıç Tarihi</label>
                             <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="start_date"
-                                   value="{{ isset($workday) ? $workday->start_date->format('Y-m-d H:i') : date('Y-m-d 09:00') }}">
+                                   value="{{ isset($workday) ? $workday->start_date->format('Y-m-d H:i') : \Carbon\Carbon::now()->firstOfMonth()->format('Y-m-d 09:00')}}">
 
                         </div>
                     </div>
@@ -75,7 +75,7 @@
 
 
                             <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="end_date"
-                                   value="{{ isset($workday) ? $workday->end_date->format('Y-m-d H:i') : date('Y-m-d 18:00') }}">
+                                   value="{{ isset($workday) ? $workday->end_date->format('Y-m-d H:i') : \Carbon\Carbon::now()->lastOfMonth()->format('Y-m-d 18:00')}}">
 
                         </div>
                     </div>

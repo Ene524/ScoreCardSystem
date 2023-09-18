@@ -17,10 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('employee')->middleware("auth")->group(function () {
+Route::prefix('employee')->middleware("auth:employee")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('employee.dashboard.index');
-
-
     Route::get('/logout', [LoginController::class, "logout"])->name("employee.logout");
 });
 

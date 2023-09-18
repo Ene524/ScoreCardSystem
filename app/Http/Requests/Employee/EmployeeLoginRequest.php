@@ -24,7 +24,8 @@ class EmployeeLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => ["email", "exists:employees", "required"],
+            "email" => ["exists:employees", "required"],
+            "password" => ["required"],
         ];
     }
 

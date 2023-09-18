@@ -29,27 +29,27 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="{{route('user.dashboard.index')}}" class="logo">
+        <a href="{{route('employee.dashboard.index')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>P</b>P</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Personel</b>Puantaj</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
-        @include('user.layouts.header')
+        @include('employee.layouts.header')
     </header>
-    @include('user.layouts.sidebar')
+    @include('employee.layouts.sidebar')
 
     <div class="content-wrapper">
-    {{-- @include('user.layouts.breadcrumb')--}}
+    {{-- @include('employee.layouts.breadcrumb')--}}
 
         <section class="content">
             @yield('content')
         </section>
     </div>
 
-    @include('user.layouts.footer')
-    @include('user.layouts.control_sidebar')
+    @include('employee.layouts.footer')
+    @include('employee.layouts.control_sidebar')
 
     <div class="control-sidebar-bg"></div>
 </div>

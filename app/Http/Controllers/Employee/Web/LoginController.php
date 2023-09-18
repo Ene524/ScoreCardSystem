@@ -21,15 +21,10 @@ class LoginController extends Controller
 
     public function login(EmployeeLoginRequest $request)
     {
-        $email = $request->email;
-        $password = $request->password;
-        $remember = $request->remember;
+        $employee = Employee::where("email", $request->email)->first();
 
-        !is_null($remember) ? $remember = true : $remember = false;
-
-        $employee = Employee::where("email", $email)->first();
-        if ($employee && \Hash::check($password, $employee->password)) {
-            Auth::login($employee, $remember);
+        if ($employee && \Hash::check($request->password, $employee->password)) {
+            Auth::guard('employee')->login($employee, $request->remember);
             return redirect()->route("employee.dashboard.index");
         } else {
             return redirect()->route("employee.login")->withErrors(["email" => "Bilgilerinizi kontrol ediniz."])->onlyInput("email", "remember");

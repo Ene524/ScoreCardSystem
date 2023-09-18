@@ -205,13 +205,13 @@
 
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="img-circle user-image bg-gray center" style="text-align:center;line-height: 22px">A</span>
-                    <span class="hidden-xs">{{auth()->user()->name ?? ""}}</span>
+                    <span class="img-circle user-image bg-gray center" style="text-align:center;line-height: 22px">{{substr(auth()->user()->full_name,0,1) ?? ""}}</span>
+                    <span class="hidden-xs">{{auth()->user()->full_name ?? ""}}</span>
                 </a>
             </li>
 
             <li class="dropdown user user-menu">
-                <a href="{{route('user.logout')}}" >
+                <a href="{{route('employee.logout')}}" >
                     <span class="hidden-xs">Çıkış Yap</span>
                 </a>
             </li>
