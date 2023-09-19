@@ -24,18 +24,8 @@ class WorkdayController extends Controller
     {
         $employees = Employee::all();
         $permitTypes = PermitType::all();
-        $permits = Permit::with(['employee'])->get();
 
-        $events = [];
-        foreach ($permits as $permit) {
-            $events[] = [
-                'title' => $permit->employee->full_name,
-                'start' => $permit->start,
-                'end' => $permit->end,
-                'color' => '#f05050',
-            ];
-        }
-        return view("user.modules.workday.calendar.index", compact("events", "employees", "permitTypes"));
+        return view("user.modules.workday.calendar.index", compact("employees", "permitTypes"));
     }
 
     public function create()
@@ -80,21 +70,10 @@ class WorkdayController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function addWorkdays(Request $request)
-    {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-
-        $employees = Employee::all(); // Tüm kullanıcılar
-        $this->workdayService->addWorkdaysForUsers($startDate, $endDate, $employees);
-
-        return response()->json(['message' => 'Workdays added successfully'], 201);
-    }
-
     public function report(Request $request)
     {
         $employees = Employee::all();
-        return view("user.modules.workday.report.index",compact("employees"));
+        return view("user.modules.workday.report.index", compact("employees"));
     }
 
 

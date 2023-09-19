@@ -20,6 +20,7 @@ $(document).ready(function () {
     var calendarEl = document.getElementById("calendar");
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        aspectRatio: 2.4,
         locale: 'tr',
         themeSystem: 'bootstrap5',
         headerToolbar: {

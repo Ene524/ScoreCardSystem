@@ -39,12 +39,11 @@
                       @foreach($permits as $permit)
                         <tr>
                             <td>{{$permit->id}}</td>
-                            <td>{{$permit->employee->full_name}}</td>
-                            <td>{{$permit->start_date->format('d.m.Y H:i')}}</td>
-                            <td>{{$permit->end_date->format('d.m.Y H:i')}}</td>
-                            <td>{{$permit->permitType->name}}</td>
-                            <td>{{ $hoursDifferences[$permit->id]}}Saat</td>
-{{--                            <td>{{round((strtotime($permit->end_date) - strtotime($permit->start_date)) / 3600)}}Saat</td>--}}
+                            <td>{{$permit->full_name}}</td>
+                            <td>{{$permit->start_date}}</td>
+                            <td>{{$permit->end_date}}</td>
+                            <td>{{$permit->name}}</td>
+                            <td>{{ $permit->permitsTime}} Saat</td>
                             <td>{{$permit->description}}</td>
 
                             <td>{{$permit->status==null? "Pasif ": "Aktif"}}</td>
@@ -55,7 +54,7 @@
                                    title="Düzenle"><i class="fa fa-edit"></i></a>
                                 <a href="javascript:void(0)" class="btn btn-danger btn-xs deletePermit"
                                    data-id="{{$permit->id}}" data-startdate="{{$permit->start_date}}"
-                                   data-enddate="{{$permit->end_date}}" data-name="{{$permit->employee->full_name}}"
+                                   data-enddate="{{$permit->end_date}}" data-name="{{$permit->full_name}}"
                                    data-toggle="tooltip" data-placement="top"
                                    title="Sil"><i class="fa fa-trash"></i></a>
                             </td>

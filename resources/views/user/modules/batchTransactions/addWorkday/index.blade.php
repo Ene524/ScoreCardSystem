@@ -55,8 +55,6 @@
                             <label> </label>
                             <button type="button" class="btn btn-primary btn-block" id="selectAll">Tümünü Seç</button>
                         </div>
-
-
                     </div>
 
 

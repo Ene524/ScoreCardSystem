@@ -10,38 +10,24 @@ use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PermitController extends Controller
 {
     public function index()
     {
-        $permits = Permit::all();
-        $employees = Employee::all();
-        $permitTypes = PermitType::all();
+        $permits = DB::select("SELECT
+        permits.id,
+        employees.full_name,permits.start_date,permits.end_date,permit_types.name,
+        (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15) permitsTime,
+        permits.description,permits.status
+         FROM permits
+        LEFT JOIN employees ON permits.employee_id=employees.id
+        LEFT JOIN permit_types ON permits.permit_type_id=permit_types.id
+        LEFT JOIN permit_statuses ON permits.permit_status_id=permit_statuses.id
+        WHERE permits.status=1");
 
-        $hoursDifferences = [];
-
-        foreach ($permits as $permit) {
-            $startDate = Carbon::parse($permit->start_date);
-            $endDate = Carbon::parse($permit->end_date);
-
-            $hoursDifference = 0;
-            $currentDate = $startDate;
-
-            while ($currentDate < $endDate) {
-                if ($currentDate->dayOfWeek !== Carbon::SUNDAY) {
-                    $hoursDifference += $currentDate->diffInHours($currentDate->copy()->endOfDay());
-                }
-                $currentDate->addDay();
-            }
-
-            $hoursDifference += $startDate->diffInHours($endDate);
-
-            $hoursDifferences[$permit->id] = $hoursDifference;
-        }
-
-
-        return view('user.modules.permit.index.index', compact('permits', 'employees', 'permitTypes', 'hoursDifferences'));
+        return view('user.modules.permit.index.index', compact('permits'));
     }
 
     public function index2()
@@ -49,18 +35,8 @@ class PermitController extends Controller
         $employees = Employee::all();
         $permitTypes = PermitType::all();
         $permitStatuses = PermitStatus::all();
-        $permits = Permit::with(['employee'])->get();
 
-        $events = [];
-        foreach ($permits as $permit) {
-            $events[] = [
-                'title' => $permit->employee->full_name,
-                'start' => $permit->start,
-                'end' => $permit->end,
-                'color' => '#f05050',
-            ];
-        }
-        return view("user.modules.permit.calendar.index", compact("events", "employees", "permitTypes","permitStatuses"));
+        return view("user.modules.permit.calendar.index", compact("employees", "permitTypes", "permitStatuses"));
     }
 
     public function create()
@@ -86,7 +62,7 @@ class PermitController extends Controller
 
     public function edit($id)
     {
-        $permit=Permit::findOrfail($id);
+        $permit = Permit::findOrfail($id);
         $employees = Employee::all();
         $permitTypes = PermitType::all();
         return view('user.modules.permit.create-update.index', compact('permit', 'employees', 'permitTypes'));
