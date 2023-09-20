@@ -90,6 +90,12 @@ class DatabaseSeeder extends Seeder
         $user = User::where('email', 'admin@admin.com')->first();
         $user->assignRole('Admin');
         #endregion
+        #region WorkdayTypes
+        $dataWorkdayTypes = array(
+            array('name' => 'Standart Vardiya', 'description' => '', 'amount' => 5000, 'created_at' => now(), 'updated_at' => now()),
+
+        );
+        Salary::insert($dataWorkdayTypes);
 
 
         /*

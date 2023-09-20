@@ -11,19 +11,8 @@
                 </div>
 
                 <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table no-margin">
-                            <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Item</th>
-                                <th>Status</th>
-                                <th>Popularity</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    <div id="calendar">
 
-                        </table>
                     </div>
 
                 </div>
@@ -71,7 +60,6 @@
         </div>
     </div>
     <div class="row">
-
 
 
     </div>

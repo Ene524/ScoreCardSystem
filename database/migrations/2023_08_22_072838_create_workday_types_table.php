@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workdays', function (Blueprint $table) {
+        Schema::create('workday_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->boolean('status')->default(1)->nullable();
-            $table->unsignedBigInteger('workday_type_id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->boolean('status')->default(1);
+            $table->decimal('daily_wage', )->default(0);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workdays');
+        Schema::dropIfExists('workday_types');
     }
 };
