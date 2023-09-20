@@ -8,9 +8,9 @@ use App\Models\Employee;
 use App\Models\Permit;
 use App\Models\PermitStatus;
 use App\Models\PermitType;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class PermitController extends Controller
 {
@@ -18,9 +18,13 @@ class PermitController extends Controller
     {
         $permits = DB::select("SELECT
         permits.id,
-        employees.full_name,permits.start_date,permits.end_date,permit_types.name,
+        employees.full_name,
+        DATE_FORMAT(permits.start_date,'%d.%m.%Y %H:%i') AS start_date,
+        DATE_FORMAT(permits.end_date,'%d.%m.%Y %H:%i') AS end_date,
+        permit_types.name,
         (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15) permitsTime,
-        permits.description,permits.status
+        permits.description,
+        permits.status
          FROM permits
         LEFT JOIN employees ON permits.employee_id=employees.id
         LEFT JOIN permit_types ON permits.permit_type_id=permit_types.id
