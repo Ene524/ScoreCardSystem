@@ -25,6 +25,7 @@
                         <th scope="col">Adı Soyadı</th>
                         <th scope="col">Başlangıç Tarihi</th>
                         <th scope="col">Bitiş Tarihi</th>
+                        <th scope="col">Mesai Türü</th>
                         <th scope="col">Saat</th>
                         <th scope="col">Statü</th>
                         <th scope="col">İşlemler</th>
@@ -37,6 +38,7 @@
                             <td>{{$workday->employee->full_name}}</td>
                             <td>{{$workday->start_date}}</td>
                             <td>{{$workday->end_date}}</td>
+                            <td>{{$workday->workdayType->name}}</td>
                             <td>{{round((strtotime($workday->end_date) - strtotime($workday->start_date)) / 3600)}} Saat</td>
                             <td>{{$workday->status==null? "Pasif ": "Aktif"}}</td>
                             <td>

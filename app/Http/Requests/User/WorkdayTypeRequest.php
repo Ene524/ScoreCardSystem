@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WorkdayRequest extends FormRequest
+class WorkdayTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,9 @@ class WorkdayRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|exists:employees,id',
-            'workday_type_id' => 'required|exists:workday_types,id',
-            'start_date'  => 'date',
-            'end_date'    => 'date|after:start_date',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'hourly_wage' => 'required|numeric|min:0',
         ];
     }
 }

@@ -9,6 +9,7 @@ use App\Models\PermitType;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\User;
+use App\Models\WorkdayType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         #region deleteAllTables
         Schema::disableForeignKeyConstraints();
         DB::table('departments')->truncate();
@@ -90,12 +92,13 @@ class DatabaseSeeder extends Seeder
         $user = User::where('email', 'admin@admin.com')->first();
         $user->assignRole('Admin');
         #endregion
+
         #region WorkdayTypes
         $dataWorkdayTypes = array(
-            array('name' => 'Standart Vardiya', 'description' => '', 'amount' => 5000, 'created_at' => now(), 'updated_at' => now()),
-
+            array('name' => 'Standart Vardiya', 'description' => 'Standart Mesai', 'hourly_wage' => 50, 'created_at' => now(), 'updated_at' => now()),
+            array('name' => 'Ek Mesai', 'description' => 'Ek Mesai', 'hourly_wage' => 100, 'created_at' => now(), 'updated_at' => now()),
         );
-        Salary::insert($dataWorkdayTypes);
+        WorkdayType::insert($dataWorkdayTypes);
 
 
         /*

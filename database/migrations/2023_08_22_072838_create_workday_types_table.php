@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('status')->default(1);
-            $table->decimal('daily_wage', )->default(0);
+            $table->decimal('hourly_wage', )->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

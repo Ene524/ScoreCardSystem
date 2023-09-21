@@ -12,6 +12,7 @@ use App\Http\Controllers\User\Web\PositionController;
 use App\Http\Controllers\User\Web\SalaryController;
 use App\Http\Controllers\User\Web\UserController;
 use App\Http\Controllers\User\Web\WorkdayController;
+use App\Http\Controllers\User\Web\WorkdayTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -118,6 +119,15 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.user.edit');
         Route::post('edit/{id}', [UserController::class, 'update'])->name('user.user.update');
         Route::delete('delete', [UserController::class, 'delete'])->name("user.user.delete");
+    });
+
+    Route::prefix('workdayType')->middleware('role:Admin')->group(function () {
+        Route::get('index', [WorkdayTypeController::class, 'index'])->name('user.workdayType.index');
+        Route::get('create', [WorkdayTypeController::class, 'create'])->name('user.workdayType.create');
+        Route::post('create', [WorkdayTypeController::class, 'store']);
+        Route::get('edit/{id}', [WorkdayTypeController::class, 'edit'])->name('user.workdayType.edit');
+        Route::post('edit/{id}', [WorkdayTypeController::class, 'update'])->name('user.workdayType.update');
+        Route::delete('delete', [WorkdayTypeController::class, 'delete'])->name("user.workdayType.delete");
     });
 
 

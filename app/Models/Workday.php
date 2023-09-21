@@ -25,4 +25,9 @@ class Workday extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function workdayType()
+    {
+        return $this->belongsTo(WorkdayType::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Web;
 
+use App\Models\WorkdayType;
 use DateTime;
 use DateInterval;
 use App\Models\Employee;
@@ -29,7 +30,8 @@ class BatchTransactionsController extends Controller
     public function addWorkdayindex()
     {
         $employees = Employee::all();
-        return view('user.modules.batchTransactions.addWorkday.index', compact('employees'));
+        $workdayTypes = WorkdayType::all();
+        return view('user.modules.batchTransactions.addWorkday.index', compact('employees', 'workdayTypes'));
     }
 
     public function addWorkday(WorkdayBatchRequest $request)
@@ -51,6 +53,7 @@ class BatchTransactionsController extends Controller
                     $employee->workdays()->create([
                         'start_date' => $start_date_formatted,
                         'end_date' => $end_date_formatted,
+                        'workday_type_id' => $request->workday_type_id,
                         'status' => 1,
                     ]);
                 }

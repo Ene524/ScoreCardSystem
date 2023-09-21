@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Latest Orders</h3>
+                    <h3 class="box-title">Takvim</h3>
 
                 </div>
 

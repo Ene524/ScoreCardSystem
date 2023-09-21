@@ -20,7 +20,7 @@
     var calendarEl = document.getElementById("calendar");
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        aspectRatio: 2.4,
+        aspectRatio: 1.8,
         locale: 'tr',
         themeSystem: 'bootstrap5',
         headerToolbar: {
@@ -57,46 +57,14 @@
 
         },
 
-
-        events: function (info, successCallback) {
-            $.ajax({
-                url: '{{ route('api.user.workday.index') }}',
-                type: 'get',
-                data: {
-                    start_date: info.startStr.valueOf(),
-                    end_date: info.endStr.valueOf(),
-                },
-                success: function (response) {
-                    var events = [];
-                    $.each(response.workdays, function (i, workday) {
-                        events.push({
-                            _id: workday.id,
-                            id: workday.id,
-                            title: workday.employee.full_name,
-                            start: reformatDateForCalendar(workday.start_date),
-                            end: reformatDateForCalendar(workday.end_date),
-                            type: '',
-                            classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
-                            backgroundColor: '#007bff',
-                        });
-                    });
-                    successCallback(events);
-                },
-                error: function (response) {
-                    console.log(response);
-                }
-            });
+        datesSet: function (info) {
+            getWorkDays();
         },
+
+        events: []
     });
 
-    function reformatDateForCalendar(date) {
-        var formattedDate = new Date(date);
-        return formattedDate.getFullYear() + '-' +
-            String(formattedDate.getMonth() + 1).padStart(2, '0') + '-' +
-            String(formattedDate.getDate()).padStart(2, '0') + 'T' +
-            String(formattedDate.getHours()).padStart(2, '0') + ':' +
-            String(formattedDate.getMinutes()).padStart(2, '0') + ':00';
-    }
+
 
     calendar.render();
 
@@ -133,11 +101,58 @@
         });
     });
 
+    function getWorkDays(){
+        var startDate = reformatDateForCalendar(calendar.currentData.dateProfile.activeRange.start);
+        var endDate = reformatDateForCalendar(calendar.currentData.dateProfile.activeRange.end);
+
+        $.ajax({
+            type: 'get',
+            url: '{{ route('api.employee.dashboard.getWorkdays')}}',
+            data: {
+                startDate: startDate,
+                endDate: endDate,
+            },
+            success: function (response) {
+                console.log(response);
+                $.each(calendar.getEvents(), function (i, event) {
+                    if (event._def.extendedProps.type === 'workday') {
+                        event.remove();
+                    }
+                });
+                calendar.addEventSource({
+                    events: $.map(response.response, function (workday) {
+                        return {
+                            _id: workday.id,
+                            id: workday.id,
+                            title: `Çalışma Günü`,
+                            start: reformatDateForCalendar(workday.start_date),
+                            end: reformatDateForCalendar(workday.end_date),
+                            type: 'workday',
+                            classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
+                            backgroundColor: 'white',
+                            //workday_id: `${workday.id}`
+                        };
+                    }),
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function reformatDateForCalendar(date) {
+        var formattedDate = new Date(date);
+        return formattedDate.getFullYear() + '-' +
+            String(formattedDate.getMonth() + 1).padStart(2, '0') + '-' +
+            String(formattedDate.getDate()).padStart(2, '0') + 'T' +
+            String(formattedDate.getHours()).padStart(2, '0') + ':' +
+            String(formattedDate.getMinutes()).padStart(2, '0') + ':00';
+    }
 
     function closeForm() {
         $(".modal").modal("hide");
     }
-
 
     function clearForm() {
         $("#employee_id").val('');

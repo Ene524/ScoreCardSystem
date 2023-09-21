@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Permit;
 use App\Models\PermitType;
 use App\Models\Workday;
+use App\Models\WorkdayType;
 use Illuminate\Http\Request;
 
 class WorkdayController extends Controller
@@ -16,7 +17,7 @@ class WorkdayController extends Controller
     {
         //$tempEmployees = Employee::where('id', '=', 1)->get()->toArray();
         //$this->workdayService->addWorkdaysForUsers('2023-09-01', '2023-09-30', $tempEmployees);
-        $workdays = Workday::with(['employee'])->get();
+        $workdays = Workday::with(['employee', 'workdayType'])->get();
         return view("user.modules.workday.index.index", compact("workdays"));
     }
 
@@ -31,7 +32,8 @@ class WorkdayController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        return view("user.modules.workday.create-update.index", compact("employees"));
+        $workdayTypes = WorkdayType::all();
+        return view("user.modules.workday.create-update.index", compact("employees", "workdayTypes"));
     }
 
     public function store(WorkdayRequest $request)
@@ -40,6 +42,7 @@ class WorkdayController extends Controller
         $workday->employee_id = $request->employee_id;
         $workday->start_date = $request->start_date;
         $workday->end_date = $request->end_date;
+        $workday->workday_type_id= $request->workday_type_id;
         $workday->status = $request->status;
         $workday->save();
         return redirect()->route('user.workday.index')->with('success', 'Çalışma günü başarıyla eklendi');
@@ -49,7 +52,8 @@ class WorkdayController extends Controller
     {
         $workday = Workday::findOrFail($id);
         $employees = Employee::all();
-        return view("user.modules.workday.create-update.index", compact("workday", "employees"));
+        $workday_types = WorkdayType::all();
+        return view("user.modules.workday.create-update.index", compact("workday", "employees", "workday_types"));
     }
 
     public function update(WorkdayRequest $request, $id)
@@ -58,6 +62,7 @@ class WorkdayController extends Controller
         $workday->employee_id = $request->employee_id;
         $workday->start_date = $request->start_date;
         $workday->end_date = $request->end_date;
+        $workday->workday_type_id= $request->workday_type_id;
         $workday->status = $request->status;
         $workday->save();
         return redirect()->route('user.workday.index')->with('success', 'Çalışma günü başarıyla güncellendi');
