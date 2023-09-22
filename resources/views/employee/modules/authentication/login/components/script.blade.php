@@ -15,9 +15,7 @@
             authUserId && authUserName && authUserEmail && authUserToken
         ) {
             window.location.href = '{{ route('employee.dashboard.index') }}';
-
         }
-
     }
 
     checkLogin();

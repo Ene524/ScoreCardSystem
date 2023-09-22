@@ -8,6 +8,7 @@
 <script>
     $(document).ready(function () {
         $('.select2').select2();
+        getLastPermits();
     });
 </script>
 
@@ -64,9 +65,8 @@
         events: []
     });
 
-
-
     calendar.render();
+
 
     $("#saveWorkday").click(function () {
         var employee_id = $("#employee_id").val();
@@ -101,7 +101,7 @@
         });
     });
 
-    function getWorkDays(){
+    function getWorkDays() {
         var startDate = reformatDateForCalendar(calendar.currentData.dateProfile.activeRange.start);
         var endDate = reformatDateForCalendar(calendar.currentData.dateProfile.activeRange.end);
 
@@ -111,22 +111,24 @@
             data: {
                 startDate: startDate,
                 endDate: endDate,
-                authUserId:localStorage.getItem('authUserId')
+                authUserId: localStorage.getItem('authUserId')
 
             },
             success: function (response) {
-                console.log(response);
                 $.each(calendar.getEvents(), function (i, event) {
+
                     if (event._def.extendedProps.type === 'workday') {
                         event.remove();
                     }
                 });
+
+
                 calendar.addEventSource({
-                    events: $.map(response.response, function (workday) {
+                    events: $.map(response.workdays, function (workday) {
                         return {
                             _id: workday.id,
                             id: workday.id,
-                            title: `Çalışma Günü`,
+                            title: workday.full_name,
                             start: reformatDateForCalendar(workday.start_date),
                             end: reformatDateForCalendar(workday.end_date),
                             type: 'workday',
@@ -136,6 +138,35 @@
                         };
                     }),
                 });
+
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function getLastPermits() {
+        $.ajax({
+            type: 'get',
+            url: '{{ route('api.employee.dashboard.getLastPermits')}}',
+            data: {
+                authUserId: localStorage.getItem('authUserId')
+            },
+            success: function (response) {
+                html = "";
+                var html = '';
+                $.each(response.lastPermits, function (key, item) {
+                    html += '<tr>';
+                    html += '<td>' + item.start_date + '</td>';
+                    html += '<td>' + item.end_date + '</td>';
+                    html += '<td>' + item.name + '</td>';
+                    html += '<td>' + item.permitsTime + '</td>';
+                    html += '</tr>';
+                });
+                $('#lastPermits tbody').html(html);
+
             },
             error: function (error) {
                 console.log(error);

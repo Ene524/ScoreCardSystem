@@ -79,6 +79,8 @@
     }
 
     checkLogin();
+    $("#AuthEmployeeNameFirstLetterSpan").text(authUserName.charAt(0).toUpperCase());
+    $("#AuthEmployeeNameSpan").text(authUserName);
 
     function logout() {
         localStorage.removeItem('authUserId');

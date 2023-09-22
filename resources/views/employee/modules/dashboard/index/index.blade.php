@@ -29,7 +29,7 @@
 
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table no-margin">
+                        <table class="table no-margin" id="lastPermits">
                             <thead>
                             <tr class="border-bottom-primary">
                                 <th scope="col">Başlangıç Tarihi</th>
@@ -39,18 +39,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
-
-{{--                            @foreach($lastPermits as $item)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$item->start_date}}</td>--}}
-{{--                                    <td>{{$item->end_date}}</td>--}}
-{{--                                    <td>{{$item->name}}</td>--}}
-{{--                                    <td>{{$item->permitsTime}} Saat--}}
-{{--                                    </td>--}}
-
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
                             </tbody>
                         </table>
                     </div>

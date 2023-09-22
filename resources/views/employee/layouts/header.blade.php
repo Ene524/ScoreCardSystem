@@ -205,15 +205,14 @@
 
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span id="AuthEmployeeNameSpan" class="img-circle user-image bg-gray center" style="text-align:center;line-height: 22px"></span>
-                    <span class="hidden-xs">{{auth()->user()->full_name ?? ""}}</span>
+                    <span id="AuthEmployeeNameFirstLetterSpan" class="img-circle user-image bg-gray center" style="text-align:center;line-height: 22px">a</span>
+                    <span id="AuthEmployeeNameSpan">Test</span>
                 </a>
             </li>
 
             <li class="dropdown user user-menu">
-                <a href="{{route('employee.logout')}}" >
-                    <span class="hidden-xs">Çıkış Yap</span>
-                </a>
+                <a href="javascript:void(0)" onclick="logout()">Çıkış Yap</a>
+
             </li>
             <li>
                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
