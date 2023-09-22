@@ -12,7 +12,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Personel oturumunuzu başlatmak için giriş yapın</p>
 
-            <form action="{{route('employee.login')}}" method="POST">
+            <div>
                 @csrf
                 @if($errors->any())
                     <div class="callout callout-danger">
@@ -23,11 +23,11 @@
                     </div>
                 @endif
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}">
+                    <input type="email" class="form-control" placeholder="Email" id="email" value="{{old('email')}}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password" value="{{old('password')}}">
+                    <input type="password" class="form-control" placeholder="Password" id="password" value="{{old('password')}}">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
+                            <button id="LoginButton" class="btn btn-primary btn-block btn-flat">Giriş Yap</button>
                         </div>
 
 
@@ -52,7 +52,7 @@
                     </div>
 
                 </div>
-            </form>
+            </div>
         </div>
         <!-- /.login-box-body -->
     </div>
@@ -60,7 +60,9 @@
 
 
 @section('customStyle')
+    @include('employee.modules.authentication.login.components.style')
 @endsection
 
 @section('customScript')
+    @include('employee.modules.authentication.login.components.script')
 @endsection

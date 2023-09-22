@@ -41,16 +41,16 @@
                             <tbody>
 
 
-                            @foreach($lastPermits as $item)
-                                <tr>
-                                    <td>{{$item->start_date}}</td>
-                                    <td>{{$item->end_date}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->permitsTime}} Saat
-                                    </td>
+{{--                            @foreach($lastPermits as $item)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{$item->start_date}}</td>--}}
+{{--                                    <td>{{$item->end_date}}</td>--}}
+{{--                                    <td>{{$item->name}}</td>--}}
+{{--                                    <td>{{$item->permitsTime}} Saat--}}
+{{--                                    </td>--}}
 
-                                </tr>
-                            @endforeach
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
                             </tbody>
                         </table>
                     </div>

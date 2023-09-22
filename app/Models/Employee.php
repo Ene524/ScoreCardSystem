@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Employee extends Model implements Authenticatable
 {
-    use HasFactory,SoftDeletes, HasRoles;
-
+    use HasFactory, SoftDeletes, HasRoles, HasApiTokens;
 
 
     protected $guarded = [
@@ -23,6 +23,7 @@ class Employee extends Model implements Authenticatable
     protected $casts = [
         'employment_date' => 'datetime'
     ];
+
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -82,7 +83,6 @@ class Employee extends Model implements Authenticatable
     {
         $this->remember_token = $value; // Remember me token değeri ayarlama.
     }
-
 
 
 }

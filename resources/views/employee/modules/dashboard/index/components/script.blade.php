@@ -111,6 +111,8 @@
             data: {
                 startDate: startDate,
                 endDate: endDate,
+                authUserId:localStorage.getItem('authUserId')
+
             },
             success: function (response) {
                 console.log(response);

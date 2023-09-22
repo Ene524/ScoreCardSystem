@@ -62,5 +62,31 @@
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('assets/dist/js/demo.js')}}"></script>
 @yield('customScript')
+
+
+<script>
+    var authUserId = parseInt(localStorage.getItem('authUserId'));
+    var authUserName = localStorage.getItem('authUserName');
+    var authUserEmail = localStorage.getItem('authUserEmail');
+    var authUserToken = localStorage.getItem('authUserToken');
+
+    function checkLogin() {
+        if (
+            !authUserId || !authUserName || !authUserEmail || !authUserToken
+        ) {
+            window.location.href = '{{ route('employee.login') }}';
+        }
+    }
+
+    checkLogin();
+
+    function logout() {
+        localStorage.removeItem('authUserId');
+        localStorage.removeItem('authUserToken');
+        localStorage.removeItem('authUserName');
+        localStorage.removeItem('authUserEmail');
+        window.location.href = '{{ route('employee.login') }}';
+    }
+</script>
 </body>
 </html>

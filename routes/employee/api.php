@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\Employee\Api\AuthenticationController;
 use App\Http\Controllers\Employee\Api\DashboardController;
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('api/employee')->group(function () {
+    Route::prefix('authentication')->group(function () {
+        Route::post('login', [AuthenticationController::class, 'login'])->name('api.employee.authentication.login');
+    });
+});
 
 Route::prefix('api/employee')->group(function () {
     Route::prefix('dashboard')->group(function () {
