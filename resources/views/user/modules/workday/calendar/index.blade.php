@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="col-12">
-        <div class="box box-default">
+        <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Çalışma Takvimi</h3>
             </div>

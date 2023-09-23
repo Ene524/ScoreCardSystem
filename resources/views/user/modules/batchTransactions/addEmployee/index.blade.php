@@ -28,28 +28,29 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Toplu Firma Ekle</h3>
                 </div>
+                <div class="box-body with-border">
+                    <form action="{{ route('user.batchTransactions.addEmployee') }}" class="form-horizontal" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="box-body">
 
-                <form action="{{ route('user.batchTransactions.addEmployee') }}" class="form-horizontal" method="post"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="box-body">
+                            <h4 class="lead">Excel ile personellerinizi aktarın</h4>
+                            <p>Yükleyeceğinizin excel şablon standartlarına göre uygun olmalı ve uzantısı .xlsx olmalıdır</p>
 
-                        <h4 class="lead">Excel ile personellerinizi aktarın</h4>
-                        <p>Yükleyeceğinizin excel şablon standartlarına göre uygun olmalı ve uzantısı .xlsx olmalıdır</p>
-
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input class="form-control" type="file" name="excelFile" accept=".xlsx">
                         </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-success btn-block" type="submit">Aktar</button>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="form-control" type="file" name="excelFile" accept=".xlsx">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-success btn-block" type="submit">Aktar</button>
+                            </div>
                         </div>
-                    </div>
 
 
-                </form>
+                    </form>
+                </div>
             </div>
 
 

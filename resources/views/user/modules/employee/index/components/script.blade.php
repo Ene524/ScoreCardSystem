@@ -1,8 +1,14 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
-
+<script src="{{asset('assets/bower_components/datatables.net/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
 <script>
     $(document).ready(function () {
+        $('#employeeTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Turkish.json"
+            }
+        });
         $('.deleteEmployee').click(function () {
             let employeeID = $(this).attr('data-id');
             let employeeName = $(this).data('name');

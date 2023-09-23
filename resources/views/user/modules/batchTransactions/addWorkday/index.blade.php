@@ -26,78 +26,79 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Toplu Çalışma Günü Ekle</h3>
                 </div>
+                <div class="box-body with-border">
+                    <form action="{{ route('user.batchTransactions.addWorkday') }}" class="form-horizontal" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="box-body">
 
-                <form action="{{ route('user.batchTransactions.addWorkday') }}" class="form-horizontal" method="post"
-                      enctype="multipart/form-data">
-                    @csrf
-                    <div class="box-body">
-
-                        <h4 class="lead">Toplu bir şekilde çalışma günü ekleyin</h4>
-                        {{-- <p></p> --}}
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <div class="col-sm-10">
-                            <label>Personel Seçimi</label>
-                            <select class="form-control select2" name="employee_id[]" id="employee_ids"
-                                    multiple="multiple">
-                                @foreach($employees as $item)
-                                    <option
-                                        value="{{ $item->id }}" {{ in_array($item->id, old('employee_id', [])) ? "selected" : "" }}>
-                                        {{ $item->full_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-sm-2" style="line-height:26px">
-                            <label> </label>
-                            <button type="button" class="btn btn-primary btn-block" id="selectAll">Tümünü Seç</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <label class="control-label">Mesai Tipi</label>
-                            <select class="form-control select2" name="workday_type_id">
-                                <option value={{ null }}>Çalışma Tipi Seç</option>
-                                @foreach ($workdayTypes as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ isset($workday) && $workday->workday_type_id == $item->id ? 'selected' : '' }}>
-                                        {{ $item->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <label class="control-label">Başlangıç Tarihi</label>
-                            <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="start_date"
-                                   value="{{\Carbon\Carbon::now()->firstOfMonth()->format('Y-m-d 09:00')}}">
+                            <h4 class="lead">Toplu bir şekilde çalışma günü ekleyin</h4>
+                            {{-- <p></p> --}}
 
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <label class="control-label">Bitiş Tarihi</label>
 
+                        <div class="form-group">
 
-                            <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="end_date"
-                                   value="{{\Carbon\Carbon::now()->lastOfMonth()->format('Y-m-d 18:00')}}">
-
+                            <div class="col-sm-10">
+                                <label>Personel Seçimi</label>
+                                <select class="form-control select2" name="employee_id[]" id="employee_ids"
+                                        multiple="multiple">
+                                    @foreach($employees as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{ in_array($item->id, old('employee_id', [])) ? "selected" : "" }}>
+                                            {{ $item->full_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-2" style="line-height:26px">
+                                <label> </label>
+                                <button type="button" class="btn btn-primary btn-block" id="selectAll">Tümünü Seç</button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                           <button type="submit" class="btn btn-success">Çalışma Günü Oluştur</button>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="control-label">Mesai Tipi</label>
+                                <select class="form-control select2" name="workday_type_id">
+                                    <option value={{ null }}>Çalışma Tipi Seç</option>
+                                    @foreach ($workdayTypes as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ isset($workday) && $workday->workday_type_id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="control-label">Başlangıç Tarihi</label>
+                                <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="start_date"
+                                       value="{{\Carbon\Carbon::now()->firstOfMonth()->format('Y-m-d 09:00')}}">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="control-label">Bitiş Tarihi</label>
 
 
-                </form>
+                                <input onfocus="this.showPicker()" class="form-control" type="datetime-local" name="end_date"
+                                       value="{{\Carbon\Carbon::now()->lastOfMonth()->format('Y-m-d 18:00')}}">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-success">Çalışma Günü Oluştur</button>
+                            </div>
+
+
+                    </form>
+                </div>
             </div>
 
         </div>

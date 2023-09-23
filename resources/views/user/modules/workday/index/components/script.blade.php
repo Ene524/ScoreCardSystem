@@ -1,6 +1,13 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/bower_components/datatables.net/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('#workdayTable').DataTable({
+            "language": {
+                "url": "{{asset('assets/bower_components/datatables.net-bs/js/Turkish.json')}}"
+            }
+        });
         $('.deleteWorkday').click(function () {
             let workdayID = $(this).attr('data-id');
             let employeeName = $(this).data('name');

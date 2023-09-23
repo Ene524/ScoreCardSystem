@@ -42,7 +42,7 @@ class WorkdayController extends Controller
         $workday->employee_id = $request->employee_id;
         $workday->start_date = $request->start_date;
         $workday->end_date = $request->end_date;
-        $workday->workday_type_id= $request->workday_type_id;
+        $workday->workday_type_id = $request->workday_type_id;
         $workday->status = $request->status;
         $workday->save();
         return redirect()->route('user.workday.index')->with('success', 'Çalışma günü başarıyla eklendi');
@@ -52,8 +52,8 @@ class WorkdayController extends Controller
     {
         $workday = Workday::findOrFail($id);
         $employees = Employee::all();
-        $workday_types = WorkdayType::all();
-        return view("user.modules.workday.create-update.index", compact("workday", "employees", "workday_types"));
+        $workdayTypes = WorkdayType::all();
+        return view("user.modules.workday.create-update.index", compact("workday", "employees", "workdayTypes"));
     }
 
     public function update(WorkdayRequest $request, $id)
@@ -62,7 +62,7 @@ class WorkdayController extends Controller
         $workday->employee_id = $request->employee_id;
         $workday->start_date = $request->start_date;
         $workday->end_date = $request->end_date;
-        $workday->workday_type_id= $request->workday_type_id;
+        $workday->workday_type_id = $request->workday_type_id;
         $workday->status = $request->status;
         $workday->save();
         return redirect()->route('user.workday.index')->with('success', 'Çalışma günü başarıyla güncellendi');

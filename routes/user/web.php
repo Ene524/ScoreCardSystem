@@ -36,6 +36,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('user.employee.edit');
         Route::post('edit/{id}', [EmployeeController::class, 'update'])->name('user.employee.update');
         Route::delete('delete', [EmployeeController::class, 'delete'])->name("user.employee.delete");
+        Route::get('export', [EmployeeController::class, 'export'])->name("user.employee.export");
     });
 
     Route::prefix('workday')->group(function () {

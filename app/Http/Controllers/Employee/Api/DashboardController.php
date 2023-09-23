@@ -37,7 +37,8 @@ class DashboardController extends Controller
                 LEFT JOIN workday_types ON workdays.workday_type_id=workday_types.id
                 WHERE workdays.start_date BETWEEN ? AND ?
                 AND workdays.employee_id=?
-                AND workdays.status = 1", [$request->startDate, $request->endDate, $request->authUserId])
+                AND workdays.status = 1
+                AND workdays.deleted_at IS NULL", [$request->startDate, $request->endDate, $request->authUserId])
             ]
         );
     }
@@ -70,7 +71,9 @@ class DashboardController extends Controller
         LEFT JOIN employees ON permits.employee_id=employees.id
         LEFT JOIN permit_types ON permits.permit_type_id=permit_types.id
         LEFT JOIN permit_statuses ON permits.permit_status_id=permit_statuses.id
-        WHERE permits.status=1 AND permits.employee_id=?", [$request->authUserId])
+        WHERE permits.status=1
+        AND permits.employee_id=?
+        AND  permits.deleted_at IS NULL", [$request->authUserId])
             ]
         );
     }

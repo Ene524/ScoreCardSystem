@@ -9,8 +9,6 @@
                     <h3 class="box-title">Çalışma Raporu</h3>
                 </div>
                 <div class="box-body">
-
-
                     <form>
                         @csrf
                         <div class="form-group">
@@ -70,7 +68,6 @@
 
                     </form>
                 </div>
-
             </div>
         </div>
 

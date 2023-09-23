@@ -15,12 +15,13 @@
                 <div class="box-header with-border">
                     <h3 class="box-title pull-left">Kullanıcı Listesi</h3>
                     <a href="{{ route('user.user.create') }}"
-                        class="btn btn-primary btn-sm btn-square
+                       class="btn btn-primary btn-sm btn-square
                     pull-right">Kullanıcı
                         Oluştur</a>
                 </div>
-                <table class="table table-responsive table-striped">
-                    <thead>
+                <div class="box-body with-border">
+                    <table class="table table-responsive table-striped">
+                        <thead>
                         <tr class="border-bottom-primary">
                             <th scope="col">#</th>
                             <th scope="col">Adı</th>
@@ -30,8 +31,8 @@
                             <th scope="col">Durumu</th>
                             <th scope="col">İşlemler</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         @foreach ($users as $user)
                             <tr>
                                 <th>{{ $user->id }}</th>
@@ -54,17 +55,18 @@
                                 @endif
                                 <td>
                                     <a href="{{ route('user.user.edit', ['id' => $user->id]) }}"
-                                        class="btn btn-primary btn-xs editUser" data-id="{{ $user->id }}"
-                                        data-toggle="tooltip" data-placement="top" title="Düzenle"><i
+                                       class="btn btn-primary btn-xs editUser" data-id="{{ $user->id }}"
+                                       data-toggle="tooltip" data-placement="top" title="Düzenle"><i
                                             class="fa fa-edit"></i></a>
                                     <a href="javascript:void(0)" class="btn btn-danger btn-xs deleteUser"
-                                        data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-toggle="tooltip"
-                                        data-placement="top" title="Sil"><i class="fa fa-trash"></i></a>
+                                       data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-toggle="tooltip"
+                                       data-placement="top" title="Sil"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
