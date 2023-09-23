@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\User\WorkdayBatchRequest;
 use App\Http\Requests\User\EmployeeUploadRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class BatchTransactionsController extends Controller
@@ -60,7 +61,6 @@ class BatchTransactionsController extends Controller
                 $current_date->add(new DateInterval('P1D'));
             }
         }
-
         return Redirect::back()->with('success', 'Çalışma günleri başarıyla oluşturuldu');
 
     }

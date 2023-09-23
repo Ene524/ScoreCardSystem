@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-xs-12 col-md-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
                     <h3>{{$employeeCount}}</h3>
