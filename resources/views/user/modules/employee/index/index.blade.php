@@ -56,7 +56,7 @@
                                             <option value="{{$salary->id}}" {{request()->get("salary_id")== $salary->id ?"selected" : "" }}>{{$salary->amount}}</option>
                                         @endforeach
                                     </select></td>
-                                <td><input class="form-control" type="date" placeholder="İşe Giriş Tarihi" name="employment_date"></td>
+                                <td></td>
                                 <td>
                                     <button class="btn btn-primary" type="submit">Filtrele</button>
                                     <button class="btn btn-primary" type="submit">Temizle</button>
