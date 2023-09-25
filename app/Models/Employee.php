@@ -24,6 +24,10 @@ class Employee extends Model implements Authenticatable
         'employment_date' => 'datetime'
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -84,5 +88,42 @@ class Employee extends Model implements Authenticatable
         $this->remember_token = $value; // Remember me token değeri ayarlama.
     }
 
+    public function scopefullName($query, $full_name)
+    {
+        if ($full_name) {
+            return $query->where('full_name', 'LIKE', "%$full_name%");
+        }
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        if ($email) {
+            return $query->where('email', 'LIKE', "%$email%");
+        }
+    }
+    public function scopeDepartment($query, $department_id)
+    {
+        if ($department_id) {
+            return $query->where('department_id', $department_id);
+        }
+    }
+    public function scopePosition($query, $position_id)
+    {
+        if ($position_id) {
+            return $query->where('position_id', $position_id);
+        }
+    }
+    public function scopeSalary($query, $salary_id)
+    {
+        if ($salary_id) {
+            return $query->where('salary_id', $salary_id);
+        }
+    }
+    public function scopeStatus($query, $status)
+    {
+        if ($status) {
+            return $query->where('status', $status);
+        }
+    }
 
 }

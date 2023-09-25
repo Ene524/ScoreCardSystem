@@ -31,6 +31,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
 
     Route::prefix('employee')->group(function () {
         Route::get('index', [EmployeeController::class, 'index'])->name('user.employee.index');
+        Route::get('getEmployees', [EmployeeController::class, 'getEmployees'])->name('user.employee.getEmployees');
         Route::get('create', [EmployeeController::class, 'create'])->name('user.employee.create');
         Route::post('create', [EmployeeController::class, 'store']);
         Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('user.employee.edit');

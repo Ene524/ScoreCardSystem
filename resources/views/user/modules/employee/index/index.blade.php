@@ -22,20 +22,49 @@
                     <table class="table table-responsive table-striped" id="employeeTable">
                         <thead>
                         <tr class="border-bottom-primary">
-                            <th scope="col">#</th>
                             <th scope="col">Adı Soyadı</th>
                             <th scope="col">Email</th>
                             <th scope="col">Departman</th>
                             <th scope="col">Pozisyon</th>
                             <th scope="col">Maaş</th>
                             <th scope="col">İşe Giriş Tarihi</th>
-                            <th scope="col">İşlemler</th>
+
                         </tr>
                         </thead>
                         <tbody>
+                        <form>
+                            <tr>
+                                <td><input class="form-control no-margin" placeholder="Ad Soyad" name="full_name" value="{{request()->get("full_name")}}"></td>
+                                <td><input class="form-control no-margin" placeholder="Email" name="email" value="{{request()->get("email")}}"></td>
+                                <td>
+                                    <select class="form-control" name="department_id">
+                                        <option value="">Departman Seçiniz</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{$department->id}}" {{request()->get("department_id")== $department->id ?"selected" : "" }}>{{$department->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td><select class="form-control no-margin" name="position_id">
+                                        <option value="">Pozisyon Seçiniz</option>
+                                        @foreach($positions as $position)
+                                            <option value="{{$position->id}}" {{request()->get("position_id")== $position->id ?"selected" : "" }}>{{$position->name}}</option>
+                                        @endforeach
+                                    </select></td>
+                                <td><select class="form-control" name="salary_id">
+                                        <option value="">Maaş Seçiniz</option>
+                                        @foreach($salaries as $salary)
+                                            <option value="{{$salary->id}}" {{request()->get("salary_id")== $salary->id ?"selected" : "" }}>{{$salary->amount}}</option>
+                                        @endforeach
+                                    </select></td>
+                                <td><input class="form-control" type="date" placeholder="İşe Giriş Tarihi" name="employment_date"></td>
+                                <td>
+                                    <button class="btn btn-primary" type="submit">Filtrele</button>
+                                    <button class="btn btn-primary" type="submit">Temizle</button>
+                                </td>
+                            </tr>
+                        </form>
                         @foreach($employees as $employee)
                             <tr>
-                                <th>{{$employee->id}}</th>
                                 <td>{{$employee->full_name}}</td>
                                 <td>{{$employee->email}}</td>
                                 <td>{{$employee->department->name}}</td>
@@ -56,6 +85,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <span class="pull-right">{{$employees->appends($_GET)->onEachSide(2)->links()}}</span>
                 </div>
             </div>
         </div>

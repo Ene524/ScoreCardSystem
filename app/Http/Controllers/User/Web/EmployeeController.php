@@ -14,11 +14,23 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::with(['department', 'position', 'salary', 'user'])->get();
-        return view("user.modules.employee.index.index", compact("employees"));
+        $departments = Department::all();
+        $positions = Position::all();
+        $salaries = Salary::all();
+
+        $employees = Employee::with(['department', 'position', 'salary', 'user'])
+            ->fullName($request->full_name)
+            ->email($request->email)
+            ->department($request->department_id)
+            ->position($request->position_id)
+            ->salary($request->salary_id)
+            ->status($request->status)
+            ->paginate(10);
+        return view("user.modules.employee.index.index", compact("employees", "departments", "positions", "salaries"));
     }
+
     public function create()
     {
         $departments = Department::all();
@@ -26,6 +38,7 @@ class EmployeeController extends Controller
         $salaries = Salary::all();
         return view("user.modules.employee.create-update.index", compact("departments", "positions", "salaries"));
     }
+
     public function store(EmployeeRequest $request)
     {
         $employee = new Employee();
@@ -40,6 +53,7 @@ class EmployeeController extends Controller
         return redirect()->route('user.employee.index')->with('success', 'Personel başarıyla oluşturuldu');
 
     }
+
     public function edit($id)
     {
         $departments = Department::all();
@@ -48,6 +62,7 @@ class EmployeeController extends Controller
         $employee = Employee::findOrfail($id);
         return view('user.modules.employee.create-update.index', compact('employee', 'departments', 'positions', 'salaries'));
     }
+
     public function update(EmployeeRequest $request, $id)
     {
         $employee = Employee::findOrfail($id);
@@ -61,6 +76,7 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('user.employee.index')->with('success', 'Personel başarıyla güncellendi');
     }
+
     public function delete(Request $request)
     {
         $request->validate([
@@ -70,6 +86,7 @@ class EmployeeController extends Controller
         $employee->delete();
         return response()->json(['status' => 'success']);
     }
+
     public function export()
     {
         return Excel::download(new EmployeeExport(), 'Personeller.xlsx');
