@@ -39,7 +39,6 @@
                                 <td>
                                     <select class="form-control" name="department_id">
                                         <option value="">Departman Seçiniz</option>
-
                                         @foreach($departments as $department)
                                             <option value="{{$department->id}}" {{request()->get("department_id")== $department->id ?"selected" : "" }}>{{$department->name}}</option>
                                         @endforeach
