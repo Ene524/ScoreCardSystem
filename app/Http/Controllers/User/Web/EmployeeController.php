@@ -16,10 +16,10 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
+        //Scope kullanımı
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
-
         $employees = Employee::with(['department', 'position', 'salary', 'user'])
             ->fullName($request->full_name)
             ->email($request->email)
@@ -51,7 +51,6 @@ class EmployeeController extends Controller
         $employee->employment_date = $request->employment_date;
         $employee->save();
         return redirect()->route('user.employee.index')->with('success', 'Personel başarıyla oluşturuldu');
-
     }
 
     public function edit($id)
