@@ -59,7 +59,7 @@
                                 <td></td>
                                 <td>
                                     <button class="btn btn-primary" type="submit">Filtrele</button>
-                                    <button class="btn btn-primary" type="submit">Temizle</button>
+                                    <button class="btn btn-primary" type="button" id="clearFilter">Temizle</button>
                                 </td>
                             </tr>
                         </form>

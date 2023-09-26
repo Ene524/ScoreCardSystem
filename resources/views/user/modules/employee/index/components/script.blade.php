@@ -6,7 +6,9 @@
 <script>
     $(document).ready(function () {
 
-
+        $('#clearFilter').click(function () {
+            window.location.href = '{{route('user.employee.index')}}';
+        });
         $('.deleteEmployee').click(function () {
             let employeeID = $(this).attr('data-id');
             let employeeName = $(this).data('name');
