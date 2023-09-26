@@ -16,7 +16,6 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        //Scope kullanımı
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
