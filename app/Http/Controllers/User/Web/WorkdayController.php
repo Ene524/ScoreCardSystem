@@ -13,12 +13,11 @@ use Illuminate\Http\Request;
 
 class WorkdayController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //$tempEmployees = Employee::where('id', '=', 1)->get()->toArray();
-        //$this->workdayService->addWorkdaysForUsers('2023-09-01', '2023-09-30', $tempEmployees);
+        $employees = Employee::all();
         $workdays = Workday::with(['employee', 'workdayType'])->get();
-        return view("user.modules.workday.index.index", compact("workdays"));
+        return view("user.modules.workday.index.index", compact("workdays", "employees"));
     }
 
     public function index2()
@@ -80,7 +79,4 @@ class WorkdayController extends Controller
         $employees = Employee::all();
         return view("user.modules.workday.report.index", compact("employees"));
     }
-
-
 }
-
