@@ -15,6 +15,7 @@ class WorkdayController extends Controller
 {
     public function index(Request $request)
     {
+        //ScopeWorkday
         $employees = Employee::all();
         $workdays = Workday::with(['employee', 'workdayType'])->get();
         return view("user.modules.workday.index.index", compact("workdays", "employees"));
