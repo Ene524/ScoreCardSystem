@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Workday extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [
         "id",
@@ -33,22 +33,29 @@ class Workday extends Model
 
     public function scopeEmployee($query, $employee_id)
     {
-        return $query->where('employee_id', $employee_id);
+        if ($employee_id) {
+            return $query->where('employee_id', $employee_id);
+        }
     }
 
     public function scopeWorkdayType($query, $workday_type_id)
     {
-        return $query->where('workday_type_id', $workday_type_id);
+        if ($workday_type_id) {
+            return $query->where('workday_type_id', $workday_type_id);
+        }
     }
 
     public function scopeStatus($query, $status)
     {
-        return $query->where('status', $status);
+        if ($status)
+            return $query->where('status', $status);
     }
 
-//    public function scopeStartDateAndEndDate($query, $start_date, $end_date)
-//    {
-//        return $query->whereBetween('start_date', [$start_date, $end_date])->orWhereBetween('end_date', [$start_date, $end_date]);
-//    }
+    public function scopeStartDateAndEndDate($query, $start_date, $end_date)
+    {
+        if ($start_date && $end_date) {
+            return $query->whereBetween('start_date', [$start_date, $end_date])->orWhereBetween('end_date', [$start_date, $end_date]);
+        }
+    }
 
 }

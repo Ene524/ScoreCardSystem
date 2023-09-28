@@ -36,19 +36,27 @@
                             <form>
                                 <tr>
                                     <td>
-                                        <select class="form-control" name="department_id">
+                                        <select class="form-control" name="employee_id">
                                             <option value="">Personel Seçiniz</option>
                                             @foreach ($employees as $employee)
                                                 <option value="{{ $employee->id }}"
-                                                    {{ request()->get('employee_id') == $employee->id ? 'selected' : '' }}>
+                                                    {{request()->get("employee_id")== $employee->id ?"selected" : "" }}>
                                                     {{ $employee->full_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><input class="form-control" type="datetime-local" name="start_date" value="{{request()->get("start_date")}}"></td>
+                                    <td><input class="form-control" type="datetime-local" name="end_date" value="{{request()->get("end_date")}}"></td>
 
-                                    <td></td>
+
+                                    <td> <select class="form-control" name="workday_type_id">
+                                            <option value="">Mesai Seçiniz</option>
+                                            @foreach ($workdayTypes as $workdayType)
+                                                <option value="{{ $workdayType->id }}"
+                                                    {{request()->get("workday_type_id")== $workdayType->id ?"selected" : "" }}>
+                                                    {{ $workdayType->name }}</option>
+                                            @endforeach
+                                        </select></td>
                                     <td></td>
                                     <td></td>
                                     <td>
@@ -81,7 +89,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <span class="pull-right">{{$workdays->appends($_GET)->onEachSide(2)->links()}}</span> --}}
+                     <span class="pull-right">{{$workdays->appends($_GET)->onEachSide(2)->links()}}</span>
                 </div>
 
             </div>

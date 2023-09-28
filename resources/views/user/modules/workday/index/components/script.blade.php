@@ -1,6 +1,9 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('#clearFilter').click(function () {
+            window.location.href = '{{route('user.workday.index')}}';
+        });
 
         $('.deleteWorkday').click(function () {
             let workdayID = $(this).attr('data-id');

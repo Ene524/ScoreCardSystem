@@ -15,10 +15,14 @@ class WorkdayController extends Controller
 {
     public function index(Request $request)
     {
-        //ScopeWorkday
         $employees = Employee::all();
-        $workdays = Workday::with(['employee', 'workdayType'])->get();
-        return view("user.modules.workday.index.index", compact("workdays", "employees"));
+        $workdayTypes = WorkdayType::all();
+        $workdays = Workday::with(['employee', 'workdayType'])
+            ->employee($request->employee_id)
+            ->workdayType($request->workday_type_id)
+            ->StartDateAndEndDate($request->start_date, $request->end_date)
+            ->paginate(10);
+        return view("user.modules.workday.index.index", compact("workdays", "employees","workdayTypes"));
     }
 
     public function index2()
