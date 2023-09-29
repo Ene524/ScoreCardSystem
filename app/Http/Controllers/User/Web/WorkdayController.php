@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\User\Web;
 
+use App\Exports\WorkdayExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\WorkdayRequest;
 use App\Models\Employee;
-use App\Models\Permit;
 use App\Models\PermitType;
 use App\Models\Workday;
 use App\Models\WorkdayType;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkdayController extends Controller
 {
@@ -22,15 +23,15 @@ class WorkdayController extends Controller
             ->workdayType($request->workday_type_id)
             ->StartDateAndEndDate($request->start_date, $request->end_date)
             ->paginate(10);
-        return view("user.modules.workday.index.index", compact("workdays", "employees","workdayTypes"));
+        return view("user.modules.workday.index.index", compact("workdays", "employees", "workdayTypes"));
     }
 
     public function index2()
     {
         $employees = Employee::all();
-        $permitTypes = PermitType::all();
+        $workdayTypes = WorkdayType::all();
 
-        return view("user.modules.workday.calendar.index", compact("employees", "permitTypes"));
+        return view("user.modules.workday.calendar.index", compact("employees", "workdayTypes"));
     }
 
     public function create()
@@ -83,5 +84,10 @@ class WorkdayController extends Controller
     {
         $employees = Employee::all();
         return view("user.modules.workday.report.index", compact("employees"));
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new WorkdayExport(), 'Çalışma Günleri1.xlsx');
     }
 }

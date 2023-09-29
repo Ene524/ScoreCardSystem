@@ -50,6 +50,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [WorkdayController::class, 'edit'])->name('user.workday.edit');
         Route::post('edit/{id}', [WorkdayController::class, 'update'])->name('user.workday.update');
         Route::delete('delete', [WorkdayController::class, 'delete'])->name("user.workday.delete");
+        Route::get('export', [WorkdayController::class, 'export'])->name("user.workday.export");
     });
 
     Route::prefix('permit')->group(function () {

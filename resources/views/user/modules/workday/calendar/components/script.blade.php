@@ -104,6 +104,7 @@ $(document).ready(function () {
         var employee_id = $("#employee_id").val();
         var start_date = $("#start_date").val();
         var end_date = $("#end_date").val();
+        var workday_type_id = $("#workday_type_id").val();
         var status = $('#permit_status_id').val();
 
         $.ajax({
@@ -114,6 +115,7 @@ $(document).ready(function () {
                 start_date: start_date,
                 end_date: end_date,
                 status: status,
+                workday_type_id:workday_type_id,
                 _token: '{{csrf_token()}}'
             },
             success: function (response) {

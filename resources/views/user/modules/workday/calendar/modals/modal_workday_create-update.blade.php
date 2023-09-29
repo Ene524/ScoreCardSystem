@@ -44,6 +44,21 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Çalışma Tipi</label>
+                            <div class="col-sm-10">
+                                <select class="form-control select2" name="workday_type_id" id="workday_type_id" style="width: 100%">
+                                    <option value={{ null }}>Çalışma Tipi Seç</option>
+                                    @foreach ($workdayTypes as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ isset($workday) && $workday->workday_type_id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Durum</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="status" id="status">
