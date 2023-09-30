@@ -29,8 +29,10 @@ class WorkdayController extends Controller
         $reports = DB::table('employees')
             ->select('full_name')
             ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.deleted_at is null AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) as totalWorkTime', [$startDate, $endDate])
-            ->selectRaw(' IFNULL((SELECT SUM((FLOOR(TIMESTAMPDIFF(hour, end_date, start_date) / 24) * 15)-TIMESTAMPDIFF(hour, end_date, start_date)) FROM permits WHERE permits.deleted_at is null AND permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0 ) as totalPermitTime', [$startDate, $endDate])
+            ->selectRaw('IFNULL((SELECT SUM((TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15)) FROM permits WHERE permits.deleted_at is null AND permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0) as totalPermitTime', [$startDate, $endDate])
+            ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.deleted_at is null AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) - IFNULL((SELECT SUM((TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15)) FROM permits WHERE permits.deleted_at is null AND permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0) as totalNetWorkTime', [$startDate, $endDate, $startDate, $endDate])
             ->where('employees.deleted_at', null);
+
         if ($request->employee_ids && count($request->employee_ids) > 0) {
             $reports->whereIn('employees.id', $request->employee_ids);
         }

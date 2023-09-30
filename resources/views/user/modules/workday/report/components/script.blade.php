@@ -1,10 +1,10 @@
-<script src="{{ asset('assets/bower_components/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.min.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.select2').select2();
 
-        $('#selectAll').click(function () {
+        $('#selectAll').click(function() {
             $('#employee_ids > option').prop("selected", "selected");
             $('#employee_ids').trigger("change");
         });
@@ -20,21 +20,22 @@
         };
         $('#TotalWorkHours tbody').html("");
         $.ajax({
-            url: '{{route('api.user.workday.report')}}',
+            url: '{{ route('api.user.workday.report') }}',
             type: 'GET',
             data: data,
-            success: function (response) {
+            success: function(response) {
                 var html = '';
-                $.each(response.totalWorkHours, function (key, item) {
+                $.each(response.totalWorkHours, function(key, item) {
                     html += '<tr>';
-                    html += '<td>' +item.full_name+ '</td>';
-                    html += '<td>' +item.totalWorkTime+ '</td>';
-                    html += '<td>' +item.totalPermitTime+ '</td>';
+                    html += '<td>' + item.full_name + '</td>';
+                    html += '<td>' + item.totalWorkTime + '</td>';
+                    html += '<td>' + item.totalPermitTime + '</td>';
+                    html += '<td>' + item.totalNetWorkTime + '</td>';
                     html += '</tr>';
                 });
                 $('#TotalWorkHours tbody').html(html);
             },
-            error: function (response) {
+            error: function(response) {
                 console.log(response);
             }
         })
