@@ -34,6 +34,7 @@
             $("#start_date").val(startDate);
             $("#end_date").val(endDate);
             $("#quickSelectModal").modal("toggle");
+            getWorkHours();
         });
 
         $("#selectThisWeek").click(function () {
@@ -54,6 +55,7 @@
             $("#start_date").val(startOfWeek);
             $("#end_date").val(endOfWeek);
             $("#quickSelectModal").modal("toggle");
+            getWorkHours();
         });
 
         $("#selectThisMonth").click(function () {
@@ -74,6 +76,7 @@
             $("#start_date").val(startOfMonth);
             $("#end_date").val(endOfMonth);
             $("#quickSelectModal").modal("toggle");
+            getWorkHours();
         });
 
         $("#selectLastMonth").click(function () {
@@ -94,11 +97,9 @@
             $("#start_date").val(startOfMonth);
             $("#end_date").val(endOfMonth);
             $("#quickSelectModal").modal("toggle");
+            getWorkHours();
         });
     })
-
-
-
 
     function getWorkHours() {
 
