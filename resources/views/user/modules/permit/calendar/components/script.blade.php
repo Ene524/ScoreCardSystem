@@ -1,12 +1,12 @@
-<script src="{{asset('assets/bower_components/moment/min/moment.min.js')}}"></script>
-<script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/bower_components/fullcalendar/fullcalendar.bundle.js')}}"></script>
-<script src="{{asset('assets/bower_components/fullcalendar/locales-all-min.js')}}"></script>
-<script src="{{asset('assets/bower_components/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{ asset('assets/bower_components/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/sweet-alert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/fullcalendar/fullcalendar.bundle.js') }}"></script>
+<script src="{{ asset('assets/bower_components/fullcalendar/locales-all-min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.min.js') }}"></script>
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.select2').select2();
     });
 </script>
@@ -41,7 +41,7 @@
         dayMaxEvents: true,
         navLinks: true,
 
-        select: function (arg) {
+        select: function(arg) {
             clearForm();
             $("#start_date").val(moment(arg.start).format('YYYY-MM-DD 09:00'));
             $("#end_date").val(moment(arg.end).add(-1, 'day').format('YYYY-MM-DD 18:00'));
@@ -56,7 +56,7 @@
         //     $(".modal").modal("show");
         // },
 
-        events: function (info, successCallback) {
+        events: function(info, successCallback) {
             $.ajax({
                 url: '{{ route('api.user.permit.index') }}',
                 type: 'get',
@@ -64,16 +64,18 @@
                     start_date: info.startStr.valueOf(),
                     end_date: info.endStr.valueOf(),
                 },
-                success: function (response) {
+                success: function(response) {
                     var events = [];
 
-                    $.each(response.permits, function (i, permit) {
+                    $.each(response.permits, function(i, permit) {
                         events.push({
                             _id: permit.id,
                             id: permit.id,
                             title: permit.employee.full_name,
-                            start: reformatDateForCalendar(permit.start_date),
-                            end: reformatDateForCalendar(permit.end_date),
+                            start: reformatDateForCalendar(permit
+                                .start_date),
+                            end: reformatDateForCalendar(permit
+                                .end_date),
                             type: 'permit',
                             classNames: `bg-primary text-white cursor-pointer ms-1 me-1`,
                             //borderColor: 'bg-primary',
@@ -83,7 +85,7 @@
                     });
                     successCallback(events);
                 },
-                error: function (response) {
+                error: function(response) {
                     console.log(response);
                 }
             });
@@ -100,7 +102,7 @@
     }
 
     calendar.render();
-    $("#savePermit").click(function () {
+    $("#savePermit").click(function() {
         let employee_id = $("#employee_id").val();
         let start_date = $("#start_date").val();
         let end_date = $("#end_date").val();
@@ -110,7 +112,7 @@
 
 
         $.ajax({
-            url: '{{route('user.permit.create')}}',
+            url: '{{ route('user.permit.create') }}',
             type: 'POST',
             data: {
                 employee_id: employee_id,
@@ -119,9 +121,9 @@
                 permit_type_id: permit_type_id,
                 description: description,
                 permit_status_id: permit_status_id,
-                _token: '{{csrf_token()}}'
+                _token: '{{ csrf_token() }}'
             },
-            success: function (response) {
+            success: function(response) {
                 swal({
                     title: "İzinler",
                     text: "İzinler başarıyla yüklendi.",
@@ -132,7 +134,7 @@
                 closeForm();
                 calendar.refetchEvents();
             },
-            error: function (response) {
+            error: function(response) {
                 alert(response.responseJSON.message);
             }
         });
@@ -150,14 +152,3 @@
         $("#description").val('');
     }
 </script>
-
-
-
-
-
-
-
-
-
-
-
