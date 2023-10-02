@@ -205,7 +205,7 @@
 
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="img-circle user-image bg-gray center" style="text-align:center;line-height: 22px">{{substr(auth()->user()->name,0,1) ?? ""}}</span>
+                    <span class="img-circle user-image bg-gray center hidden-lg" style="text-align:center;line-height: 22px">{{substr(auth()->user()->name,0,1) ?? ""}}</span>
                     <span class="hidden-xs">{{auth()->user()->name ?? ""}}</span>
                 </a>
             </li>

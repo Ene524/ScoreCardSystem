@@ -48,7 +48,7 @@
 
 
                             <div class="form-group">
-                                <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
+                                <label for="inputFullName3" class="col-sm-2 control-label">Durum</label>
 
                                 <div class="col-sm-10">
                                     <div class="checkbox">
