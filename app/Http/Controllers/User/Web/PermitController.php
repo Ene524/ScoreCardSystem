@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Web;
 
+use App\Exports\PermitExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PermitRequest;
 use App\Models\Employee;
@@ -10,6 +11,7 @@ use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class PermitController extends Controller
@@ -92,5 +94,10 @@ class PermitController extends Controller
         return response()->json(['status' => 'success']);
     }
 
+    public function export()
+    {
+        return Excel::download(new PermitExport(), 'İzinler.xlsx');
+
+    }
 
 }

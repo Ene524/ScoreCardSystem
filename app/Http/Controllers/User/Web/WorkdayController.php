@@ -88,6 +88,6 @@ class WorkdayController extends Controller
 
     public function export(Request $request)
     {
-        return Excel::download(new WorkdayExport(), 'Çalışma Günleri1.xlsx');
+        return Excel::download(new WorkdayExport(), 'Çalışma Günleri.xlsx');
     }
 }
