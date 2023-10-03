@@ -18,8 +18,7 @@
                     <h3 class="box-title pull-left">Çalışma Günü Listesi</h3>
                     <a href="{{ route('user.workday.create') }}" class="btn btn-primary btn-sm btn-square pull-right"  style="margin-left:5px">Çalışma
                         Günü Oluştur</a>
-                    <a href="#" class="btn btn-success btn-sm pull-right" id="downloadExcel"
-                       style="margin-left:5px">Excel İndir</a>
+                    <a href="{{route('user.workday.export')}}" class="btn btn-success btn-sm pull-right" style="margin-left:5px">Excel İndir</a>
                 </div>
                 <div class="box-header with-border">
                     <table class="table table-responsive" id="workdayTable">

@@ -72,12 +72,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Durum</label>
+                                <label class="col-sm-2 control-label">İzin Durumu</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="permit_status_id" id="permit_status_id">
+                                    <select class="form-control select2" name="permit_status_id" id="permit_status_id">
                                         <option value={{null}}>Durum Seç</option>
-                                        <option value="0" >Pasif</option>
-                                        <option value="1" selected >Aktif</option>
+                                        @foreach($permitStatuses as $item)
+                                            <option
+                                                value="{{$item->id}}" {{isset($permit) && $permit->permit_status_id == $item->id ? "selected" : ""}}>{{$item->name}}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -20,9 +20,10 @@ class PermitExport implements FromCollection, WithHeadings
             'Ad Soyad',
             'Başlangıç Tarihi',
             'Bitiş Tarihi',
-            'İzin Saati',
             'İzin Türü',
-            'Status',
+            'İzin Durumu',
+            'İzin Saati',
+            'Açıklama'
         ];
     }
 
@@ -31,11 +32,12 @@ class PermitExport implements FromCollection, WithHeadings
         return Permit::with('employee', 'permitType', 'permitStatus')
             ->selectRaw('
                 employees.full_name,
-                DATE_FORMAT(permits.start_date, "%d.%m.%Y %H:%i") AS start_date,
-                DATE_FORMAT(permits.end_date, "%d.%m.%Y %H:%i") AS end_date,
+                  CONVERT(permits.start_date, CHAR) start_date,
+                  CONVERT(permits.end_date, CHAR) end_date,
+                    permit_types.name,
+                    permit_statuses.name,
                  (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15),
-                permit_types.name,
-                permit_statuses.name
+                permits.description
             ')
             ->join('employees', 'employees.id', '=', 'permits.employee_id')
             ->join('permit_types', 'permit_types.id', '=', 'permits.permit_type_id')

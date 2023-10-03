@@ -61,6 +61,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [PermitController::class, 'edit'])->name('user.permit.edit');
         Route::post('edit/{id}', [PermitController::class, 'update'])->name('user.permit.update');
         Route::delete('delete', [PermitController::class, 'delete'])->name("user.permit.delete");
+        Route::get('export',[PermitController::class,'export'])->name('user.permit.export');
     });
 
     Route::prefix('department')->middleware('role:Admin')->group(function () {

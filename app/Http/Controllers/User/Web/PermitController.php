@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Web;
 
+use App\Exports\PermitExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PermitRequest;
 use App\Models\Employee;
@@ -9,29 +10,27 @@ use App\Models\Permit;
 use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class PermitController extends Controller
 {
     public function index()
     {
-        $permits = DB::select("SELECT
-        permits.id,
-        employees.full_name,
-        DATE_FORMAT(permits.start_date,'%d.%m.%Y %H:%i') AS start_date,
-        DATE_FORMAT(permits.end_date,'%d.%m.%Y %H:%i') AS end_date,
-        permit_types.name,
-        (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15) permitsTime,
-        permits.description,
-        permits.status
-         FROM permits
-        LEFT JOIN employees ON permits.employee_id=employees.id
-        LEFT JOIN permit_types ON permits.permit_type_id=permit_types.id
-        LEFT JOIN permit_statuses ON permits.permit_status_id=permit_statuses.id
-        WHERE permits.status=1");
-
-        return view('user.modules.permit.index.index', compact('permits'));
+        $employees = Employee::all();
+        $permitTypes = PermitType::all();
+        $permitStatuses = PermitStatus::all();
+        $permits=Permit::with('employee','permitType','permitStatus')
+           ->select('id','employee_id','start_date','end_date','permit_type_id','description','permit_status_id')
+            ->selectRaw('(TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15) permitsTime')
+            ->Employee(request('employee_id'))
+            ->PermitType(request('permit_type_id'))
+            ->PermitStatus(request('permit_status_id'))
+            ->StartDateAndEndDate(request('start_date'), request('end_date'))
+            ->description(request('description'))
+            ->paginate(10);
+//
+        return view('user.modules.permit.index.index', compact('permits', 'employees', 'permitTypes', 'permitStatuses'));
     }
 
     public function index2()
@@ -47,7 +46,8 @@ class PermitController extends Controller
     {
         $employees = Employee::all();
         $permitTypes = PermitType::all();
-        return view('user.modules.permit.create-update.index', compact('employees', 'permitTypes'));
+        $permitStatuses = PermitStatus::all();
+        return view('user.modules.permit.create-update.index', compact('employees', 'permitTypes', 'permitStatuses'));
     }
 
     public function store(PermitRequest $request)
@@ -69,7 +69,8 @@ class PermitController extends Controller
         $permit = Permit::findOrfail($id);
         $employees = Employee::all();
         $permitTypes = PermitType::all();
-        return view('user.modules.permit.create-update.index', compact('permit', 'employees', 'permitTypes'));
+        $permitStatuses = PermitStatus::all();
+        return view('user.modules.permit.create-update.index', compact('permit', 'employees', 'permitTypes', 'permitStatuses'));
     }
 
     public function update(PermitRequest $request, $id)
@@ -90,5 +91,10 @@ class PermitController extends Controller
         $permit = Permit::findOrFail($request->permitID);
         $permit->delete();
         return response()->json(['status' => 'success']);
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new PermitExport(), 'İzin Günleri.xlsx');
     }
 }

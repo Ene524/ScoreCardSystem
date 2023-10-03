@@ -1,7 +1,11 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
-
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.min.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $('.select2').select2();
+        $('#clearFilter').click(function () {
+            window.location.href = '{{route('user.permit.index')}}';
+        });
         $('.deletePermit').click(function () {
             let permitID = $(this).attr('data-id');
             let employeeName = $(this).data('name');

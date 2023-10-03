@@ -26,6 +26,7 @@ class PermitRequest extends FormRequest
             'start_date'  => 'date',
             'end_date'    => 'date|after:start_date',
             'permit_type_id' => 'required|int',
+            'permit_status_id' => 'required|int',
         ];
     }
 

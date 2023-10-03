@@ -27,11 +27,11 @@ class WorkdayExport implements FromCollection, WithHeadings
     {
         return Workday::with(['employee', 'workdayType'])
             ->selectRaw('
-             employees.full_name,
-             workdays.start_date,
-                workdays.end_date,
-                workday_types.name,
-                workdays.status
+                 employees.full_name,
+                 CONVERT(workdays.start_date, CHAR) start_date,
+                 CONVERT(workdays.end_date, CHAR) end_date,
+                 workday_types.name,
+                 workdays.status
             ')
             ->join('employees', 'employees.id', '=', 'workdays.employee_id')
             ->join('workday_types', 'workday_types.id', '=', 'workdays.workday_type_id')
