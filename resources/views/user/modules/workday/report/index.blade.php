@@ -76,7 +76,7 @@
 
                         <div class="row">
                             <div class="col-md-12" style="margin-top: 30px">
-                                <table class="table table-bordered" id="TotalWorkHours">
+                                <table class="table table-bordered" id="TotalWorkReport">
                                     <thead>
                                     <tr>
                                         <th>Personel</th>

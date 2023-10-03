@@ -127,7 +127,7 @@
                         '</td>';
                     html += '</tr>';
                 });
-                $('#TotalWorkHours tbody').html(html);
+                $('#TotalWorkReport tbody').html(html);
             },
             error: function (response) {
                 console.log(response);
@@ -143,14 +143,14 @@
 
 <script>
     const exportButton = $('#downloadExcel');
-    const table = document.getElementById('TotalWorkHours');
+    const table = document.getElementById('TotalWorkReport');
 
     exportButton.click(function () {
       if (table.rows.length> 1) {
         const ws = XLSX.utils.table_to_sheet(table);
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-        XLSX.writeFile(wb, 'TotalWorkHours.xlsx');
+        XLSX.writeFile(wb, 'Toplam Çalışma Raporu.xlsx');
       }
       else{
         alert("Lütfen önce filtreleme yapınız.");

@@ -4,12 +4,15 @@ namespace App\Exports;
 
 use App\Models\Permit;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class PermitExport implements FromCollection
+class PermitExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
 
     public function headings(): array
     {
@@ -17,6 +20,7 @@ class PermitExport implements FromCollection
             'Ad Soyad',
             'Başlangıç Tarihi',
             'Bitiş Tarihi',
+            'İzin Saati',
             'İzin Türü',
             'Status',
         ];
@@ -24,11 +28,12 @@ class PermitExport implements FromCollection
 
     public function collection()
     {
-        return Permit::with('employee','permitType','permitStatus')
+        return Permit::with('employee', 'permitType', 'permitStatus')
             ->selectRaw('
                 employees.full_name,
-                permits.start_date,
-                permits.end_date,
+                DATE_FORMAT(permits.start_date, "%d.%m.%Y %H:%i") AS start_date,
+                DATE_FORMAT(permits.end_date, "%d.%m.%Y %H:%i") AS end_date,
+                 (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15),
                 permit_types.name,
                 permit_statuses.name
             ')

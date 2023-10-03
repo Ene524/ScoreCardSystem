@@ -29,6 +29,11 @@ class Permit extends Model
     {
         return $this->belongsTo(PermitType::class);
     }
+
+    public function permitStatus()
+    {
+        return $this->belongsTo(PermitStatus::class);
+    }
 }
 
 
