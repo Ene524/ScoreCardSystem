@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Permit;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -29,19 +30,19 @@ class PermitExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return Permit::with('employee', 'permitType', 'permitStatus')
-            ->selectRaw('
-                employees.full_name,
-                  CONVERT(permits.start_date, CHAR) start_date,
-                  CONVERT(permits.end_date, CHAR) end_date,
-                    permit_types.name,
-                    permit_statuses.name,
-                 (TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15),
-                permits.description
-            ')
-            ->join('employees', 'employees.id', '=', 'permits.employee_id')
-            ->join('permit_types', 'permit_types.id', '=', 'permits.permit_type_id')
-            ->join('permit_statuses', 'permit_statuses.id', '=', 'permits.permit_status_id')
-            ->get();
+        $permits = DB::select("SELECT
+            employees.full_name,
+            permits.start_date,
+            permits.end_date,
+            permit_types.name AS permit_type_name,
+            permit_statuses.name AS permit_status_name,
+            (TIMESTAMPDIFF(hour, permits.start_date, permits.end_date)) - (FLOOR(TIMESTAMPDIFF(hour, permits.start_date, permits.end_date) / 24) * 15) AS permitHours,
+            permits.description
+        FROM permits
+        JOIN employees ON employees.id = permits.employee_id
+        JOIN permit_types ON permit_types.id = permits.permit_type_id
+        JOIN permit_statuses ON permit_statuses.id = permits.permit_status_id
+        WHERE permits.status=1");
+        return collect($permits);
     }
 }
