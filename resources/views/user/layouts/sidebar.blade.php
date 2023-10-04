@@ -83,9 +83,6 @@
                         <a href="{{ route('user.batchTransactions.addWorkday') }}"><i class="fa fa-circle-o"></i>Toplu
                             Çalışma Günü Ekle</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-circle-o"></i>Toplu İzin Ekle</a>
-                    </li>
                 </ul>
             </li>
 

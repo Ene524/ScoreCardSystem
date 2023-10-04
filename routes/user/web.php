@@ -61,7 +61,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::get('edit/{id}', [PermitController::class, 'edit'])->name('user.permit.edit');
         Route::post('edit/{id}', [PermitController::class, 'update'])->name('user.permit.update');
         Route::delete('delete', [PermitController::class, 'delete'])->name("user.permit.delete");
-        Route::get('export',[PermitController::class,'export'])->name('user.permit.export');
+        Route::get('export', [PermitController::class, 'export'])->name('user.permit.export');
     });
 
     Route::prefix('department')->middleware('role:Admin')->group(function () {
@@ -112,6 +112,8 @@ Route::prefix('user')->middleware("auth")->group(function () {
     Route::prefix('batchTransactions')->middleware('role:Admin')->group(function () {
         Route::get('addEmployee', [BatchTransactionsController::class, 'addEmployeeindex'])->name('user.batchTransactions.addEmployee');
         Route::post('addEmployee', [BatchTransactionsController::class, 'addEmployeeUpload']);
+        Route::get('download/EmployeeTemplate', [BatchTransactionsController::class, 'downloadEmployeeTemplate'])->name('user.batchTransactions.downloadEmployeeTemplate');
+
         Route::get('addWorkday', [BatchTransactionsController::class, 'addWorkdayindex'])->name('user.batchTransactions.addWorkday');
         Route::post('addWorkday', [BatchTransactionsController::class, 'addWorkday']);
     });

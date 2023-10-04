@@ -64,4 +64,10 @@ class BatchTransactionsController extends Controller
         return Redirect::back()->with('success', 'Çalışma günleri başarıyla oluşturuldu');
 
     }
+
+    public function downloadEmployeeTemplate()
+    {
+        $path = storage_path('app/public/excel/EmployeeExample.xlsx');
+        return response()->download($path);
+    }
 }

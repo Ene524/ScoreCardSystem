@@ -19,6 +19,7 @@ class EmployeeImport implements ToModel, WithHeadingRow, WithValidation
      */
     public function model(array $row)
     {
+        dd($row);
         $department = Department::where('name', trim($row['department']))->first();
         $position = Position::where('name', trim($row['position']))->first();
         $salary = Salary::where('amount', trim($row['salary']))->first();

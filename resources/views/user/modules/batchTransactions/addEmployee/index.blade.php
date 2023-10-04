@@ -30,12 +30,15 @@
                 </div>
                 <div class="box-body with-border">
                     <form action="{{ route('user.batchTransactions.addEmployee') }}" class="form-horizontal" method="post"
-                          enctype="multipart/form-data">
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
 
                             <h4 class="lead">Excel ile personellerinizi aktarın</h4>
-                            <p>Yükleyeceğinizin excel şablon standartlarına göre uygun olmalı ve uzantısı .xlsx olmalıdır</p>
+                            <a href="{{ route('user.batchTransactions.downloadEmployeeTemplate') }}"
+                                class="btn btn-primary btn-sm pull-right">Excel Şablonu İndir</a>
+                            <p>Yükleyeceğinizin excel şablon standartlarına göre uygun olmalı ve uzantısı .xlsx olmalıdır
+                            </p>
 
                         </div>
 
