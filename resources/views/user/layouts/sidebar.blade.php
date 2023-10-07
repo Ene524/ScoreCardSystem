@@ -95,16 +95,16 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{route('user.report.user')}}"><i class="fa fa-circle-o"></i>Personel Raporu</a>
+                        <a href="{{route('user.report.user.index')}}"><i class="fa fa-circle-o"></i>Personel Raporu</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.report.workday') }}"><i class="fa fa-circle-o"></i>Çalışma Raporu</a>
+                        <a href="{{ route('user.report.workday.index') }}"><i class="fa fa-circle-o"></i>Çalışma Raporu</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.report.permit') }}"><i class="fa fa-circle-o"></i>İzin Raporu</a>
+                        <a href="{{ route('user.report.permit.index') }}"><i class="fa fa-circle-o"></i>İzin Raporu</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.report.totalHour') }}"><i class="fa fa-circle-o"></i>Saatlik Çalışma ve İzin Raporu</a>
+                        <a href="{{ route('user.report.totalHour.index') }}"><i class="fa fa-circle-o"></i>Saatlik Çalışma ve İzin Raporu</a>
                     </li>
                 </ul>
             </li>

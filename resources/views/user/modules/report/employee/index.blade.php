@@ -13,7 +13,7 @@
                         Personel Raporunu excel olarak indirebilirsiniz
                     </div>
                     <div class="col-md-6">
-                        <a href="{{ route('user.repo') }}" class="btn btn-success pull-right">Excel
+                        <a href="{{ route('user.report.user.download') }}" class="btn btn-success pull-right">Excel
                             İndir</a>
                     </div>
                 </div>
