@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class WorkdayController extends Controller
 {
-    public function index(Request $request)
+    public function getAllWorkday(Request $request)
     {
         return response()->json(
             [
@@ -20,7 +20,6 @@ class WorkdayController extends Controller
             ]
         );
     }
-
     public function totalWorkHours(Request $request)
     {
         $startDate = $request->start_date ?? "2000-01-01"; // Başlangıç tarihi

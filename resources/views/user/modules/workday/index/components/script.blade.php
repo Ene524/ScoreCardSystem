@@ -1,9 +1,9 @@
-<script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
+<script src="{{ asset('assets/bower_components/sweet-alert/sweetalert.min.js') }}"></script>
 
 <script>
     $(document).ready(function () {
         $('#clearFilter').click(function () {
-            window.location.href = '{{route('user.workday.index')}}';
+            window.location.href = '{{ route('user.workday.index') }}';
         });
 
         $('.deleteWorkday').click(function () {
@@ -13,18 +13,19 @@
             let workdayEndDate = $(this).data('enddate');
 
             swal({
-                title: employeeName +" personelinin " + workdayStartDate+" - "+ workdayEndDate +" tarihli çalışma kaydını silmek istediğine emin misin?",
+                title: employeeName + " personelinin " + workdayStartDate + " - " +
+                    workdayEndDate + " tarihli çalışma kaydını silmek istediğine emin misin?",
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: '{{route('user.workday.delete')}}',
+                        url: '{{ route('user.workday.delete') }}',
                         type: 'DELETE',
                         data: {
                             workdayID: workdayID,
-                            _token: '{{csrf_token()}}'
+                            _token: '{{ csrf_token() }}'
                         },
                         success: function (response) {
                             console.log(response);
@@ -47,9 +48,6 @@
                 }
             });
 
-        })
-    })
+        });
+    });
 </script>
-
-
-

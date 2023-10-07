@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User\Web;
 
-use App\Exports\PermitExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PermitRequest;
 use App\Models\Employee;
@@ -10,7 +9,6 @@ use App\Models\Permit;
 use App\Models\PermitStatus;
 use App\Models\PermitType;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 
 class PermitController extends Controller
@@ -20,8 +18,8 @@ class PermitController extends Controller
         $employees = Employee::all();
         $permitTypes = PermitType::all();
         $permitStatuses = PermitStatus::all();
-        $permits=Permit::with('employee','permitType','permitStatus')
-           ->select('id','employee_id','start_date','end_date','permit_type_id','description','permit_status_id')
+        $permits = Permit::with('employee', 'permitType', 'permitStatus')
+            ->select('id', 'employee_id', 'start_date', 'end_date', 'permit_type_id', 'description', 'permit_status_id')
             ->selectRaw('(TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15) permitsTime')
             ->Employee(request('employee_id'))
             ->PermitType(request('permit_type_id'))
@@ -93,8 +91,4 @@ class PermitController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function export(Request $request)
-    {
-        return Excel::download(new PermitExport(), 'İzin Günleri.xlsx');
-    }
 }

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\User\Web;
 
-use App\Exports\WorkdayExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\WorkdayRequest;
 use App\Models\Employee;
-use App\Models\PermitType;
 use App\Models\Workday;
 use App\Models\WorkdayType;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class WorkdayController extends Controller
 {
@@ -78,16 +75,5 @@ class WorkdayController extends Controller
         $workday = Workday::findOrFail($request->workdayID);
         $workday->delete();
         return response()->json(['status' => 'success']);
-    }
-
-    public function report(Request $request)
-    {
-        $employees = Employee::all();
-        return view("user.modules.workday.report.index", compact("employees"));
-    }
-
-    public function export(Request $request)
-    {
-        return Excel::download(new WorkdayExport(), 'Çalışma Günleri.xlsx');
     }
 }

@@ -19,7 +19,6 @@
                     <a href="{{ route('user.permit.create') }}" class="btn btn-primary btn-sm btn-square pull-right"
                        style="margin-left:5px">İzin
                         Oluştur</a>
-                    <a href="{{route('user.permit.export')}}" class="btn btn-success btn-sm pull-right" style="margin-left:5px">Excel İndir</a>
                 </div>
                 <div class="box-body with-border">
                     <table class="table table-responsive" id>
@@ -48,8 +47,10 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><input class="form-control" type="datetime-local" name="start_date" value="{{request()->get("start_date")}}"></td>
-                                <td><input class="form-control" type="datetime-local" name="end_date" value="{{request()->get("end_date")}}"></td>
+                                <td><input class="form-control" type="datetime-local" name="start_date"
+                                           value="{{request()->get("start_date")}}"></td>
+                                <td><input class="form-control" type="datetime-local" name="end_date"
+                                           value="{{request()->get("end_date")}}"></td>
 
 
                                 <td><select class="form-control select2" name="permit_type_id">
@@ -68,7 +69,8 @@
                                                 {{ $permitStatuse->name }}</option>
                                         @endforeach
                                     </select></td>
-                                <td><input class="form-control" type="text" name="description" value="{{request()->get("description")}}"></td>
+                                <td><input class="form-control" type="text" name="description"
+                                           value="{{request()->get("description")}}"></td>
                                 <td></td>
                                 <td></td>
                                 <td>

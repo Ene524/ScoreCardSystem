@@ -99,14 +99,14 @@
         </div>
     </div>
 
-    @include('user.modules.workday.report.modals.modal_workday_report_quick_select')
+    @include('user.modules.report.totalHour.modals.modal_workday_report_quick_select')
 
 @endsection
 
 @section('customStyle')
-    @include('user.modules.workday.report.components.style')
+    @include('user.modules.report.totalHour.components.style')
 @endsection
 
 @section('customScript')
-    @include('user.modules.workday.report.components.script')
+@include('user.modules.report.totalHour.components.script')
 @endsection

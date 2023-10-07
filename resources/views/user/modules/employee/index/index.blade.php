@@ -15,8 +15,6 @@
                     <h3 class="box-title pull-left">Personel Listesi</h3>
                     <a href="{{route('user.employee.create')}}" class="btn btn-primary btn-sm pull-right"
                        style="margin-left:5px">Personel Oluştur</a>
-                    <a href="{{route('user.employee.export')}}" class="btn btn-success btn-sm pull-right"
-                       style="margin-left:5px">Excel İndir</a>
                 </div>
                 <div class="box-body with-border">
                     <table class="table table-responsive table-striped" id="employeeTable">
@@ -34,26 +32,31 @@
                         <tbody>
                         <form>
                             <tr>
-                                <td><input class="form-control no-margin" placeholder="Ad Soyad" name="full_name" value="{{request()->get("full_name")}}"></td>
-                                <td><input class="form-control no-margin" placeholder="Email" name="email" value="{{request()->get("email")}}"></td>
+                                <td><input class="form-control no-margin" placeholder="Ad Soyad" name="full_name"
+                                           value="{{request()->get("full_name")}}"></td>
+                                <td><input class="form-control no-margin" placeholder="Email" name="email"
+                                           value="{{request()->get("email")}}"></td>
                                 <td>
                                     <select class="form-control" name="department_id">
                                         <option value="">Departman Seçiniz</option>
                                         @foreach($departments as $department)
-                                            <option value="{{$department->id}}" {{request()->get("department_id")== $department->id ?"selected" : "" }}>{{$department->name}}</option>
+                                            <option
+                                                value="{{$department->id}}" {{request()->get("department_id")== $department->id ?"selected" : "" }}>{{$department->name}}</option>
                                         @endforeach
                                     </select>
                                 </td>
                                 <td><select class="form-control no-margin" name="position_id">
                                         <option value="">Pozisyon Seçiniz</option>
                                         @foreach($positions as $position)
-                                            <option value="{{$position->id}}" {{request()->get("position_id")== $position->id ?"selected" : "" }}>{{$position->name}}</option>
+                                            <option
+                                                value="{{$position->id}}" {{request()->get("position_id")== $position->id ?"selected" : "" }}>{{$position->name}}</option>
                                         @endforeach
                                     </select></td>
                                 <td><select class="form-control" name="salary_id">
                                         <option value="">Maaş Seçiniz</option>
                                         @foreach($salaries as $salary)
-                                            <option value="{{$salary->id}}" {{request()->get("salary_id")== $salary->id ?"selected" : "" }}>{{$salary->amount}}</option>
+                                            <option
+                                                value="{{$salary->id}}" {{request()->get("salary_id")== $salary->id ?"selected" : "" }}>{{$salary->amount}}</option>
                                         @endforeach
                                     </select></td>
                                 <td></td>

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Web\PermitController;
 use App\Http\Controllers\User\Web\PermitStatusController;
 use App\Http\Controllers\User\Web\PermitTypeController;
 use App\Http\Controllers\User\Web\PositionController;
+use App\Http\Controllers\User\Web\ReportController;
 use App\Http\Controllers\User\Web\SalaryController;
 use App\Http\Controllers\User\Web\UserController;
 use App\Http\Controllers\User\Web\WorkdayController;
@@ -43,8 +44,6 @@ Route::prefix('user')->middleware("auth")->group(function () {
     Route::prefix('workday')->group(function () {
         Route::get('index', [WorkdayController::class, 'index'])->name('user.workday.index');
         Route::get('indexCalendar', [WorkdayController::class, 'index2'])->name('user.workday.indexCalendar');
-        Route::get('report', [WorkdayController::class, 'report'])->name('user.workday.report.get');
-        Route::post('report', [WorkdayController::class, 'showReport'])->name('user.workday.report.show');
         Route::get('create', [WorkdayController::class, 'create'])->name('user.workday.create');
         Route::post('create', [WorkdayController::class, 'store']);
         Route::get('edit/{id}', [WorkdayController::class, 'edit'])->name('user.workday.edit');
@@ -136,6 +135,19 @@ Route::prefix('user')->middleware("auth")->group(function () {
         Route::delete('delete', [WorkdayTypeController::class, 'delete'])->name("user.workdayType.delete");
     });
 
+    Route::prefix('report')->middleware('role:Admin')->group(function () {
+        Route::get('user', [ReportController::class, 'users'])->name('user.report.user');
+        Route::post('user', [ReportController::class, 'downloadUsers']);
+
+        Route::get('workday', [ReportController::class, 'workdays'])->name('user.report.workday');
+        Route::post('workday', [ReportController::class, 'downloadWorkdays']);
+
+        Route::get('permit', [ReportController::class, 'permits'])->name('user.report.permit');
+        Route::post('permit', [ReportController::class, 'downloadPermits']);
+
+        Route::get('totalHour', [ReportController::class, 'totalHourReport'])->name('user.report.totalHour');
+        Route::post('totalHour', [ReportController::class, 'totalHourShowReport']);
+    });
 
 
     Route::get('/logout', [LoginController::class, "logout"])->name("user.logout");

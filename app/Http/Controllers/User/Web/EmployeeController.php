@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User\Web;
 
-use App\Exports\EmployeeExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\EmployeeRequest;
 use App\Models\Department;
@@ -10,7 +9,6 @@ use App\Models\Employee;
 use App\Models\Position;
 use App\Models\Salary;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
@@ -83,10 +81,5 @@ class EmployeeController extends Controller
         $employee = Employee::find($request->employeeID);
         $employee->delete();
         return response()->json(['status' => 'success']);
-    }
-
-    public function export()
-    {
-        return Excel::download(new EmployeeExport(), 'Personeller.xlsx');
     }
 }

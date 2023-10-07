@@ -1,18 +1,18 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
-{{--        <!-- search form -->--}}
-{{--        <form action="#" method="get" class="sidebar-form">--}}
-{{--            <div class="input-group" data-widget="sidebar-search">--}}
-{{--                <input type="text" name="q" class="form-control" placeholder="Search...">--}}
-{{--                <span class="input-group-btn">--}}
-{{--                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i--}}
-{{--                            class="fa fa-search"></i>--}}
-{{--                    </button>--}}
-{{--                </span>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-{{--        <!-- /.search form -->--}}
+        {{--        <!-- search form -->--}}
+        {{--        <form action="#" method="get" class="sidebar-form">--}}
+        {{--            <div class="input-group" data-widget="sidebar-search">--}}
+        {{--                <input type="text" name="q" class="form-control" placeholder="Search...">--}}
+        {{--                <span class="input-group-btn">--}}
+        {{--                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i--}}
+        {{--                            class="fa fa-search"></i>--}}
+        {{--                    </button>--}}
+        {{--                </span>--}}
+        {{--            </div>--}}
+        {{--        </form>--}}
+        {{--        <!-- /.search form -->--}}
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
@@ -95,8 +95,16 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ route('user.workday.report.get') }}"><i class="fa fa-circle-o"></i>Çalışma ve İzin
-                            Raporu</a>
+                        <a href="{{route('user.report.user')}}"><i class="fa fa-circle-o"></i>Personel Raporu</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.report.workday') }}"><i class="fa fa-circle-o"></i>Çalışma Raporu</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.report.permit') }}"><i class="fa fa-circle-o"></i>İzin Raporu</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.report.totalHour') }}"><i class="fa fa-circle-o"></i>Saatlik Çalışma ve İzin Raporu</a>
                     </li>
                 </ul>
             </li>
