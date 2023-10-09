@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\User\Api\PermitController;
-
 use App\Http\Controllers\User\Api\WorkdayController;
 use Illuminate\Support\Facades\Route;
 
