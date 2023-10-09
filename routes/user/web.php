@@ -137,16 +137,16 @@ Route::prefix('user')->middleware("auth")->group(function () {
 
     Route::prefix('report')->middleware('role:Admin')->group(function () {
         Route::get('user', [ReportController::class, 'users'])->name('user.report.user.index');
-        Route::get('user', [ReportController::class, 'downloadUsers'])->name('user.report.user.download');
+        Route::get('downloadUsers', [ReportController::class, 'downloadUsers'])->name('user.report.user.download');
 
         Route::get('workday', [ReportController::class, 'workdays'])->name('user.report.workday.index');
-        Route::get('workday', [ReportController::class, 'downloadWorkdays'])->name('user.report.workday.download');
+        Route::get('downloadWorkdays', [ReportController::class, 'downloadWorkdays'])->name('user.report.workday.download');
 
         Route::get('permit', [ReportController::class, 'permits'])->name('user.report.permit.index');
-        Route::get('permit', [ReportController::class, 'downloadPermits'])->name('user.report.permit.download');
+        Route::get('downloadPermits', [ReportController::class, 'downloadPermits'])->name('user.report.permit.download');
 
         Route::get('totalHour', [ReportController::class, 'totalHourReport'])->name('user.report.totalHour.index');
-        Route::get('totalHour', [ReportController::class, 'totalHourShowReport'])->name('user.report.totalHour.download');
+        Route::get('totalHourShowReport', [ReportController::class, 'totalHourShowReport'])->name('user.report.totalHour.download');
     });
 
 
