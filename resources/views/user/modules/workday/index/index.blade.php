@@ -37,7 +37,7 @@
                         <form>
                             <tr>
                                 <td>
-                                    <select class="form-control" name="employee_id">
+                                    <select class="form-control select2" name="employee_id" style="width: 100%">
                                         <option value="">Personel Seçiniz</option>
                                         @foreach ($employees as $employee)
                                             <option value="{{ $employee->id }}"
@@ -52,7 +52,7 @@
                                            value="{{ request()->get('end_date') }}"></td>
 
 
-                                <td><select class="form-control" name="workday_type_id">
+                                <td><select class="form-control select2" name="workday_type_id">
                                         <option value="">Mesai Seçiniz</option>
                                         @foreach ($workdayTypes as $workdayType)
                                             <option value="{{ $workdayType->id }}"

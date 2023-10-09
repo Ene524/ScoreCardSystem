@@ -26,15 +26,16 @@
                 </div>
                 <div class="box-body with-border">
                     <form class="form-horizontal"
-                          action="{{isset($permitStatus)? route('user.permitStatus.edit',['id'=>$permitStatus->id]) :route('user.permitStatus.create')}}"
-                          method="POST">
+                        action="{{ isset($permitStatus) ? route('user.permitStatus.edit', ['id' => $permitStatus->id]) : route('user.permitStatus.create') }}"
+                        method="POST">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="inputFullName3" class="col-sm-2 control-label">İzin Durum Tanımı</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="name" placeholder="İzin Durum Tanımı"
-                                           value="{{isset($permitStatus) ? $permitStatus->name:""}}">
+                                    <input class="form-control" type="text" name="name"
+                                        placeholder="İzin Durum Tanımı"
+                                        value="{{ isset($permitStatus) ? $permitStatus->name : '' }}">
                                 </div>
                             </div>
 
@@ -42,18 +43,19 @@
                                 <label for="inputFullName3" class="col-sm-2 control-label">Açıklaması</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" name="description" placeholder="Açıklama"
-                                           value="{{isset($permitStatus) ? $permitStatus->description:""}}">
+                                        value="{{ isset($permitStatus) ? $permitStatus->description : '' }}">
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label for="inputFullName3" class="col-sm-2 control-label">Durumu</label>
+                                <label for="inputFullName3" class="col-sm-2 control-label">Durum</label>
 
                                 <div class="col-sm-10">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="status" {{ isset($permitStatus) && $permitStatus->status  ? "checked" : "" }}>
+                                            <input type="checkbox" name="status"
+                                                {{ isset($permitStatus) && $permitStatus->status ? 'checked' : '' }}>
                                         </label>
                                     </div>
                                 </div>
@@ -71,8 +73,8 @@
 
                     </form>
                 </div>
+            </div>
         </div>
-    </div>
 
     </div>
 

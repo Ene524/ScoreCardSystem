@@ -13,13 +13,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
 
-    public function users()
+    public function employees()
     {
         $employees = Employee::all();
         return view("user.modules.report.employee.index", compact("employees"));
     }
 
-    public function downloadUsers()
+    public function downloadEmployees()
     {
         return Excel::download(new EmployeeExport(), 'Personeller.xlsx');
     }

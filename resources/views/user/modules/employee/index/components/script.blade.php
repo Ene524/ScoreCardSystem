@@ -1,11 +1,13 @@
 <script src="{{asset('assets/bower_components/sweet-alert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/bower_components/datatables.net/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.min.js') }}"></script>
+
 
 
 <script>
     $(document).ready(function () {
-
+        $(".select2").select2();
         $('#clearFilter').click(function () {
             window.location.href = '{{route('user.employee.index')}}';
         });

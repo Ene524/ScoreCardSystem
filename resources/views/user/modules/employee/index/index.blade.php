@@ -37,7 +37,7 @@
                                 <td><input class="form-control no-margin" placeholder="Email" name="email"
                                            value="{{request()->get("email")}}"></td>
                                 <td>
-                                    <select class="form-control" name="department_id">
+                                    <select class="form-control no-margin select2" name="department_id">
                                         <option value="">Departman Seçiniz</option>
                                         @foreach($departments as $department)
                                             <option
@@ -45,14 +45,14 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><select class="form-control no-margin" name="position_id">
+                                <td><select class="form-control no-margin select2" name="position_id">
                                         <option value="">Pozisyon Seçiniz</option>
                                         @foreach($positions as $position)
                                             <option
                                                 value="{{$position->id}}" {{request()->get("position_id")== $position->id ?"selected" : "" }}>{{$position->name}}</option>
                                         @endforeach
                                     </select></td>
-                                <td><select class="form-control" name="salary_id">
+                                <td><select class="form-control no-margin select2" name="salary_id">
                                         <option value="">Maaş Seçiniz</option>
                                         @foreach($salaries as $salary)
                                             <option

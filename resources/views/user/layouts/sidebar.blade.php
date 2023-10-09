@@ -95,7 +95,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{route('user.report.user.index')}}"><i class="fa fa-circle-o"></i>Personel Raporu</a>
+                        <a href="{{route('user.report.employee.index')}}"><i class="fa fa-circle-o"></i>Personel Raporu</a>
                     </li>
                     <li>
                         <a href="{{ route('user.report.workday.index') }}"><i class="fa fa-circle-o"></i>Çalışma Raporu</a>

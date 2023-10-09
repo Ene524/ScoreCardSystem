@@ -25,6 +25,11 @@ class WorkdayExport implements FromCollection, WithHeadings
 
     public function collection()
     {
+        request()->start_date==null ? request()->start_date ="1000-01-01" : request()->start_date;
+        request()->end_date==null ? request()->end_date ="9000-01-01" : request()->end_date;
+
+        // dd(request()->start_date, request()->end_date);
+
         return Workday::with(['employee', 'workdayType'])
             ->selectRaw('
                  employees.full_name,

@@ -136,8 +136,8 @@ Route::prefix('user')->middleware("auth")->group(function () {
     });
 
     Route::prefix('report')->middleware('role:Admin')->group(function () {
-        Route::get('user', [ReportController::class, 'users'])->name('user.report.user.index');
-        Route::post('downloadUsers', [ReportController::class, 'downloadUsers'])->name('user.report.user.download');
+        Route::get('employee', [ReportController::class, 'employees'])->name('user.report.employee.index');
+        Route::post('downloadEmployees', [ReportController::class, 'downloadEmployees'])->name('user.report.employee.download');
 
         Route::get('workday', [ReportController::class, 'workdays'])->name('user.report.workday.index');
         Route::post('downloadWorkdays', [ReportController::class, 'downloadWorkdays'])->name('user.report.workday.download');

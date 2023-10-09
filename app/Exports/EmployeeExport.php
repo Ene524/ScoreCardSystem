@@ -35,7 +35,7 @@ class EmployeeExport implements FromCollection, WithHeadings
         departments.name as department_name,
         positions.name as position_name,
         salaries.amount,
-        DATE_FORMAT(employees.employment_date, "%d.%m.%Y"),
+        employees.employment_date,
         employees.status
     ')
             ->join('departments', 'departments.id', '=', 'employees.department_id')
