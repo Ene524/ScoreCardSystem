@@ -35,7 +35,7 @@ class WorkdayExport implements FromCollection, WithHeadings
             ')
             ->join('employees', 'employees.id', '=', 'workdays.employee_id')
             ->join('workday_types', 'workday_types.id', '=', 'workdays.workday_type_id')
-            //            ->whereBetween('workdays.start_date', [request()->start_date, request()->end_date])
+            ->whereBetween('workdays.start_date', [request()->start_date, request()->end_date])
             ->get();
     }
 }

@@ -13,30 +13,36 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
 
-    public function users(){
+    public function users()
+    {
         $employees = Employee::all();
-        return view("user.modules.report.employee.index",compact("employees"));
+        return view("user.modules.report.employee.index", compact("employees"));
     }
 
-    public function downloadUsers(){
+    public function downloadUsers()
+    {
         return Excel::download(new EmployeeExport(), 'Personeller.xlsx');
     }
 
-    public function workdays(){
+    public function workdays()
+    {
         $employees = Employee::all();
-        return view("user.modules.report.workday.index",compact("employees"));
+        return view("user.modules.report.workday.index", compact("employees"));
     }
 
-    public function downloadWorkdays(){
-        return Excel::download(new WorkdayExport(), 'Çalışma Günleri.xlsx');
+    public function downloadWorkdays(Request $request)
+    {
+        return Excel::download(new WorkdayExport($request->start_date, $request->end_date), 'Çalışma Günleri.xlsx');
     }
 
-    public function permits(){
+    public function permits()
+    {
         $employees = Employee::all();
-        return view("user.modules.report.permit.index",compact("employees"));
+        return view("user.modules.report.permit.index", compact("employees"));
     }
 
-    public function downloadPermits(){
+    public function downloadPermits()
+    {
         return Excel::download(new PermitExport(), 'İzinler.xlsx');
     }
 

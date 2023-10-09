@@ -9,7 +9,7 @@
                     <h3 class="box-title">Çalışma Raporu</h3>
                 </div>
                 <div class="box-body">
-                    <form>
+                    <form action="{{ route('user.report.workday.download') }}" method="POST">
                         @csrf
                         <div class="col-md-12">
                             <div class="col-md-8">
@@ -39,15 +39,10 @@
 
                                 <div class="col-md-3" style="padding:0px 2px 0px 2px">
                                     <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-info form-control" id="downloadExcel">Excel İndir
-                                    </button>
+                                    <button class="btn btn-info form-control" type="submit" id="downloadExcel">Excel
+                                        İndir</button>
                                 </div>
                             </div>
-
-
-
-
-
                         </div>
                     </form>
 
@@ -56,14 +51,14 @@
         </div>
     </div>
 
-    @include('user.modules.report.totalHour.modals.modal_workday_report_quick_select')
+    @include('user.modules.report.workday.modals.modal_workday_report_quick_select')
 
 @endsection
 
 @section('customStyle')
-    @include('user.modules.report.totalHour.components.style')
+    @include('user.modules.report.workday.components.style')
 @endsection
 
 @section('customScript')
-@include('user.modules.report.totalHour.components.script')
+    @include('user.modules.report.workday.components.script')
 @endsection
