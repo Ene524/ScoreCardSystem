@@ -11,84 +11,41 @@
                 <div class="box-body">
                     <form action="{{ route('user.report.permit.download') }}" method="POST">
                         @csrf
-                        <div class="col-md-12">
-                            <div class="col-md-8">
-                                <div class="col-md-3">
-                                    <label for="start_date">Başlangıç Tarihi</label>
-                                    <input type="datetime-local" name="start_date" id="start_date" class="form-control">
+
+                        <div class="col-md-6">
+                            <div class="card p-3">
+                                <div class="form-group">
+                                    <label for="input1">Input 1:</label>
+                                    <input type="text" class="form-control" id="input1" placeholder="Değer girin...">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="end_date">Bitiş Tarihi</label>
-                                    <input type="datetime-local" name="end_date" id="end_date" class="form-control">
+                                <div class="form-group">
+                                    <label for="input2">Input 2:</label>
+                                    <input type="text" class="form-control" id="input2" placeholder="Değer girin...">
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="employee_id">Personel</label>
-                                    <select class="form-control select2" name="employee_id[]" id="employee_ids"
-                                        multiple="multiple" style="width:100%">
-                                        @foreach ($employees as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ in_array($item->id, old('employee_id', [])) ? 'selected' : '' }}>
-                                                {{ $item->full_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group">
+                                    <label for="input3">Input 3:</label>
+                                    <input type="text" class="form-control" id="input3" placeholder="Değer girin...">
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="col-md-2" style="padding:0px 2px 0px 2px">
-                                    <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-primary form-control" onclick="getWorkHours()">
-                                        Filtrele
-                                    </button>
-                                </div>
-
-                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
-                                    <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-success form-control" id="selectAll">Tümünü Seç
-                                    </button>
-                                </div>
-
-                                <div class="col-md-2" style="padding:0px 2px 0px 2px">
-                                    <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-warning form-control" id="quickSelect">Hızlı Seç
-                                    </button>
-                                </div>
-
-                                <div class="col-md-2" style="padding:0px 2px 0px 2px">
-                                    <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-danger form-control" id="clearFilter">Temizle
-                                    </button>
-                                </div>
-
-                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
-                                    <label for="employee_id"></label>
-                                    <button type="submit" class="btn btn-info form-control">Excel İndir
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
-
-
-
-                        <div class="col-md-12">
-                            <div class="col-md-8">
-
-                                <div class="col-md-3">
-                                    <label for="start_date">Başlangıç Tarihi</label>
-                                    <input type="datetime-local" name="start_date" id="start_date" class="form-control">
+                        <div class="col-md-4">
+                            <div class="card p-3">
+                                <div class="form-group">
+                                    <label for="input4">Input 4:</label>
+                                    <input type="text" class="form-control" id="input4" placeholder="Değer girin...">
                                 </div>
-                                
-                                <div class="col-md-3">
-                                    <label for="end_date">Bitiş Tarihi</label>
-                                    <input type="datetime-local" name="end_date" id="end_date" class="form-control">
+                                <div class="form-group">
+                                    <label for="input5">Input 5:</label>
+                                    <input type="text" class="form-control" id="input5" placeholder="Değer girin...">
                                 </div>
-
                             </div>
-
-
-
+                        </div>
+                        <div class="col-md-2 button-container">
+                            <button class="btn btn-primary btn-block">Buton 1</button>
+                            <button class="btn btn-primary btn-block">Buton 2</button>
+                            <button class="btn btn-primary btn-block">Buton 3</button>
+                            <button class="btn btn-primary btn-block">Buton 4</button>
+                            <button class="btn btn-primary btn-block">Buton 5</button>
                         </div>
 
 
