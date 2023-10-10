@@ -25,22 +25,37 @@ class WorkdayExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        request()->start_date==null ? request()->start_date ="1000-01-01" : request()->start_date;
-        request()->end_date==null ? request()->end_date ="9000-01-01" : request()->end_date;
-
-        // dd(request()->start_date, request()->end_date);
-
-        return Workday::with(['employee', 'workdayType'])
-            ->selectRaw('
-                 employees.full_name,
-                 CONVERT(workdays.start_date, CHAR) start_date,
-                 CONVERT(workdays.end_date, CHAR) end_date,
-                 workday_types.name,
-                 workdays.status
-            ')
+        $workdaysTemp = Workday::with(['employee', 'workdayType'])
+            ->select('employees.full_name as employee_name', 'workdays.start_date', 'workdays.end_date', 'workday_types.name as workday_type_name', 'workdays.status')
             ->join('employees', 'employees.id', '=', 'workdays.employee_id')
             ->join('workday_types', 'workday_types.id', '=', 'workdays.workday_type_id')
-            ->whereBetween('workdays.start_date', [request()->start_date, request()->end_date])
             ->get();
+
+
+        if (request()->employee_id != null) {
+            $workdaysTemp = $workdaysTemp->whereIn('employee_id', request()->employee_id);
+        }
+
+        if (request()->start_date != null && request()->end_date != null) {
+            $workdaysTemp = $workdaysTemp->whereBetween('start_date', [request()->start_date, request()->end_date]);
+        }
+
+        if (request()->workday_type_id != null) {
+            $workdaysTemp = $workdaysTemp->where('workday_type_id', request()->workday_type_id);
+        }
+
+        $workdays = $workdaysTemp->map(function ($workday) {
+            return [
+                'employee_name' => $workday->employee_name,
+                'start_date' => $workday->start_date,
+                'end_date' => $workday->end_date,
+                'workday_type_name' => $workday->workday_type_name,
+                'status' => $workday->status != null ? "Aktif" : 'Pasif',
+            ];
+        });
+
+        return $workdays;
+
+
     }
 }

@@ -38,7 +38,7 @@
                             <div class="col-md-4">
                                 <div class="col-md-2" style="padding:0px 2px 0px 2px">
                                     <label for="employee_id"></label>
-                                    <button type="button" class="btn btn-primary form-control" onclick="getWorkHours()">
+                                    <button type="button" class="btn btn-primary form-control" id="getFilter">
                                         Filtrele
                                     </button>
                                 </div>
@@ -67,9 +67,6 @@
                                     </button>
                                 </div>
                             </div>
-
-
-
 
 
                         </div>

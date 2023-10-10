@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\User\Web;
 
-use App\Models\Employee;
-use Illuminate\Http\Request;
+use App\Exports\EmployeeExport;
 use App\Exports\PermitExport;
 use App\Exports\WorkdayExport;
-use App\Exports\EmployeeExport;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use App\Models\WorkdayType;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
@@ -27,12 +28,13 @@ class ReportController extends Controller
     public function workdays()
     {
         $employees = Employee::all();
-        return view("user.modules.report.workday.index", compact("employees"));
+        $workdayTypes = WorkdayType::all();
+        return view("user.modules.report.workday.index", compact("employees", "workdayTypes"));
     }
 
     public function downloadWorkdays(Request $request)
     {
-        return Excel::download(new WorkdayExport($request->start_date, $request->end_date), 'Çalışma Günleri.xlsx');
+        return Excel::download(new WorkdayExport(), 'Çalışma Günleri.xlsx');
     }
 
     public function permits()

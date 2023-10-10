@@ -3,26 +3,26 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.select2').select2();
 
-        $('#clearFilter').click(function () {
+        $('#clearFilter').click(function() {
             $('#employee_ids').val(null).trigger('change');
             $('#start_date').val(null);
             $('#end_date').val(null);
             $('#TotalWorkHours tbody').html("");
         });
 
-        $('#selectAll').click(function () {
+        $('#selectAll').click(function() {
             $('#employee_ids > option').prop("selected", "selected");
             $('#employee_ids').trigger("change");
         });
 
-        $('#quickSelect').click(function () {
+        $('#quickSelect').click(function() {
             $("#quickSelectModal").modal("toggle");
         });
 
-        $("#selectToday").click(function () {
+        $("#selectToday").click(function() {
 
             var today = new Date();
             var year = today.getFullYear();
@@ -37,10 +37,12 @@
             getWorkHours();
         });
 
-        $("#selectThisWeek").click(function () {
+        $("#selectThisWeek").click(function() {
             var today = new Date();
-            var firstDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
-            var lastDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - today.getDay()));
+            var firstDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today
+                .getDay());
+            var lastDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 -
+                today.getDay()));
 
             var year = firstDayOfWeek.getFullYear();
             var month = (firstDayOfWeek.getMonth() + 1).toString().padStart(2, "0");
@@ -58,7 +60,7 @@
             getWorkHours();
         });
 
-        $("#selectThisMonth").click(function () {
+        $("#selectThisMonth").click(function() {
             var today = new Date();
             var firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
             var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -79,7 +81,7 @@
             getWorkHours();
         });
 
-        $("#selectLastMonth").click(function () {
+        $("#selectLastMonth").click(function() {
             var today = new Date();
             var firstDayOfMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
             var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 0);
@@ -99,61 +101,5 @@
             $("#quickSelectModal").modal("toggle");
             getWorkHours();
         });
-    })
-
-    function getWorkHours() {
-
-        var data = {
-            start_date: $("#start_date").val(),
-            end_date: $("#end_date").val(),
-            employee_ids: $("#employee_ids").val()
-        };
-        $('#TotalWorkHours tbody').html("");
-        $.ajax({
-            url: '{{ route('api.user.workday.report') }}',
-            type: 'GET',
-            data: data,
-            success: function (response) {
-                var html = '';
-                $.each(response.totalWorkHours, function (key, item) {
-                    html += '<tr>';
-                    html += '<td>' + item.full_name + '</td>';
-                    html += '<td>' + item.totalWorkTime + '</td>';
-                    html += '<td>' + item.totalPermitTime + '</td>';
-                    html += '<td>' + item.totalNetWorkTime + '</td>';
-                    html += '<td>' + item.salary + '</td>';
-                    html += '<td>' + calcSalary(item.totalNetWorkTime, item.salary).toFixed(2);
-                    +
-                        '</td>';
-                    html += '</tr>';
-                });
-                $('#TotalWorkReport tbody').html(html);
-            },
-            error: function (response) {
-                console.log(response);
-            }
-        })
-    }
-
-    function calcSalary(totalHours, salary) {
-        var perHourAmount = salary / 26 / 9;
-        return totalHours * perHourAmount;
-    };
-</script>
-
-<script>
-    const exportButton = $('#downloadExcel');
-    const table = document.getElementById('TotalWorkReport');
-
-    exportButton.click(function () {
-      if (table.rows.length> 1) {
-        const ws = XLSX.utils.table_to_sheet(table);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-        XLSX.writeFile(wb, 'Toplam Çalışma Raporu.xlsx');
-      }
-      else{
-        alert("Lütfen önce filtreleme yapınız.");
-      }
     });
 </script>
