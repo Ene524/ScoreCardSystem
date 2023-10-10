@@ -30,19 +30,40 @@ class PermitExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $permits = DB::select("SELECT
-            employees.full_name,
-            permits.start_date,
-            permits.end_date,
-            permit_types.name AS permit_type_name,
-            permit_statuses.name AS permit_status_name,
-            (TIMESTAMPDIFF(hour, permits.start_date, permits.end_date)) - (FLOOR(TIMESTAMPDIFF(hour, permits.start_date, permits.end_date) / 24) * 15) AS permitHours,
-            permits.description
-        FROM permits
-        JOIN employees ON employees.id = permits.employee_id
-        JOIN permit_types ON permit_types.id = permits.permit_type_id
-        JOIN permit_statuses ON permit_statuses.id = permits.permit_status_id
-        WHERE permits.status=1");
-        return collect($permits);
+        $permitsTemp = Permit::with(['employee', 'workdayType', 'permitStatus'])
+            ->select('employees.full_name as employee_name', 'permits.start_date', 'permits.end_date', 'workday_types.name as workday_type_name', 'permit_statuses.name as permit_status_name', 'permits.description')
+            ->join('employees', 'employees.id', '=', 'permits.employee_id')
+            ->join('workday_types', 'workday_types.id', '=', 'permits.workday_type_id')
+            ->join('permit_statuses', 'permit_statuses.id', '=', 'permits.permit_status_id')
+            ->get();
+
+        if (request()->employee_id != null) {
+            $permitsTemp = $permitsTemp->whereIn('employee_id', request()->employee_id);
+        }
+
+        if (request()->start_date != null && request()->end_date != null) {
+            $permitsTemp = $permitsTemp->whereBetween('start_date', [request()->start_date, request()->end_date]);
+        }
+
+        if (request()->workday_type_id != null) {
+            $permitsTemp = $permitsTemp->where('workday_type_id', request()->workday_type_id);
+        }
+
+        if (request()->permit_status_id != null) {
+            $permitsTemp = $permitsTemp->where('permit_status_id', request()->permit_status_id);
+        }
+
+        $permits = $permitsTemp->map(function ($permit) {
+            return [
+                'employee_name' => $permit->employee_name,
+                'start_date' => $permit->start_date,
+                'end_date' => $permit->end_date,
+                'workday_type_name' => $permit->workday_type_name,
+                'permit_status_name' => $permit->permit_status_name,
+                'description' => $permit->description,
+            ];
+        });
+
+        return $permits;
     }
 }
