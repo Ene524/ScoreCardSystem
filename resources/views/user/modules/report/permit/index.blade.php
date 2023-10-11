@@ -67,3 +67,4 @@
 @section('customScript')
     @include('user.modules.report.permit.components.script')
 @endsection
+
