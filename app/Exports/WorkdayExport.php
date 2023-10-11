@@ -26,7 +26,7 @@ class WorkdayExport implements FromCollection, WithHeadings
     public function collection()
     {
         $workdaysTemp = Workday::with(['employee', 'workdayType'])
-            ->select('employees.full_name as employee_name', 'workdays.start_date', 'workdays.end_date', 'workday_types.name as workday_type_name', 'workdays.status')
+            ->select('workdays.employee_id', 'workdays.workday_type_id', 'employees.full_name as employee_name', 'workdays.start_date', 'workdays.end_date', 'workday_types.name as workday_type_name', 'workdays.status')
             ->join('employees', 'employees.id', '=', 'workdays.employee_id')
             ->join('workday_types', 'workday_types.id', '=', 'workdays.workday_type_id')
             ->get();
@@ -43,6 +43,7 @@ class WorkdayExport implements FromCollection, WithHeadings
         if (request()->workday_type_id != null) {
             $workdaysTemp = $workdaysTemp->where('workday_type_id', request()->workday_type_id);
         }
+
 
         $workdays = $workdaysTemp->map(function ($workday) {
             return [
