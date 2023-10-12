@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title', 'Çalışma Raporu')
+@section('title', 'İzin Raporu')
 @section('content')
 
     <div class="row">
@@ -11,44 +11,66 @@
                 <div class="box-body">
                     <form action="{{ route('user.report.permit.download') }}" method="POST">
                         @csrf
+                        <div class="col-md-12">
 
-                        <div class="col-md-6">
-                            <div class="card p-3">
-                                <div class="form-group">
-                                    <label for="input1">Input 1:</label>
-                                    <input type="text" class="form-control" id="input1" placeholder="Değer girin...">
+                            <div class="col-md-9">
+                                <label for="employee_id">Personel</label>
+                                <select class="form-control select2" name="employee_id[]" id="employee_ids" multiple="multiple" style="width:100%">
+                                    @foreach ($employees as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ in_array($item->id, old('employee_id', [])) ? 'selected' : '' }}>
+                                            {{ $item->full_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="employee_id">Çalışma Tipi</label>
+                                <select class="form-control select2" name="permit_type_id" id="permit_type_id" style="width:100%">
+                                    @foreach ($permitTypes as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12" style="margin-top: 25px">
+                            <div class="col-md-3">
+                                <label for="start_date">Başlangıç Tarihi</label>
+                                <input type="datetime-local" name="start_date" id="start_date" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="end_date">Bitiş Tarihi</label>
+                                <input type="datetime-local" name="end_date" id="end_date" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
+                                    <label></label>
+                                    <button type="button" class="btn btn-success form-control" id="selectAll">Tümünü Seç</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input2">Input 2:</label>
-                                    <input type="text" class="form-control" id="input2" placeholder="Değer girin...">
+
+                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
+                                    <label></label>
+                                    <button type="button" class="btn btn-warning form-control" id="quickSelect">Hızlı Seç</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input3">Input 3:</label>
-                                    <input type="text" class="form-control" id="input3" placeholder="Değer girin...">
+
+                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
+                                    <label></label>
+                                    <button type="button" class="btn btn-danger form-control" id="clearFilter">Temizle</button>
                                 </div>
+
+                                <div class="col-md-3" style="padding:0px 2px 0px 2px">
+                                    <label></label>
+                                    <button class="btn btn-info form-control" type="submit" id="downloadExcel">Excel İndir</button>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card p-3">
-                                <div class="form-group">
-                                    <label for="input4">Input 4:</label>
-                                    <input type="text" class="form-control" id="input4" placeholder="Değer girin...">
-                                </div>
-                                <div class="form-group">
-                                    <label for="input5">Input 5:</label>
-                                    <input type="text" class="form-control" id="input5" placeholder="Değer girin...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 button-container">
-                            <button class="btn btn-primary btn-block">Buton 1</button>
-                            <button class="btn btn-primary btn-block">Buton 2</button>
-                            <button class="btn btn-primary btn-block">Buton 3</button>
-                            <button class="btn btn-primary btn-block">Buton 4</button>
-                            <button class="btn btn-primary btn-block">Buton 5</button>
-                        </div>
-
-
                     </form>
 
                 </div>
@@ -67,4 +89,3 @@
 @section('customScript')
     @include('user.modules.report.permit.components.script')
 @endsection
-

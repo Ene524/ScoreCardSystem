@@ -44,7 +44,6 @@ class WorkdayExport implements FromCollection, WithHeadings
             $workdaysTemp = $workdaysTemp->where('workday_type_id', request()->workday_type_id);
         }
 
-
         $workdays = $workdaysTemp->map(function ($workday) {
             return [
                 'employee_name' => $workday->employee_name,
