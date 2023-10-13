@@ -8,6 +8,7 @@ use App\Exports\WorkdayExport;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\PermitStatus;
+use App\Models\PermitType;
 use App\Models\WorkdayType;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,7 +16,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
 
-    public function employees(){
+    public function employees()
+    {
         $employees = Employee::all();
         return view("user.modules.report.employee.index", compact("employees"));
     }
@@ -40,8 +42,8 @@ class ReportController extends Controller
     public function permits()
     {
         $employees = Employee::all();
-        $permitTypes = WorkdayType::all();
-        $permitStatuses= PermitStatus::all();
+        $permitTypes = PermitType::all();
+        $permitStatuses = PermitStatus::all();
         return view("user.modules.report.permit.index", compact("employees", "permitTypes", "permitStatuses"));
     }
 

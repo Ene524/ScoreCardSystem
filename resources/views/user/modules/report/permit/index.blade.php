@@ -13,7 +13,7 @@
                         @csrf
                         <div class="col-md-12">
 
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <label for="employee_id">Personel</label>
                                 <select class="form-control select2" name="employee_id[]" id="employee_ids" multiple="multiple" style="width:100%">
                                     @foreach ($employees as $item)
@@ -26,9 +26,22 @@
                             </div>
 
                             <div class="col-md-3">
-                                <label for="employee_id">Çalışma Tipi</label>
+                                <label for="employee_id">İzin Türü</label>
                                 <select class="form-control select2" name="permit_type_id" id="permit_type_id" style="width:100%">
+                                    <option value="{{null}}">İzin Türü Seçiniz</option>
                                     @foreach ($permitTypes as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="employee_id">İzin Durumu</label>
+                                <select class="form-control select2" name="permit_status_id" id="permit_status_id" style="width:100%">
+                                    <option value="{{null}}">İzin Durumu Seçiniz</option>
+                                    @foreach ($permitStatuses as $item)
                                         <option value="{{ $item->id }}">
                                             {{ $item->name }}
                                         </option>
