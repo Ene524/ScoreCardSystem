@@ -15,8 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
 
-    public function employees()
-    {
+    public function employees(){
         $employees = Employee::all();
         return view("user.modules.report.employee.index", compact("employees"));
     }
