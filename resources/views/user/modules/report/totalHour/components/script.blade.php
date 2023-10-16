@@ -119,9 +119,9 @@
                         html += '<td>' + item.full_name + '</td>';
                         html += '<td>' + item.totalWorkTime + '</td>';
                         html += '<td>' + item.totalPermitTime + '</td>';
-                        html += '<td>' + item.totalNetWorkTime + '</td>';
+                        html += '<td>' + (item.totalWorkTime - item.totalPermitTime) + '</td>';
                         html += '<td>' + item.salary + '</td>';
-                        html += '<td>' + calcSalary(item.totalNetWorkTime, item.salary).toFixed(2);
+                        html += '<td>' + calcSalary((item.totalWorkTime - item.totalPermitTime), item.salary).toFixed(2);
                         +
                             '</td>';
                         html += '</tr>';

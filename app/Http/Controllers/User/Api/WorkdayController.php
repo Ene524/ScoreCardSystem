@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Employee;
 use App\Models\Workday;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +19,7 @@ class WorkdayController extends Controller
             ]
         );
     }
+
     public function totalWorkHours(Request $request)
     {
         $startDate = $request->start_date ?? "2000-01-01"; // Başlangıç tarihi
@@ -29,7 +29,6 @@ class WorkdayController extends Controller
             ->select('full_name', 'salaries.amount as salary')
             ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.deleted_at is null AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) as totalWorkTime', [$startDate, $endDate])
             ->selectRaw('IFNULL((SELECT SUM((TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15)) FROM permits WHERE permits.deleted_at is null AND permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0) as totalPermitTime', [$startDate, $endDate])
-            ->selectRaw('IFNULL((SELECT SUM(TIMESTAMPDIFF(HOUR, start_date, end_date)) FROM workdays WHERE workdays.employee_id = employees.id AND workdays.deleted_at is null AND workdays.start_date >= ? AND workdays.end_date <= ?), 0) - IFNULL((SELECT SUM((TIMESTAMPDIFF(hour, start_date,end_date)) - (FLOOR(TIMESTAMPDIFF(hour, start_date,end_date) / 24) * 15)) FROM permits WHERE permits.deleted_at is null AND permits.employee_id = employees.id AND permits.start_date >= ? AND permits.end_date <= ?), 0) as totalNetWorkTime', [$startDate, $endDate, $startDate, $endDate])
             ->join('salaries', 'salaries.id', '=', 'employees.salary_id')
             ->where('employees.deleted_at', null);
 
