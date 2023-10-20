@@ -7,6 +7,7 @@ use App\Http\Requests\User\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -22,7 +23,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $user = User::where("email", $request->email)->first();
-        if ($user && \Hash::check($request->password, $user->password)) {
+        if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user, $request->remember);
             return redirect()->route("user.dashboard.index");
         } else {
