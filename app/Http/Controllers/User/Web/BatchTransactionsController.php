@@ -14,29 +14,24 @@ use App\Http\Requests\User\EmployeeUploadRequest;
 use Maatwebsite\Excel\Facades\Excel;
 
 
-class BatchTransactionsController extends Controller
-{
-    public function addEmployeeindex()
-    {
+class BatchTransactionsController extends Controller {
+    public function addEmployeeindex() {
         return view('user.modules.batchTransactions.addEmployee.index');
     }
 
-    public function addEmployeeUpload(EmployeeUploadRequest $request)
-    {
+    public function addEmployeeUpload(EmployeeUploadRequest $request) {
         Excel::import(new EmployeeImport(), $request->file('excelFile'));
         return redirect()->back()->with('success', 'Müşteriler başarıyla aktarıldı');
     }
 
 
-    public function addWorkdayindex()
-    {
+    public function addWorkdayindex() {
         $employees = Employee::all();
         $workdayTypes = WorkdayType::all();
         return view('user.modules.batchTransactions.addWorkday.index', compact('employees', 'workdayTypes'));
     }
 
-    public function addWorkday(WorkdayBatchRequest $request)
-    {
+    public function addWorkday(WorkdayBatchRequest $request) {
         $employees = Employee::whereIn('id', $request->employee_id)->get();
 
         $start_date = new DateTime($request->start_date);
@@ -48,8 +43,8 @@ class BatchTransactionsController extends Controller
             while ($current_date <= $end_date) {
                 // Eğer bu günün haftanın pazarı (7) değilse işlemi devam ettirin
                 if ($current_date->format('N') != 7) {
-                    $start_date_formatted = $current_date->format('Y-m-d').$start_date->format('H:i');
-                    $end_date_formatted = $current_date->format('Y-m-d').$end_date->format('H:i');
+                    $start_date_formatted = $current_date->format('Y-m-d') . $start_date->format('H:i');
+                    $end_date_formatted = $current_date->format('Y-m-d') . $end_date->format('H:i');
 
                     $employee->workdays()->create([
                         'start_date' => $start_date_formatted,
@@ -62,11 +57,9 @@ class BatchTransactionsController extends Controller
             }
         }
         return Redirect::back()->with('success', 'Çalışma günleri başarıyla oluşturuldu');
-
     }
 
-    public function downloadEmployeeTemplate()
-    {
+    public function downloadEmployeeTemplate() {
         $path = storage_path('app/public/excel/EmployeeExample.xlsx');
         return response()->download($path);
     }

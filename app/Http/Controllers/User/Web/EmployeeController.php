@@ -9,11 +9,10 @@ use App\Models\Employee;
 use App\Models\Position;
 use App\Models\Salary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class EmployeeController extends Controller
-{
-    public function index(Request $request)
-    {
+class EmployeeController extends Controller {
+    public function index(Request $request) {
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
@@ -28,20 +27,18 @@ class EmployeeController extends Controller
         return view("user.modules.employee.index.index", compact("employees", "departments", "positions", "salaries"));
     }
 
-    public function create()
-    {
+    public function create() {
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
         return view("user.modules.employee.create-update.index", compact("departments", "positions", "salaries"));
     }
 
-    public function store(EmployeeRequest $request)
-    {
+    public function store(EmployeeRequest $request) {
         $employee = new Employee();
         $employee->full_name = $request->full_name;
         $employee->email = $request->email;
-        $employee->password = \Hash::make($request->password);
+        $employee->password = Hash::make($request->password);
         $employee->department_id = $request->department_id;
         $employee->position_id = $request->position_id;
         $employee->salary_id = $request->salary_id;
@@ -50,8 +47,7 @@ class EmployeeController extends Controller
         return redirect()->route('user.employee.index')->with('success', 'Personel başarıyla oluşturuldu');
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
@@ -59,12 +55,11 @@ class EmployeeController extends Controller
         return view('user.modules.employee.create-update.index', compact('employee', 'departments', 'positions', 'salaries'));
     }
 
-    public function update(EmployeeRequest $request, $id)
-    {
+    public function update(EmployeeRequest $request, $id) {
         $employee = Employee::findOrfail($id);
         $employee->full_name = $request->full_name;
         $employee->email = $request->email;
-        $employee->password = \Hash::make($request->password);
+        $employee->password = Hash::make($request->password);
         $employee->department_id = $request->department_id;
         $employee->position_id = $request->position_id;
         $employee->salary_id = $request->salary_id;
@@ -73,8 +68,7 @@ class EmployeeController extends Controller
         return redirect()->route('user.employee.index')->with('success', 'Personel başarıyla güncellendi');
     }
 
-    public function delete(Request $request)
-    {
+    public function delete(Request $request) {
         $request->validate([
             'employeeID' => 'required|exists:employees,id',
         ]);

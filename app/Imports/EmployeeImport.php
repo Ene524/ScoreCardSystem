@@ -10,16 +10,16 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class EmployeeImport implements ToModel, WithHeadingRow, WithValidation
-{
+class EmployeeImport implements ToModel, WithHeadingRow, WithValidation {
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function model(array $row)
-    {
-        dd($row);
+
+
+
+    public function model(array $row) {
         $department = Department::where('name', trim($row['department']))->first();
         $position = Position::where('name', trim($row['position']))->first();
         $salary = Salary::where('amount', trim($row['salary']))->first();
@@ -36,8 +36,7 @@ class EmployeeImport implements ToModel, WithHeadingRow, WithValidation
         ]);
     }
 
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
             'full_name' => 'required',
             'email' => 'required|email|unique:employees',
@@ -49,8 +48,7 @@ class EmployeeImport implements ToModel, WithHeadingRow, WithValidation
         ];
     }
 
-    public function customValidationMessages()
-    {
+    public function customValidationMessages() {
         return [
             'full_name.required' => 'Ad Soyad alanı zorunludur',
             'email.required' => 'Email alanı zorunludur',

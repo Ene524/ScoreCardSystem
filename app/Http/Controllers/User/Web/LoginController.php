@@ -9,10 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
-{
-    public function showLogin()
-    {
+class LoginController extends Controller {
+    public function showLogin() {
         if (Auth::check()) {
             return redirect()->route("user.dashboard.index");
         } else {
@@ -20,8 +18,7 @@ class LoginController extends Controller
         }
     }
 
-    public function login(LoginRequest $request)
-    {
+    public function login(LoginRequest $request) {
         $user = User::where("email", $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user, $request->remember);
@@ -31,8 +28,7 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         if (Auth::check()) {
             Auth::logout();
             $request->session()->invalidate();

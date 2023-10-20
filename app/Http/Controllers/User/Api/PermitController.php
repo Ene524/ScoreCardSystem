@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Permit;
 use Illuminate\Http\Request;
 
-class PermitController extends Controller
-{
-    public function index(Request $request)
-    {
+class PermitController extends Controller {
+    public function index(Request $request) {
         return response()->json(
             [
                 'permits' => Permit::with([
