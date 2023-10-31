@@ -2,20 +2,32 @@
 
 namespace App\Http\Controllers\User\Web;
 
+use App\Core\HttpResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DepartmentRequest;
+use App\Interfaces\IDepartmentService;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    use HttpResponse;
+
+    private IDepartmentService $departmentService;
+
+    public function __construct(IDepartmentService $departmentService)
+    {
+        $this->departmentService = $departmentService;
+    }
+
     public function index()
     {
-        $departments = Department::all();
+        $departments = $this->departmentService->getAll();
         return view("user.modules.department.index.index", compact("departments"));
     }
 
-    public function create()    {
+    public function create()
+    {
         return view("user.modules.department.create-update.index");
     }
 
@@ -31,8 +43,17 @@ class DepartmentController extends Controller
 
     public function edit($id)
     {
-        $department = Department::findOrfail($id);
-        return view('user.modules.department.create-update.index', compact('department'));
+
+        $response = $this->departmentService->update($id, []);
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+
+//        $department = Department::findOrfail($id);
+//        return view('user.modules.department.create-update.index', compact('department'));
     }
 
     public function update(DepartmentRequest $request, $id)

@@ -2,7 +2,6 @@
 @section('title', 'Departman Listesi')
 @section('content')
 
-
     <div class="row">
         <div class="col-md-12">
             @if(session()->has('success'))
@@ -29,7 +28,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($departments as $department)
+                        @foreach($departments->getData() as $department)
                             <tr>
                                 <th>{{$department->id}}</th>
                                 <td>{{$department->name}}</td>
