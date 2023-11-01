@@ -48,4 +48,20 @@ class DepartmentService implements IDepartmentService
     {
         // TODO: Implement delete() method.
     }
+
+    /**
+     * @param string $name
+     * @param string $description
+     * @param string $status
+     * @return ServiceResponse
+     */
+    public function create(string $name, string $description, string $status): ServiceResponse
+    {
+        $department = new Department();
+        $department->name = $name;
+        $department->description = $description;
+        $department->status = $status != null ? 1 : 0;
+        $department->save();
+        return new ServiceResponse(true, "Departman başarıyla eklendi", $department, 200);
+    }
 }

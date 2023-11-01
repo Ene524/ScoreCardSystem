@@ -33,17 +33,22 @@ class DepartmentController extends Controller
 
     public function store(DepartmentRequest $request)
     {
-        $department = new Department();
-        $department->name = $request->name;
-        $department->description = $request->description;
-        $department->status = $request->status != null ? 1 : 0;
-        $department->save();
-        return redirect()->route('user.department.index')->with('success', 'Departman başarıyla oluşturuldu');
+        $response = $this->departmentService->create(
+            $request->name,
+            $request->description,
+            $request->status == null ? 0 : 1
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
     }
 
     public function edit($id)
     {
-
         $response = $this->departmentService->update($id, []);
         return $this->httpResponse(
             $response->getMessage(),
