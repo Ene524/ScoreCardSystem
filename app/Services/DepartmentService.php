@@ -47,6 +47,7 @@ class DepartmentService implements IDepartmentService
     public function delete(int $id): ServiceResponse
     {
         // TODO: Implement delete() method.
+        return new ServiceResponse(true,"",[],200);
     }
 
     /**
