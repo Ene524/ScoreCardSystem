@@ -28,7 +28,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($departments->getData() as $department)
+                        @foreach($departments as $department)
                             <tr>
                                 <th>{{$department->id}}</th>
                                 <td>{{$department->name}}</td>
