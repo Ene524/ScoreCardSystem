@@ -54,10 +54,10 @@
                     console.log(error);
                     if (parseInt(error.status) === 422) {
                         $.each(error.responseJSON.response, function (i, error) {
-                            toastr.error(error[0]);
+                            alert(error[0]);
                         });
                     } else {
-                        toastr.error(error.responseJSON.message);
+                        alert(error.responseJSON.message);
                     }
                 }
             });
@@ -72,7 +72,7 @@
 
     passwordInput.on('keyup', function (e) {
         if (e.keyCode === 13) {
-            login.focus();
+            login();
         }
     });
 

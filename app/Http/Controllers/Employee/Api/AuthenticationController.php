@@ -14,15 +14,22 @@ class AuthenticationController extends Controller
     public function login(Request $request)
     {
         $employee = Employee::where('email', $request->email)->first();
-        if ($employee->status = 1) {
-            return $this->httpResponse('User logged in successfully', 200, [
-                'token' => $employee->createToken('employeeApiToken')->plainTextToken,
-                'id'=> $employee->id,
-                'name'=> $employee->full_name,
-                'email'=> $employee->email,
-            ], true);
-        } else {
-            return $this->httpResponse('User is not activated', 401);
+        if ($employee)
+        {
+            if ($employee->status = 1) {
+                return $this->httpResponse('User logged in successfully', 200, [
+                    'token' => $employee->createToken('employeeApiToken')->plainTextToken,
+                    'id'=> $employee->id,
+                    'name'=> $employee->full_name,
+                    'email'=> $employee->email,
+                ], true);
+            } else {
+                return $this->httpResponse('User is not activated', 401);
+            }
+        }
+        else{
+            return $this->httpResponse('User is not found', 401);
+
         }
     }
 
